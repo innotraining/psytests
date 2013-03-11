@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.congnitive.test.mmpitest"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.RegistrationActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.ChooseExistingUserActivity"
+            android:label="activity_choose_existing_user.xml" 
+            >
+        </activity>
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.ExitTestActivity"
+            android:label="activity_exit_test.xml" >
+        </activity>
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.MainMenuActivity"
+            android:label="activity_main_menu.xml" >
+        </activity>
+        <activity
+			android:name="com.congnitive.test.mmpitest.activities.NewUserActivity"
+            android:label="activity_new_user.xml" >
+        </activity>
+        <activity
+    		android:name="com.congnitive.test.mmpitest.activities.ResultVisualisationActivity"
+            android:label="activity_result_visualisation.xml" >
+        </activity>
+        <activity
+			android:name="com.congnitive.test.mmpitest.activities.StartTestActivity"
+            android:label="activity_start_test.xml" >
+        </activity>
+        <activity
+       		android:name="com.congnitive.test.mmpitest.activities.TestQuestionActivity"
+            android:label="activity_test_question.xml" >
+        </activity>
+        <activity
+   			android:name="com.congnitive.test.mmpitest.activities.UserActionActivity"
+            android:label="activity_user_action.xml" >
+        </activity>
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.ViewResultActivity"
+            android:label="activity_view_result">
+        </activity>
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.AgainOrToMenuActivity"
+            android:label="activity_again_or_start.xml" >
+        </activity>
+    </application>
+
+</manifest>
