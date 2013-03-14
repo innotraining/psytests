@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kettell\'s test</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="newUser">new user</string>
+    <string name="alreadyRegistered">already registered</string>
+    <string name="quitTest">quit test</string>
+    <string name="title_activity_new_user">NewUser</string>
+    <string name="inputLogin">input_login</string>
+    <string name="register">register</string>
+    <string name="title_activity_registered_users">RegisteredUsers</string>
+    <string name="chooseYourAccount">choose your account</string>
+    <string name="chosenAccount">&lt;nothing is chosen></string>
+    <string name="ok">OK</string>
+    <string name="title_activity_main_menu">MainMenu</string>
+    <string name="results">results</string>
+    <string name="startTest">start test</string>
+    <string name="title_activity_results">Results</string>
+    <string name="title_activity_introduction">Introduction</string>
+    <string name="testDescription">description</string>
+    <string name="mainMenu">main menu</string>
+    <string name="start">start</string>
+    <string name="title_activity_part1_subtest1">Part1Subtest1</string>
+    <string name="title_activity_part1_subtest2">Part1Subtest2</string>
+    <string name="title_activity_part1_subtest3">Part1Subtest3</string>
+    <string name="title_activity_part1_subtest4">Part1Subtest4</string>
+    <string name="title_activity_short_break_between_parts">ShortBreakBetweenParts</string>
+    <string name="title_activity_part2_subtest1">Part2Subtest1</string>
+    <string name="title_activity_part2_subtest2">Part2Subtest2</string>
+    <string name="title_activity_part2_subtest3">Part2Subtest3</string>
+    <string name="title_activity_part2_subtest4">Part2Subtest4</string>
+    <string name="title_activity_finalize_testing">FinalizeTesting</string>
+    <string name="short_break">short break</string>
+    <string name="skip">skip</string>
+    <string name="yourResult">your result</string>
+    <string name="t_1_s_1_description">description: part 1 subtest 1</string>
+    <string name="t_1_s_2_description">description: part 1 subtest 2</string>
+    <string name="t_1_s_3_description">description: part 1 subtest 3</string>
+    <string name="t_1_s_4_description">description: part 1 subtest 4</string>
+    <string name="t_2_s_1_description">description: part 2 subtest 1</string>
+    <string name="t_2_s_2_description">description: part 2 subtest 2</string>
+    <string name="t_2_s_3_description">description: part 2 subtest 3</string>
+    <string name="t_2_s_4_description">description: part 2 subtest 4</string>
+    <string name="pickAnswer">pick answer</string>
+    <string name="changeAccount">change account</string>
+
+</resources>
