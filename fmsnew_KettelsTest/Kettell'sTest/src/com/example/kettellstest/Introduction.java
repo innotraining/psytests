@@ -12,12 +12,15 @@ import android.os.Build;
 
 public class Introduction extends Activity {
 
+	String login;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_introduction);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		Intent intent = Introduction.this.getIntent();
+		login = intent.getStringExtra("login");
 	}
 
 	/**
@@ -56,13 +59,24 @@ public class Introduction extends Activity {
 	
 	public void onMainMenuClick(View view) {
 		Intent intent = new Intent(Introduction.this, MainMenu.class);
+		intent.putExtra("login", login);
 		Introduction.this.startActivity(intent);
 		finish();
     }
 	
+	public void onDebugGoToClick(View view) {
+		//TODO add user form text field
+		Intent intent = new Intent(Introduction.this, Part1Subtest2.class);
+		intent.putExtra("login", login);
+		Introduction.this.startActivity(intent);
+		finish();
+    }
+	
+	
 	public void onStartClick(View view) {
 		//TODO add user form text field
 		Intent intent = new Intent(Introduction.this, Part1Subtest1.class);
+		intent.putExtra("login", login);
 		Introduction.this.startActivity(intent);
 		finish();
     }

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class RegisteredUsers extends Activity {
 
-	String login;
+	String login = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,10 @@ public class RegisteredUsers extends Activity {
 	}
 
 	public void onOKClick(View view) {
+		if (login == "") {
+			Toast.makeText(getApplicationContext(), "no account was chosen", Toast.LENGTH_LONG).show();
+			return;
+		}
 		Intent intent = new Intent(RegisteredUsers.this, MainMenu.class);
 		intent.putExtra("login", login);
 		RegisteredUsers.this.startActivity(intent);
