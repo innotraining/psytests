@@ -1,9 +1,5 @@
 package com.congnitive.test.mmpitest.domainObjects;
 
-import java.util.List;
-
-import android.util.Pair;
-
 public interface PsychologyTextedTest {
 	/**
 	 * @param ans
@@ -24,9 +20,7 @@ public interface PsychologyTextedTest {
 	 * @return list of the pairs of names of abilities and level of these
 	 *         abilities
 	 */
-	public List<Pair<String, Integer>> getResults();
+	public QuizResult getResults();
 
 	public int getLength();
-
-	public void resetAnswers();
 }

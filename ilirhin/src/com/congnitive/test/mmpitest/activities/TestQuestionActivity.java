@@ -5,6 +5,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class TestQuestionActivity extends Activity {
 		setContentView(R.layout.activity_test_question);
 		userId = getIntent().getIntExtra(Utility.USER_ID_TAG, -1);
 		user = Utility.database.getUserById(userId);
-		test = Utility.getTest(user.getGender());
+		test = Utility.getTest(user.getGender(), getResources());
 		((TextView) findViewById(R.id.TestQuestionText)).setText(test
 				.getQuestion(askedQuestions));
 	}
@@ -56,7 +57,6 @@ public class TestQuestionActivity extends Activity {
 		} else {
 			askedQuestions++;
 			if (askedQuestions == test.getLength()) {
-				// TODO starting viewing results
 				Utility.database.addTestToUser(userId, test.getResults(),
 						new Date());
 				Intent intent = new Intent(TestQuestionActivity.this,
@@ -77,7 +77,7 @@ public class TestQuestionActivity extends Activity {
 				if (data.getBooleanExtra(
 						StartTestActivity.AGAIN_OR_EXIT_RESULT_TAG, false)) {
 					askedQuestions = 0;
-					test.resetAnswers();
+					test = Utility.getTest(user.getGender(), getResources());
 					((TextView) findViewById(R.id.TestQuestionText))
 							.setText(test.getQuestion(0));
 				} else {
@@ -93,8 +93,18 @@ public class TestQuestionActivity extends Activity {
 				intent.putExtra(StartTestActivity.EXIT_MESSAGE_TAG,
 						getText(R.string.liar_text));
 				startActivityForResult(intent, ASK_FOR_REPEAT);
-				// finish();
 			}
 		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(getApplicationContext(),
+					StartTestActivity.class);
+			startActivity(intent);
+			finish();
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

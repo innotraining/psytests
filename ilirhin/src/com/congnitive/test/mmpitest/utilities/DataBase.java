@@ -4,8 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import android.util.Pair;
-
+import com.congnitive.test.mmpitest.domainObjects.QuizResult;
 import com.congnitive.test.mmpitest.domainObjects.User;
 
 public interface DataBase {
@@ -21,13 +20,11 @@ public interface DataBase {
 
 	public User[] getAllUsers();
 
-	public int addTestToUser(int userId,
-			List<Pair<String, Integer>> testResults, Date date);
+	public int addTestToUser(int userId, QuizResult testResults, Date date);
 
-	public Map<Date, List<List<Pair<String, Integer>>>> getAllTestsOfUser(
-			int userId);
+	public Map<Date, List<QuizResult>> getAllTestsOfUser(int userId);
 
-	public List<Pair<String, Integer>> getTestResult(int userId, int testId);
+	public QuizResult getTestResult(int userId, int testId);
 
 	public Date getTestDate(int userId, int testId);
 

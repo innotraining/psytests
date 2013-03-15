@@ -3,6 +3,7 @@ package com.congnitive.test.mmpitest.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -51,5 +52,16 @@ public class ChooseExistingUserActivity extends Activity {
 			startActivity(intent);
 			finish();
 		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(ChooseExistingUserActivity.this,
+					RegistrationActivity.class);
+			startActivity(intent);
+			finish();
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

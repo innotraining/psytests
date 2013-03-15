@@ -7,16 +7,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import android.util.Pair;
+import android.content.res.Resources;
 
 import com.congnitive.test.mmpitest.domainObjects.PsychologyTextedTest;
+import com.congnitive.test.mmpitest.domainObjects.QuizResult;
 import com.congnitive.test.mmpitest.domainObjects.User;
 
 public class Utility {
 	static public DataBase database = new RAMDatabase();
 
-	static public PsychologyTextedTest getTest(boolean gender) {
-		return new LolTest();
+	static public PsychologyTextedTest getTest(boolean gender, Resources res) {
+		return new MMPITest(gender, res);
 	}
 
 	static public final String USER_ID_TAG = "Utility.userIdTag";
@@ -26,7 +27,7 @@ class RAMDatabase implements DataBase {
 	private Map<Integer, User> map = new TreeMap<Integer, User>();
 	private Map<String, Integer> mapId = new TreeMap<String, Integer>();
 	private Map<String, User> mapNames = new TreeMap<String, User>();
-	private Map<Integer, Map<Date, List<List<Pair<String, Integer>>>>> usrTests = new TreeMap<Integer, Map<Date, List<List<Pair<String, Integer>>>>>();
+	private Map<Integer, Map<Date, List<QuizResult>>> usrTests = new TreeMap<Integer, Map<Date, List<QuizResult>>>();
 	private int amount = 0;
 
 	public RAMDatabase() {
@@ -68,20 +69,16 @@ class RAMDatabase implements DataBase {
 	}
 
 	@Override
-	public int addTestToUser(int userId,
-			List<Pair<String, Integer>> testResults, Date date) {
+	public int addTestToUser(int userId, QuizResult testResults, Date date) {
 
 		if (map.containsKey(userId)) {
 			if (!usrTests.containsKey(userId)) {
-				usrTests.put(userId,
-						new TreeMap<Date, List<List<Pair<String, Integer>>>>());
+				usrTests.put(userId, new TreeMap<Date, List<QuizResult>>());
 			}
 			if (!usrTests.get(userId).containsKey(date)) {
-				usrTests.get(userId).put(date,
-						new ArrayList<List<Pair<String, Integer>>>());
+				usrTests.get(userId).put(date, new ArrayList<QuizResult>());
 			}
-			List<List<Pair<String, Integer>>> dateTestsList = usrTests.get(
-					userId).get(date);
+			List<QuizResult> dateTestsList = usrTests.get(userId).get(date);
 			dateTestsList.add(testResults);
 			usrTests.get(userId).put(date, dateTestsList);
 		}
@@ -89,7 +86,7 @@ class RAMDatabase implements DataBase {
 	}
 
 	@Override
-	public List<Pair<String, Integer>> getTestResult(int userId, int testId) {
+	public QuizResult getTestResult(int userId, int testId) {
 		return null;
 	}
 
@@ -109,41 +106,8 @@ class RAMDatabase implements DataBase {
 	}
 
 	@Override
-	public Map<Date, List<List<Pair<String, Integer>>>> getAllTestsOfUser(
-			int userId) {
+	public Map<Date, List<QuizResult>> getAllTestsOfUser(int userId) {
 		return usrTests.get(userId);
-	}
-
-}
-
-class LolTest implements PsychologyTextedTest {
-
-	@Override
-	public boolean setAnswer(int num, int ans) {
-		return num == 3 && ans == 1;
-	}
-
-	@Override
-	public String getQuestion(int num) {
-		return "Question " + num;
-	}
-
-	@Override
-	public List<Pair<String, Integer>> getResults() {
-		ArrayList<Pair<String, Integer>> result = new ArrayList<Pair<String, Integer>>();
-		result.add(new Pair<String, Integer>("A", 70));
-		result.add(new Pair<String, Integer>("B", 30));
-		result.add(new Pair<String, Integer>("C", 90));
-		return result;
-	}
-
-	@Override
-	public int getLength() {
-		return 5;
-	}
-
-	@Override
-	public void resetAnswers() {
 	}
 
 }
