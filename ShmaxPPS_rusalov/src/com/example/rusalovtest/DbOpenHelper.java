@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DbOpenHelper extends SQLiteOpenHelper {
-	private static final int DB_VERSION = 2;
+	private static final int DB_VERSION = 3;
 	private static final String DB_NAME = "mydatabase.db";
 	
 	public static final String TABLE_NAME_USER = "users";
@@ -17,7 +17,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 	        +USER+" TEXT UNIQUE);";
 	private static final String CREATE_TABLE_RESULT ="CREATE TABLE "+TABLE_NAME_RESULT+" (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
 	        +USER+" TEXT," + "energy INTEGER, socialEnergy INTEGER, plasticity INTEGER, socialPlasticity INTEGER, pace INTEGER," +
-	        		"  socialPace INTEGER, emotionality INTEGER, socialEmotionality INTEGER, k INTEGER);";
+	        		"  socialPace INTEGER, emotionality INTEGER, socialEmotionality INTEGER, k INTEGER, day INTEGER, month INTEGER, year INTEGER, isLast INTEGER);";
 	
 	public DbOpenHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);

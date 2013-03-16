@@ -1,14 +1,17 @@
 package com.example.rusalovtest;
 
-import java.util.Vector;
-
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,16 +19,20 @@ import android.widget.TextView;
 
 public class Screen_3 extends Activity {
 	
+	final String LOG_TAG = "myLogs";
+	
 	private int numberOfQuestion = 0;
 	private Button yesButton;
 	private Button noButton;
 	private Button mainMenuButton;
 	private TextView currentQuestion;
 	private TextView currentCount;
-	private Vector<Integer> answers;
+	private ArrayList<Integer> answers;
 	private String[] questions;
 	private DbOpenHelper dbOpenHelper;
 	private String userName;
+	private int isFailed = 0;
+	private Resources res;
 	
 	 
 	@Override
@@ -33,17 +40,42 @@ public class Screen_3 extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_screen_3);
 		userName = getIntent().getStringExtra("userName");
-		answers = new Vector<Integer>();
-		Resources res = getResources();
+		answers = new ArrayList<Integer>();
+	}
+	
+	protected void onResume() {
+		super.onResume();
+		res = getResources();
 	    questions = res.getStringArray(R.array.Questions);
 	    currentQuestion = (TextView) findViewById(R.id.textQuestion);
 	    currentQuestion.setText(questions[numberOfQuestion]);
+	    
 	    currentCount = (TextView) findViewById(R.id.counter);
 	    currentCount.setText((Integer)(numberOfQuestion + 1) + "/" + "105");
 	    numberOfQuestion++;
-	    	
+	    
 	    addListenerOnButton();
 	}
+	  
+	
+	@Override
+	protected void onSaveInstanceState(Bundle savedInstanceState) {
+		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putInt("numberOfQuestion", numberOfQuestion-1);
+		savedInstanceState.putIntegerArrayList("answers", answers);
+		savedInstanceState.putInt("isFailed", isFailed);
+		Log.d(LOG_TAG, "onSaveInstanceState");
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		numberOfQuestion = savedInstanceState.getInt("numberOfQuestion");
+		answers = savedInstanceState.getIntegerArrayList("answers");
+		isFailed = savedInstanceState.getInt("isFailed");
+		Log.d(LOG_TAG, "onRestoreInstanceState");
+	}
+	  
 	public void addListenerOnButton(){
 		mainMenuButton = (Button) findViewById(R.id.mainMenu);
 		yesButton = (Button) findViewById(R.id.yes);
@@ -54,9 +86,38 @@ public class Screen_3 extends Activity {
 				
 				@Override
 				public void onClick(View v) {
-					
-					
-					answers.addElement(1);
+					if(numberOfQuestion == 32 || numberOfQuestion == 52 || numberOfQuestion == 89){
+						isFailed++;
+					}
+					Log.d(LOG_TAG, Integer.toString(isFailed));
+
+					if(isFailed >= 7){
+						
+						AlertDialog.Builder builder = new AlertDialog.Builder(Screen_3.this);
+						String yourAnswersIsFailed = res.getString(R.string.yourAnswersIsFailed);
+						builder.setTitle(yourAnswersIsFailed);
+						String toMenu = res.getString(R.string.toMenuButton);
+						builder.setPositiveButton(toMenu, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent(Screen_3.this, Screen_0.class);
+								startActivity(intent);
+								finish();
+							}
+						});   
+						String returnTest = res.getString(R.string.returnTest);
+						builder.setNegativeButton(returnTest, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent(Screen_3.this, Screen_3.class);
+								intent.putExtra("userName", userName);
+							    startActivity(intent);
+							    finish();
+								
+							}
+						});
+						builder.show();
+					}
+					answers.add(1);
 					if(numberOfQuestion <= 104){
 						currentQuestion.setText(questions[numberOfQuestion]);
 						currentCount.setText((Integer)(numberOfQuestion + 1) + "/" + "105");
@@ -81,8 +142,37 @@ public class Screen_3 extends Activity {
 				@Override
 				public void onClick(View v) {
 					
-					
-					answers.addElement(0);
+					if(numberOfQuestion == 12 || numberOfQuestion == 23 || numberOfQuestion == 44 || numberOfQuestion == 65 || numberOfQuestion == 73 || numberOfQuestion == 82){
+						isFailed++;
+					}
+					Log.d(LOG_TAG, Integer.toString(isFailed));
+
+					if(isFailed >= 7){
+						AlertDialog.Builder builder = new AlertDialog.Builder(Screen_3.this);
+						String yourAnswersIsFailed = res.getString(R.string.yourAnswersIsFailed);
+						builder.setTitle(yourAnswersIsFailed);
+						String toMenu = res.getString(R.string.toMenuButton);
+						builder.setPositiveButton(toMenu, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent(Screen_3.this, Screen_0.class);
+								startActivity(intent);
+								finish();
+							}
+						});   
+						String returnTest = res.getString(R.string.returnTest);
+						builder.setNegativeButton(returnTest, new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
+								Intent intent = new Intent(Screen_3.this, Screen_3.class);
+								intent.putExtra("userName", userName);
+							    startActivity(intent);
+							    finish();
+								
+							}
+						});
+						builder.show();
+					}
+					answers.add(0);
 					if(numberOfQuestion <= 104){
 						currentQuestion.setText(questions[numberOfQuestion]);
 						currentCount.setText((Integer)(numberOfQuestion + 1) + "/" + "105");
@@ -106,9 +196,26 @@ public class Screen_3 extends Activity {
 				
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(Screen_3.this, Screen_0.class);
-			        startActivity(intent);
-			        finish();
+					AlertDialog.Builder builder = new AlertDialog.Builder(Screen_3.this);
+					String areYouSureToLeaveTest = res.getString(R.string.areYouSureToLeaveTest);
+					builder.setTitle(areYouSureToLeaveTest);
+					String yes = res.getString(R.string.yes);
+					builder.setPositiveButton(yes, new DialogInterface.OnClickListener() {
+							   @Override
+							   public void onClick(DialogInterface dialog, int which) {
+								   Intent intent = new Intent(Screen_3.this, Screen_0.class);
+							       startActivity(intent);
+							       finish();
+							   }
+					});   
+					String no = res.getString(R.string.no);
+					builder.setNegativeButton(no, new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int which) {
+							
+							dialog.cancel();
+						}
+					});
+					builder.show();
 				}
 				
 	    	});
@@ -162,7 +269,11 @@ public class Screen_3 extends Activity {
 					 + 6 - answers.get(11) - answers.get(22) - answers.get(43)
 					  - answers.get(64) - answers.get(72) - answers.get(81);
 			
-	
+			Calendar c = Calendar.getInstance();
+			int mYear = c.get(Calendar.YEAR);
+		    int mMonth = c.get(Calendar.MONTH);
+		    int mDay = c.get(Calendar.DAY_OF_MONTH);
+			
 			
 			dbOpenHelper = new DbOpenHelper(Screen_3.this);
 			SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
@@ -178,8 +289,15 @@ public class Screen_3 extends Activity {
 		    cv.put("emotionality", emotionality);
 		    cv.put("socialEmotionality", socialEmotionality);
 		    cv.put("k", K);
+		    cv.put("day", mDay);
+		    cv.put("month", mMonth+1);
+		    cv.put("year", mYear);
+		    cv.put("isLast", 1);
+		    
 		    
 		    db.insert(DbOpenHelper.TABLE_NAME_RESULT, null, cv );
+			Log.d(LOG_TAG, "insertDataBase");
+
 		    db.close();
 		    
 			Intent intent = new Intent(Screen_3.this, Screen_4.class);

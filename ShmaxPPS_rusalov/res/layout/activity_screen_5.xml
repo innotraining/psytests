@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -11,10 +10,29 @@
         android:text="@string/resultsTitle"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <Button
+        android:id="@+id/toMoreInfoButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/toMoreInfo" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/toMoreInfoButton"
+        android:layout_alignParentLeft="true"
+        android:text="@string/back" />
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="333dp" >
+        android:layout_height="333dp"
+        android:layout_above="@+id/backButton"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/resultsTitle" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,16 +47,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/back" />
-
-    <Button
-        android:id="@+id/toMenuButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/toMenuButton" />
-
-</LinearLayout>
+</RelativeLayout>
