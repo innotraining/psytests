@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -1375,7 +1376,6 @@ public class TestActivity extends Activity {
 					}
 					DbOpenHelper dbOpenHelper = new DbOpenHelper(TestActivity.this);
 					SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
-					String userFilter = "username = " + username;
 					ContentValues args = new ContentValues();
 					args.put("hypertim", hypertim);
 					args.put("cycloid", cycloid);
@@ -1391,16 +1391,30 @@ public class TestActivity extends Activity {
 					
 					db.update(DbOpenHelper.TABLE_NAME, args, "username=?", new String[]{username});
 					getResults();
+					typeResolver resolver = new typeResolver();
 					AlertDialog.Builder builder = new AlertDialog.Builder(this);
-					builder.setTitle("!");
-					builder.setMessage("Тест окончен");
+					builder.setTitle("Тест окончен" + "\n" +
+							"Ваш результат: " + resolver.resolve(new int[] {hypertim, cycloid, labil, as_nervous, sensetive, psyhantic, shizoid, epileptic, isteroid, unstable, conform}));
+					builder.setMessage(
+							"hypertim: " + hypertim + "\n" +
+							"cycloid: " + cycloid + "\n" +
+							"labil: " + labil + "\n" + 
+							"as_nervous: " + as_nervous + "\n" + 
+							"sensetive: " + sensetive + "\n" +
+							"psyhantic: " + psyhantic + "\n" +
+							"shizoid: " + shizoid + "\n" +
+							"epileptic: " + epileptic + "\n" +
+							"isteroid: " + isteroid + "\n" +
+							"unstable: " + unstable + "\n" +
+							"conform: " + conform
+							);
 					builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
 						
 						@Override
 						public void onCancel(DialogInterface dialog) {
 							// TODO Auto-generated method stub
-							finish();
-						}
+								finish();
+							}
 					});
 					builder.show();
 				}

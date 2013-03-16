@@ -3,8 +3,6 @@ package com.example.tester;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +13,12 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
 
 public class RegistrationActivity extends Activity {
 	public String username = null;
@@ -122,7 +126,9 @@ public class RegistrationActivity extends Activity {
 		cursor.close();
 		db.close();
 		
-		builder.setTitle("Последний результат: " + typeResolver.resolve(new int[] {hypertim, cycloid, labil, as_nervous, sensetive, psyhantic, shizoid, epileptic, isteroid, unstable, conform}));
+		typeResolver resolver = new typeResolver(); 
+		
+		builder.setTitle("Последний результат: " + resolver.resolve(new int[] {hypertim, cycloid, labil, as_nervous, sensetive, psyhantic, shizoid, epileptic, isteroid, unstable, conform}));
 		builder.setMessage("hypertim: " + hypertim + "\n" +
 				"cycloid: " + cycloid + "\n" +
 				"labil: " + labil + "\n" + 
@@ -136,12 +142,12 @@ public class RegistrationActivity extends Activity {
 				"conform: " + conform
 				);
 		builder.show();
-		/*
-		db  = dbOpenHelper.getWritableDatabase();
-		ContentValues cv = new ContentValues();
-		cv.put("hypertim", 7);
-		db.update(DbOpenHelper.TABLE_NAME, cv, "username=?", new String[]{username});
-		db.close();
-		*/
+	}
+	public void drawGraph(View view) {
+	    // init example series data  
+		Intent intent = new Intent(getBaseContext(), DrawActivity.class);
+		intent.putExtra(USER_SERVICE, username);
+		startActivity(intent);
+	    //layout.addView(graphView);
 	}
 }

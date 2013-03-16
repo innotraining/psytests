@@ -20,19 +20,18 @@
     	android:layout_height="wrap_content"
     	android:orientation="horizontal">
     <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/button_next" 
-        android:onClick="activityNext"/>
-
-    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/toMainMenu"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:onClick="quitTest" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/button_next" 
+        android:onClick="activityNext"/>
     </LinearLayout>
 </LinearLayout>

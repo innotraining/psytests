@@ -13,11 +13,11 @@
     <string name="button_next">Далее</string>
     <string name="new_user">Новый пользователь?</string>
     <string name="already_registered">Уже зарегистрированы?</string>
-	<string name="exit">Выйти из теста</string>
-	<string name="name_hint">Введите свое имя сюда</string>
-	<string name="create_user">Создать пользователя</string>
-	<string name="toMainMenu">В главное меню</string>
-    
+    <string name="exit">Выйти из теста</string>
+    <string name="name_hint">Введите свое имя сюда</string>
+    <string name="create_user">Создать пользователя</string>
+    <string name="toMainMenu">В главное меню</string>
+
     <string-array name="Answers0">
         <item>У меня почти всегда плохое самочувствие</item>
         <item>Я всегда себя чувствую бодрым и полным сил</item>
@@ -422,5 +422,7 @@
     </string-array>
 
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_draw_graph">DrawGraphActivity</string>
+    <string name="title_activity_draw">DrawActivity</string>
 
 </resources>
