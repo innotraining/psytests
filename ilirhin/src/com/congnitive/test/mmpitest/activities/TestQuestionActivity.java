@@ -1,6 +1,7 @@
 package com.congnitive.test.mmpitest.activities;
 
 import java.util.Date;
+import java.util.UUID;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +17,7 @@ import com.congnitive.test.mmpitest.utilities.Utility;
 
 public class TestQuestionActivity extends Activity {
 	static final private int ASK_FOR_REPEAT = 0;
-	private int userId;
+	private UUID userId;
 	private User user;
 	private PsychologyTextedTest test;
 	private int askedQuestions = 0;
@@ -25,8 +26,9 @@ public class TestQuestionActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test_question);
-		userId = getIntent().getIntExtra(Utility.USER_ID_TAG, -1);
-		user = Utility.database.getUserById(userId);
+		userId = UUID.fromString(getIntent()
+				.getStringExtra(Utility.USER_ID_TAG));
+		user = Utility.getDataBase().getUserById(this, userId);
 		test = Utility.getTest(user.getGender(), getResources());
 		((TextView) findViewById(R.id.TestQuestionText)).setText(test
 				.getQuestion(askedQuestions));
@@ -57,11 +59,11 @@ public class TestQuestionActivity extends Activity {
 		} else {
 			askedQuestions++;
 			if (askedQuestions == test.getLength()) {
-				Utility.database.addTestToUser(userId, test.getResults(),
-						new Date());
+				Utility.getDataBase().addTestToUser(this, userId,
+						test.getResults(), new Date());
 				Intent intent = new Intent(TestQuestionActivity.this,
 						ViewResultActivity.class);
-				intent.putExtra(Utility.USER_ID_TAG, userId);
+				intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 				startActivity(intent);
 				finish();
 			} else {
@@ -83,7 +85,7 @@ public class TestQuestionActivity extends Activity {
 				} else {
 					Intent intent = new Intent(TestQuestionActivity.this,
 							MainMenuActivity.class);
-					intent.putExtra(Utility.USER_ID_TAG, userId);
+					intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 					startActivity(intent);
 					finish();
 				}

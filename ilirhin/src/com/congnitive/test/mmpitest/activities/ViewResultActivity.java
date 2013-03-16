@@ -3,6 +3,7 @@ package com.congnitive.test.mmpitest.activities;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -15,14 +16,15 @@ import com.congnitive.test.mmpitest.utilities.Utility;
 
 public class ViewResultActivity extends ListActivity {
 	private ArrayAdapter<Date> adapter;
-	private int userId;
+	private UUID userId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		userId = getIntent().getIntExtra(Utility.USER_ID_TAG, -1);
-		Map<Date, List<QuizResult>> tests = Utility.database
-				.getAllTestsOfUser(userId);
+		userId = UUID.fromString(getIntent()
+				.getStringExtra(Utility.USER_ID_TAG));
+		Map<Date, List<QuizResult>> tests = Utility.getDataBase()
+				.getAllTestsOfUser(this, userId);
 		Date[] dates = new Date[0];
 		if (tests != null)
 			dates = tests.keySet().toArray(new Date[tests.keySet().size()]);

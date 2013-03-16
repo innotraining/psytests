@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.congnitive.test.mmpitest.R;
+import com.congnitive.test.mmpitest.utilities.Utility;
 
 public class RegistrationActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Utility.setDataBaseContext();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_registration);
 	}

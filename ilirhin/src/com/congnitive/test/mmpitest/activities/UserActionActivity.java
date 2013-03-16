@@ -1,5 +1,7 @@
 package com.congnitive.test.mmpitest.activities;
 
+import java.util.UUID;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,16 +18,18 @@ import com.congnitive.test.mmpitest.domainObjects.User;
 import com.congnitive.test.mmpitest.utilities.Utility;
 
 public class UserActionActivity extends Activity {
-	private int userId;
+	private UUID userId;
 	private User user;
-	AlertDialog.Builder ad;
+	private AlertDialog.Builder ad;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_action);
-		userId = getIntent().getIntExtra(Utility.USER_ID_TAG, -1);
-		user = Utility.database.getUserById(userId);
+		String str = getIntent().getStringExtra(Utility.USER_ID_TAG);
+		userId = UUID.fromString(getIntent()
+				.getStringExtra(Utility.USER_ID_TAG));
+		user = Utility.getDataBase().getUserById(this, userId);
 		((TextView) findViewById(R.id.UserActionDeleteUser))
 				.setText(getText(R.string.delete_user) + " " + user.getName()
 						+ " " + getText(R.string.and_his_results));
@@ -36,7 +40,8 @@ public class UserActionActivity extends Activity {
 				+ user.getName());
 		ad.setPositiveButton(getText(R.string.yes), new OnClickListener() {
 			public void onClick(DialogInterface dialog, int arg1) {
-				Utility.database.removeUser(userId);
+				Utility.getDataBase().removeUser(UserActionActivity.this,
+						userId);
 				Intent intent = new Intent(UserActionActivity.this,
 						RegistrationActivity.class);
 				startActivity(intent);
@@ -57,7 +62,7 @@ public class UserActionActivity extends Activity {
 	public void onUserActionGoTestClick(View v) {
 		Intent intent = new Intent(UserActionActivity.this,
 				MainMenuActivity.class);
-		intent.putExtra(Utility.USER_ID_TAG, userId);
+		intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 		startActivity(intent);
 		finish();
 	}

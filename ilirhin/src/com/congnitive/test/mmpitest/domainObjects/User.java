@@ -1,6 +1,8 @@
 package com.congnitive.test.mmpitest.domainObjects;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 	private String name;
 	private boolean gender;
 

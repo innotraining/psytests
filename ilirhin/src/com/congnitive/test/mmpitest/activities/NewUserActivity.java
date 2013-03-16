@@ -1,5 +1,7 @@
 package com.congnitive.test.mmpitest.activities;
 
+import java.util.UUID;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,8 +45,10 @@ public class NewUserActivity extends Activity {
 		Intent intent = new Intent(NewUserActivity.this, MainMenuActivity.class);
 		if (!userNameView.getText().toString().equals("")
 				&& (maleBut.isChecked() || femaleBut.isChecked())) {
-			int userId = Utility.database.saveUser(new User(userNameView
-					.getText().toString(), maleBut.isChecked()));
+			UUID userId = Utility.getDataBase().saveUser(
+					this,
+					new User(userNameView.getText().toString(), maleBut
+							.isChecked()));
 			intent.putExtra(Utility.USER_ID_TAG, userId);
 			startActivity(intent);
 			finish();

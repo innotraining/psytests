@@ -1,5 +1,7 @@
 package com.congnitive.test.mmpitest.activities;
 
+import java.util.UUID;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +12,14 @@ import com.congnitive.test.mmpitest.R;
 import com.congnitive.test.mmpitest.utilities.Utility;
 
 public class MainMenuActivity extends Activity {
-	private int userId;
+	private UUID userId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		userId = getIntent().getIntExtra(Utility.USER_ID_TAG, -1);
+		userId = UUID.fromString(getIntent()
+				.getStringExtra(Utility.USER_ID_TAG));
 	}
 
 	public void onMainMenuExitButtonClick(View v) {
@@ -29,7 +32,7 @@ public class MainMenuActivity extends Activity {
 	public void onMainMenuViewResultsButtonClick(View v) {
 		Intent intent = new Intent(MainMenuActivity.this,
 				ViewResultActivity.class);
-		intent.putExtra(Utility.USER_ID_TAG, userId);
+		intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 		startActivity(intent);
 		finish();
 	}
@@ -37,7 +40,7 @@ public class MainMenuActivity extends Activity {
 	public void onMainMenuStartTestButtonClick(View v) {
 		Intent intent = new Intent(MainMenuActivity.this,
 				StartTestActivity.class);
-		intent.putExtra(Utility.USER_ID_TAG, userId);
+		intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 		startActivity(intent);
 		finish();
 	}

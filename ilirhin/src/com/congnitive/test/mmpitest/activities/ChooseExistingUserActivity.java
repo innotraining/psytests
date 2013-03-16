@@ -1,5 +1,7 @@
 package com.congnitive.test.mmpitest.activities;
 
+import java.util.UUID;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +16,15 @@ import com.congnitive.test.mmpitest.utilities.Utility;
 
 public class ChooseExistingUserActivity extends Activity {
 	private Spinner spinner;
+	User[] users;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choose_existing_user);
+		users = Utility.getDataBase().getAllUsers(this);
 		ArrayAdapter<User> adapter = new ArrayAdapter<User>(this,
-				android.R.layout.simple_spinner_item,
-				Utility.database.getAllUsers());
+				android.R.layout.simple_spinner_item, users);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner = (Spinner) findViewById(R.id.user_list);
 		spinner.setAdapter(adapter);
@@ -44,11 +47,11 @@ public class ChooseExistingUserActivity extends Activity {
 
 	public void OnChooseExistingUserButtonContinueClick(View v) {
 		if (spinner.getSelectedItem() != null) {
+			int num = spinner.getSelectedItemPosition();
 			Intent intent = new Intent(ChooseExistingUserActivity.this,
 					UserActionActivity.class);
-			int userId = Utility.database.getIdByName(spinner.getSelectedItem()
-					.toString());
-			intent.putExtra(Utility.USER_ID_TAG, userId);
+			UUID userId = Utility.getDataBase().getIdByUser(this, users[num]);
+			intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 			startActivity(intent);
 			finish();
 		}

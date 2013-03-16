@@ -172,7 +172,7 @@ public class MMPITest implements PsychologyTextedTest {
 
 	@Override
 	public int getLength() {
-		return 100;
+		return 3;
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.congnitive.test.mmpitest.activities;
 
+import java.util.UUID;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +16,14 @@ public class StartTestActivity extends Activity {
 	static final public String QUESTION_FOR_TEST_TAG = "StartTestActivity.questionForTest";
 	static final public String ANSWER_FOR_TEST_TAG = "StartTestActivity.answerForTest";
 	static final public String EXIT_MESSAGE_TAG = "StartTestActivity.exitMessage";
-	private int userId;
+	private UUID userId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start_test);
-		userId = getIntent().getIntExtra(Utility.USER_ID_TAG, -1);
+		userId = UUID.fromString(getIntent()
+				.getStringExtra(Utility.USER_ID_TAG));
 	}
 
 	public void onStartTestExitTestButtonClick(View v) {
@@ -33,7 +36,7 @@ public class StartTestActivity extends Activity {
 	public void onStartTestExitMenuButtonClick(View v) {
 		Intent intent = new Intent(StartTestActivity.this,
 				MainMenuActivity.class);
-		intent.putExtra(Utility.USER_ID_TAG, userId);
+		intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 		startActivity(intent);
 		finish();
 	}
@@ -41,7 +44,7 @@ public class StartTestActivity extends Activity {
 	public void onStartTestStartTestButtonClick(View v) {
 		Intent intent = new Intent(StartTestActivity.this,
 				TestQuestionActivity.class);
-		intent.putExtra(Utility.USER_ID_TAG, userId);
+		intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 		startActivity(intent);
 		finish();
 	}
