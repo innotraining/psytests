@@ -49,7 +49,7 @@ public class NewUserActivity extends Activity {
 					this,
 					new User(userNameView.getText().toString(), maleBut
 							.isChecked()));
-			intent.putExtra(Utility.USER_ID_TAG, userId);
+			intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 			startActivity(intent);
 			finish();
 		}

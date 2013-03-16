@@ -21,6 +21,8 @@ public class MMPITest implements PsychologyTextedTest {
 		protected int value = 0;
 		protected Set<Integer> upQuestions = new HashSet<Integer>();
 		protected Set<Integer> downQuestions = new HashSet<Integer>();
+		String[] describtions = new String[101];
+		String quizDesrc;
 		protected String name;
 
 		public MMPIAnswerHandler(String name, Resources res, int upNumsId,
@@ -50,10 +52,27 @@ public class MMPITest implements PsychologyTextedTest {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			try {
+				Scanner scanner = new Scanner(res.openRawResource(descrId));
+				quizDesrc = scanner.nextLine();
+				while (scanner.hasNext()) {
+					int from = Integer.parseInt(scanner.next());
+					int to = Integer.parseInt(scanner.next());
+					scanner.nextLine();
+					String str = scanner.nextLine();
+					for (int i = from; i <= to; i++) {
+						describtions[i] = str;
+					}
+				}
+				scanner.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		public String getDescribtion() {
-			return null;
+			return quizDesrc + "\n\n\n" + describtions[getTPoints()];
 		}
 
 		public String getName() {
@@ -111,39 +130,48 @@ public class MMPITest implements PsychologyTextedTest {
 			answerHandlers.set(i, new ArrayList<MMPITest.MMPIAnswerHandler>());
 		}
 		lieHandler = new LieHandler(res);
-		new MMPIAnswerHandler("Correction", res, R.raw.correction_up_nums,
-				R.raw.correction_down_nums, 0);
-		new MMPIAnswerHandler("Anxiety", res, R.raw.anxiety_up_nums,
-				R.raw.anxiety_down_nums, 0);
+		new MMPIAnswerHandler(res.getText(R.string.correction).toString(), res,
+				R.raw.correction_up_nums, R.raw.correction_down_nums,
+				R.raw.correction_desc);
+		new MMPIAnswerHandler(res.getText(R.string.anxiety).toString(), res,
+				R.raw.anxiety_up_nums, R.raw.anxiety_down_nums,
+				R.raw.anxiety_desc);
 		if (isMale) {
-			new MMPIAnswerHandler("FeminityMale", res,
-					R.raw.femininity_up_nums_male,
-					R.raw.femininity_down_nums_male, 0);
+			new MMPIAnswerHandler(res.getText(R.string.feminity_male)
+					.toString(), res, R.raw.femininity_up_nums_male,
+					R.raw.femininity_down_nums_male, R.raw.femininity_desc_male);
 		} else {
-			new MMPIAnswerHandler("feminityFemale", res,
-					R.raw.femininity_up_nums_female,
-					R.raw.femininity_down_nums_female, 0);
+			new MMPIAnswerHandler(res.getText(R.string.feminity_female)
+					.toString(), res, R.raw.femininity_up_nums_female,
+					R.raw.femininity_down_nums_female,
+					R.raw.femininity_desc_female);
 		}
-		new MMPIAnswerHandler("Hysteria", res, R.raw.hysteria_up_nums,
-				R.raw.hysteria_down_nums, 0);
-		new MMPIAnswerHandler("Impulsivity", res, R.raw.impulsiveness_up_nums,
-				R.raw.impulsiveness_down_nums, 0);
-		new MMPIAnswerHandler("Individuality", res,
+		new MMPIAnswerHandler(res.getText(R.string.hysteria).toString(), res,
+				R.raw.hysteria_up_nums, R.raw.hysteria_down_nums,
+				R.raw.hysteria_desc);
+		new MMPIAnswerHandler(res.getText(R.string.impusivity).toString(), res,
+				R.raw.impulsiveness_up_nums, R.raw.impulsiveness_down_nums,
+				R.raw.impulsiveness_desc);
+		new MMPIAnswerHandler(res.getText(R.string.individual).toString(), res,
 				R.raw.individualistic_up_nums, R.raw.individualistic_down_nums,
-				0);
-		new MMPIAnswerHandler("Introversity", res, R.raw.introversion_up_nums,
-				R.raw.introversion_down_nums, 0);
-		new MMPIAnswerHandler("Optimistic", res, R.raw.optimistic_up_nums,
-				R.raw.optimistic_down_nums, 0);
-		new MMPIAnswerHandler("PverControl", res, R.raw.overcontrol_up_nums,
-				R.raw.overcontrol_down_nums, 0);
-		new MMPIAnswerHandler("Pessimistic", res,
-				R.raw.pessimistically_up_nums, R.raw.pessimistically_down_nums,
-				0);
-		new MMPIAnswerHandler("Reliability", res, R.raw.reliability_up_nums,
-				R.raw.reliability_down_nums, 0);
-		new MMPIAnswerHandler("Stiff", res, R.raw.stiff_up_nums,
-				R.raw.stiff_down_nums, 0);
+				R.raw.individualistic_desc);
+		new MMPIAnswerHandler(res.getText(R.string.introversion).toString(),
+				res, R.raw.introversion_up_nums, R.raw.introversion_down_nums,
+				R.raw.introversion_desc);
+		new MMPIAnswerHandler(res.getText(R.string.optimistic).toString(), res,
+				R.raw.optimistic_up_nums, R.raw.optimistic_down_nums,
+				R.raw.optimistic_desc);
+		new MMPIAnswerHandler(res.getText(R.string.overcontrol).toString(),
+				res, R.raw.overcontrol_up_nums, R.raw.overcontrol_down_nums,
+				R.raw.overcontrol_desc);
+		new MMPIAnswerHandler(res.getText(R.string.pessimistic).toString(),
+				res, R.raw.pessimistically_up_nums,
+				R.raw.pessimistically_down_nums, R.raw.pessimistically_desc);
+		new MMPIAnswerHandler(res.getText(R.string.reliability).toString(),
+				res, R.raw.reliability_up_nums, R.raw.reliability_down_nums,
+				R.raw.pessimistically_desc);
+		new MMPIAnswerHandler(res.getText(R.string.stiff).toString(), res,
+				R.raw.stiff_up_nums, R.raw.stiff_down_nums, R.raw.stiff_desc);
 	}
 
 	@Override
@@ -172,7 +200,7 @@ public class MMPITest implements PsychologyTextedTest {
 
 	@Override
 	public int getLength() {
-		return 3;
+		return questions.size();
 	}
 
 }

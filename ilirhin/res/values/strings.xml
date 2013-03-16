@@ -33,7 +33,21 @@
     <string name="liar_text">Ваши ответы признаны недостоверными. </string>
     <string name="liver_text">Вы покинули тест, не ответив на вопрос. </string>
     <string name="again_or_exit_text">Для прохождения теста заново нажмите кнопку «Заново». Для выхода нажмите «В главное меню».</string>
-    
+        
+    <string name="reliability">Шкала достоверности</string>
+    <string name="correction">Шкала коррекции</string>
+    <string name="overcontrol">Шкала сверхконтроля</string>
+    <string name="pessimistic">Шкала пессимистичности</string>
+    <string name="hysteria">Шкала эмоциональной лабильности</string>
+    <string name="feminity_female">Шкала женственности (для женщин)</string>
+    <string name="feminity_male">Шкала женственности (для мужчин)</string>
+    <string name="stiff">Шкала ригидности</string>
+    <string name="anxiety">Шкала тревожности</string>
+    <string name="individual">Шкала индивидуальности</string>
+    <string name="optimistic">Шкала оптимистичности</string>
+    <string name="introversion">Шкала интроверсии</string>
+    <string name="impusivity">Шкала импульсивности</string>
+       
     
     <string name="big_text">
         Вам будет представлена целая серия разных утверждений. Оценивая каждое из них, не тратьте много времени на раздумья. Наиболее естественная – первая непосредственная реакция. Внимательно вчитывайтесь в текст, дочитывая до конца каждое утверждение и оценивая его все целиком как верное или неверное по отношению к Вам.\n

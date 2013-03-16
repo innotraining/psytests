@@ -62,6 +62,10 @@
             android:name="com.congnitive.test.mmpitest.activities.AgainOrToMenuActivity"
             android:label="activity_again_or_start.xml" >
         </activity>
+        <activity
+            android:name="com.congnitive.test.mmpitest.activities.ViewResultOfTheQuiz"
+            android:label="activity_again_or_start.xml" >
+        </activity>
     </application>
 
 </manifest>

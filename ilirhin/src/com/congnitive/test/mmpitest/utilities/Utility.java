@@ -22,4 +22,5 @@ public class Utility {
 	}
 
 	static public final String USER_ID_TAG = "Utility.userIdTag";
+	public static final String QUIZ_RESULT_TAG = "Utility.quizResultTag";
 }
