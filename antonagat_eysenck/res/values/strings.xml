@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Test Eysenck</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="ButtonTeacher">Teacher</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="YesButton">Да</string>
+    <string name="NoButton">Нет</string>
+    <string name="stringTest">Text for question</string>
+    <string name="exitButton">Выйти из теста</string>
+    <string name="title_activity_exit">ExitActivity</string>
+    <string name="byeText">До свидания!</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="yourResult">Ваш результат!</string>
+    <string name="viewExtroIntro">viewExtroIntro</string>
+    <string name="viewNero">viewNero</string>
+    <string name="dch25">24</string>
+    <string name="X">X</string>
+    <string name="Y">Y</string>
+    <string name="dch12">12</string>
+    <string name="zero0">0</string>
+    <string name="stable">стабильный</string>
+    <string name="unstable">нестабильный</string>
+    <string name="introvert">итроверт</string>
+    <string name="extrovert">экстроверт</string>
+    <string name="melancholic">меланхолик</string>
+    <string name="choleric">холерик</string>
+    <string name="phlegmatic">флегматик</string>
+    <string name="sanguine">сангвиник</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="enterName">Пожалуйста введите свое имя</string>
+    <string name="addUser">добавить</string>
+    <string name="title_activity_reception">ReceptionActivity</string>
+    <string name="newUser">новый пользователь</string>
+    <string name="chooseUser">выбрать пользователя</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_add_user">AddUserActivity</string>
+    <string name="saveButton">Сохранить</string>
+    <string name="entNemeText">введите имя</string>
+    <string name="name">name</string>
+    <string name="choose">выбрать</string>
+    <string name="title_activity_delete">DeleteActivity</string>
+    <string name="deleteButton">удалить</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="ShowResult">посмотреть результаты</string>
+    <string name="NewTest">новый тест</string>
+    <string name="date">"дата "</string>
+
+</resources>
