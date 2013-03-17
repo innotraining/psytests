@@ -44,35 +44,40 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButton1Click" />
 
         <Button
             android:id="@+id/button2"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1" 
+            android:onClick="onButton2Click" />
 
         <Button
             android:id="@+id/button3"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1" 
+            android:onClick="onButton3Click" />
 
         <Button
             android:id="@+id/button4"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="onButton4Click"  />
 
         <Button
             android:id="@+id/button5"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1" 
+            android:onClick="onButton5Click" />
     </LinearLayout>
 
     <Button

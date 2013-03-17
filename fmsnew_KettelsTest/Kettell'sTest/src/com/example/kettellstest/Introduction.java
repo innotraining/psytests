@@ -12,7 +12,7 @@ import android.os.Build;
 
 public class Introduction extends Activity {
 
-	String login;
+	String login = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

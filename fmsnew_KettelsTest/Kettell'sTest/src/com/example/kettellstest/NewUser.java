@@ -1,5 +1,10 @@
 package com.example.kettellstest;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +24,7 @@ import android.content.DialogInterface.OnCancelListener;
 public class NewUser extends Activity {
 	
 	AlertDialog.Builder ad;
+	AlertDialog.Builder ad_birth;
 	Context context;
 	
 	@Override
@@ -40,7 +46,17 @@ public class NewUser extends Activity {
 				}
 			}
 		);
-		
+		ad_birth = new AlertDialog.Builder(context);
+		ad_birth.setTitle("error");  
+		ad_birth.setMessage("date format is wrong"); 
+		ad_birth.setCancelable(true);
+		ad_birth.setOnCancelListener(
+			new OnCancelListener() {
+				public void onCancel(DialogInterface dialog) {
+					Toast.makeText(context, "date format should be \"yyyy/MM/dd\"",	Toast.LENGTH_LONG).show();
+				}
+			}
+		);
 	}
 
 	/**
@@ -80,8 +96,19 @@ public class NewUser extends Activity {
 	public void onRegisterClick(View view) {
 		//TODO add user form text field
 		EditText loginField = (EditText)findViewById(R.id.inputLogin);
+		EditText dateField = (EditText)findViewById(R.id.editText1);
 		
 		String login = loginField.getText().toString();
+		String date = dateField.getText().toString();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date birth_date;
+		try {
+			birth_date = dateFormat.parse(date);
+		} catch (ParseException e) {
+			ad_birth.show();	
+			return;
+		}
+        
 		DatabaseHandler db = new DatabaseHandler(this);
 		if (db.userExists(login)) {
 			ad.show();
@@ -89,7 +116,7 @@ public class NewUser extends Activity {
 		else {	
 			
 			db.addNode(login, new Attempt(-1));	// ONLY FOR DEBUG
-			
+			db.addLoginBirthDate(login, birth_date);
 			Intent intent = new Intent(NewUser.this, MainMenu.class);
 			intent.putExtra("login", login);
 			NewUser.this.startActivity(intent);

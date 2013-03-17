@@ -20,17 +20,15 @@ import android.widget.Toast;
 
 public class Part1Subtest2 extends Activity {
 
-	String login;
-//TODO:	
-//		get part1_score from the previous activity and 
-//		send part1_score+current_score to the next activity 
-	int part1_score = 0; 
+	String login = "";
+	static int part1_score = 0; 
+	private final int buttonsCount = 5;
 	static int current_score = 0;
 	static int current_question = 1;
 	static CountDownTimer timer = null;
 	final String resource_prefix = "t_1_s_2_";
 	Part1Subtest2 entity = null;
-	int[] correct_answers = {2, 3, 4, 3, 3, 1, 4, 3, 5, 3, 3, 5, 3, 2};
+	int[] correct_answers = {4, 2, 1, 5, 3, 5, 2, 3, 2, 1, 4, 2};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +36,24 @@ public class Part1Subtest2 extends Activity {
 		setContentView(R.layout.activity_part1_subtest2);
 		entity = this;
 		final Bundle final_savedInstanceState = savedInstanceState;
+		
+		Intent intent = Part1Subtest2.this.getIntent();
+		login = intent.getStringExtra("login");
+		part1_score = intent.getIntExtra("part1_score", Integer.MIN_VALUE);
 		if (timer == null) {
 			timer = new CountDownTimer(15000, 1000) {
 	
 				public void onFinish() {
 				 	current_question++;
 				 	timer = null;
-				 	entity.onCreate(null);
+				 	if (current_question > correct_answers.length) {
+						Intent intent = new Intent(Part1Subtest2.this, Part1Subtest3.class);
+				 		intent.putExtra("login", login);
+						intent.putExtra("part1_score", part1_score + current_score);
+						Part1Subtest2.this.startActivity(intent);
+						finish();
+				 	}
+					entity.onCreate(null);
 				}
 				@Override
 				public void onTick(long millisUntilFinished) {				
@@ -53,14 +62,11 @@ public class Part1Subtest2 extends Activity {
 			timer.start();
 		}
 		
-		Intent intent = Part1Subtest2.this.getIntent();
-		login = intent.getStringExtra("login");
-		
 		TextView questionNumberField = (TextView)findViewById(R.id.textView2);
-		questionNumberField.setText("question (" + Integer.toString(current_question) + "/14)");
+		questionNumberField.setText("question (" + Integer.toString(current_question) + "/" + Integer.toString(correct_answers.length) + ")");
 		
 //		init buttons
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= buttonsCount; i++) {
 			String button_name = "button" + Integer.toString(i);
 			int button_id = this.getResources().getIdentifier(button_name, "id", this.getPackageName());
 			Button button = (Button)findViewById(button_id);
@@ -87,7 +93,11 @@ public class Part1Subtest2 extends Activity {
 				public void onClick(View arg0) {
 					current_question++;
 					if (current_question > correct_answers.length) {
-						Toast.makeText(getApplicationContext(), "your scoreis " + Integer.toString(current_score), Toast.LENGTH_LONG).show();
+						Intent intent = new Intent(Part1Subtest2.this, Part1Subtest3.class);
+				 		intent.putExtra("login", login);
+						intent.putExtra("part1_score", part1_score + current_score);
+						Part1Subtest2.this.startActivity(intent);
+						finish();
 					}
 					if (final_i == correct_answers[final_i]) current_score++;
 					timer.cancel();

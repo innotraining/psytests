@@ -15,11 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/inputLogin" >
+        android:hint="@string/inputLogin"
+        android:inputType="textPersonName" >
 
         <requestFocus />
     </EditText>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="yyyy/mm/dd"
+        android:inputType="date" />
 
     <Button
         android:id="@+id/button1"
