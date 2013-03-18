@@ -39,6 +39,9 @@ public class DbOpenHelper extends SQLiteOpenHelper{
 	  public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 		  //sqLiteDatabase.execSQL(CREATE_TABLE);
 	  }
+	  public void deleteAllbyName(SQLiteDatabase sqLiteDatabase, String name){
+		  sqLiteDatabase.delete(TABLE_NAME, "login", new String[]{name});
+	  }
 }
 
 	

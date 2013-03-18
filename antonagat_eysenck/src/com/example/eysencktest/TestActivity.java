@@ -4,10 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
+
 import java.util.List;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
@@ -19,7 +25,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class TestActivity extends Activity {
 
@@ -88,11 +93,12 @@ public class TestActivity extends Activity {
 		testText = (TextView) findViewById(R.id.textView1);
 		testText.setText(stringQuestion.get(numCurrentQuestion));	
 
-		if(numCurrentQuestion <57) 	++numCurrentQuestion; //56
+		if(numCurrentQuestion <5) 	++numCurrentQuestion; //56
 		else { 
 			//deletefixRow();
 			saveDate();			 
-			finish(); //TODO 
+			changeToResultActivity();
+			finish(); 
 		}		
 	}
 
@@ -104,13 +110,23 @@ public class TestActivity extends Activity {
 		db.close();
 
 	}
+	@SuppressWarnings({ "unused" })
+	@SuppressLint("SimpleDateFormat")
 	public void saveDate(){
 
 		DbOpenHelper dbOpenHelper = new DbOpenHelper(TestActivity.this);
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();	       
 		ContentValues cv = new ContentValues();	       
 		cv.put(DbOpenHelper.LOGIN, name);
-		//cv.put(DbOpenHelper.DATE, 0);//dateCurrent.toString());
+		java.util.Date sdf;// = new SimpleDateFormat("yyyyMMdd  HH:mm");
+		Calendar Current_Calendar = Calendar.getInstance();
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
+		
+		sdf = Current_Calendar.getTime();
+		String myString = DateFormat.getDateInstance().format(sdf);
+		//sdf.format(format, args)
+		//sdf.sgetCalendar();
+		cv.put(DbOpenHelper.DATE, myString);//.format("yyyyMMdd  HH:mm"));//dateCurrent.toString());
 		cv.put(DbOpenHelper.FIX, "norm");
 		cv.put(DbOpenHelper.FALSEM, numFalseAnswer);
 		cv.put(DbOpenHelper.INEXTROM, numExtroIntrovers);
@@ -124,13 +140,27 @@ public class TestActivity extends Activity {
 
 		context = TestActivity.this;
 		ad = new AlertDialog.Builder(context);
-		ad.setMessage("повторите попытку");
-		ad.setPositiveButton("Ok", new OnClickListener() {
+		ad.setMessage("повторите «Ваши ответы признаны недостоверными. Для прохождения теста заново нажмите кнопку «Заново». Для выхода нажмите «В главное меню»попытку");
+		ad.setPositiveButton("Заново", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int arg1) {
-				Toast.makeText(context, "Вы сделали правильный выбор",
-						Toast.LENGTH_LONG).show();
+				
+				 Intent intent = new Intent();
+				 intent.setClass(TestActivity.this, TestActivity.class);
+				 intent.putExtra("name", name);
+				 startActivity(intent);
+				 finish(); 
 			}
 		});
+		ad.setNegativeButton("В главное меню", new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Intent intent = new Intent();
+				 intent.setClass(TestActivity.this, FirstActivity.class);
+				 startActivity(intent);
+				 finish(); 
+			}
+		} );
 		ad.show();
 		finish();
 	}
@@ -152,7 +182,7 @@ public class TestActivity extends Activity {
 			NextQuestion(); 
 		}		
 	}
-	/*public void changeToResultActivity(){
+	public void changeToResultActivity(){
 		 Intent intent = new Intent();
 	        intent.setClass(TestActivity.this, ResultActivity.class);
 	          //Bundle b = new Bundle();
@@ -162,17 +192,17 @@ public class TestActivity extends Activity {
 	          intent.putExtra("nero",numNerotizm ); 
 	          startActivity(intent);	
 	          //finish(); 
-	}*/
-	/*
+	}
+	
 	public void onClickButtonExit(View view){
 		 Intent intent = new Intent();
-	        intent.setClass(TestActivity.this, ExitActivity.class);
+	        intent.setClass(TestActivity.this, FirstActivity.class);
 	          //Bundle b = new Bundle();
 	          //b.putString("defStrID", itemname); //defStrID - уникальная строка, отправим itemname в другое Activity
 
 		finish(); 
 		//System.exit(0);
-	}*/
+	}
 }
 
 

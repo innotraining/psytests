@@ -18,6 +18,9 @@ public class FirstActivity extends Activity {
 		return true;
 	}
 	public void onClickExit(View v){
+		Intent intent = new Intent();
+		intent.setClass(FirstActivity.this, ResultActivity.class);
+		startActivity(intent);
 		finish();  
 	}
 	public void onClickChooseTest(View v){

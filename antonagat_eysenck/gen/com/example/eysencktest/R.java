@@ -9,10 +9,12 @@ package com.example.eysencktest;
 
 public final class R {
     public static final class array {
-        public static final int pref_example_list_titles=0x7f080000;
-        public static final int pref_example_list_values=0x7f080001;
-        public static final int pref_sync_frequency_titles=0x7f080002;
-        public static final int pref_sync_frequency_values=0x7f080003;
+        public static final int manualType=0x7f080000;
+        public static final int nameType=0x7f080001;
+        public static final int pref_example_list_titles=0x7f080002;
+        public static final int pref_example_list_values=0x7f080003;
+        public static final int pref_sync_frequency_titles=0x7f080004;
+        public static final int pref_sync_frequency_values=0x7f080005;
     }
     public static final class attr {
     }
@@ -29,6 +31,7 @@ public final class R {
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
         public static final int icon=0x7f020001;
+        public static final int picture=0x7f020002;
     }
     public static final class id {
         public static final int Button01=0x7f0b0009;
@@ -40,8 +43,8 @@ public final class R {
         public static final int linearLayout1=0x7f0b0005;
         public static final int linearLayout2=0x7f0b0008;
         public static final int listView1=0x7f0b0004;
-        public static final int textView1=0x7f0b0007;
-        public static final int textView2=0x7f0b0006;
+        public static final int textView1=0x7f0b0006;
+        public static final int textView2=0x7f0b0007;
     }
     public static final class layout {
         public static final int activity_add_user=0x7f030000;
@@ -65,8 +68,9 @@ public final class R {
         public static final int test=0x7f0a0008;
     }
     public static final class raw {
-        public static final int qw1=0x7f050000;
-        public static final int qw2=0x7f050001;
+        public static final int am=0x7f050000;
+        public static final int qw1=0x7f050001;
+        public static final int qw2=0x7f050002;
     }
     public static final class string {
         public static final int ButtonTeacher=0x7f060004;
