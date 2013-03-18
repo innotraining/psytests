@@ -1,10 +1,11 @@
 package com.example.eysencktest;
-
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 public class FirstActivity extends Activity {
 	@Override
@@ -18,9 +19,9 @@ public class FirstActivity extends Activity {
 		return true;
 	}
 	public void onClickExit(View v){
-		Intent intent = new Intent();
-		intent.setClass(FirstActivity.this, ResultActivity.class);
-		startActivity(intent);
+		Context context = FirstActivity.this;
+		Toast.makeText(context, "Пока!",
+				Toast.LENGTH_LONG).show();
 		finish();  
 	}
 	public void onClickChooseTest(View v){

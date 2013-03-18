@@ -25,18 +25,13 @@ public class AddUserActivity extends Activity {
 		DbOpenHelper dbOpenHelper = new DbOpenHelper(AddUserActivity.this);
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		//final Calendar dateCurrent = Calendar.getInstance();
 		cv.put(DbOpenHelper.LOGIN, loginEditText.getText().toString());
-		//DateFormat df = DateFormat.getDateInstance(DateFormatLONG, Locale.FRANCE);
-		//cv.put(DbOpenHelper.DATE, 0);//dateCurrent.toString());
 		cv.put(DbOpenHelper.FALSEM, -1);
 		cv.put(DbOpenHelper.FIX, "fix");
 		cv.put(DbOpenHelper.INEXTROM, 18);
 		cv.put(DbOpenHelper.STABLEM, 5);
 		db.insert(DbOpenHelper.TABLE_NAME, null,cv);
 		db.close();
-		
-
 		Intent intent = new Intent();
 		intent.setClass(AddUserActivity.this, ListActivity.class);
 		startActivity(intent);

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfileActivity extends Activity {
 	ArrayList<String> fieldsUser = new ArrayList<String>();
@@ -37,23 +40,13 @@ public class ProfileActivity extends Activity {
 		Cursor userCursor=null;
 		Intent intent = getIntent(); 
 		name  = intent.getStringExtra("name").toString();
-
 		userCursor = db.rawQuery("SELECT date, falseM, introextroM, stableM FROM users  WHERE login = ? and fix = ? ", new String[] {name, "norm"});
-		// Button my = (Button) findViewById(R.id.button1);
 		userCursor.moveToFirst();
 		if(!userCursor.isAfterLast()) {
-
 			do {
-				//userCursor.get
 				falseM.add(userCursor.getInt(1));
 				introextroM.add(userCursor.getInt(2));
 				stableM.add(userCursor.getInt(3));				
-				String temp = ""; 
-				/*for(int i=0; i<4; i++){
-					temp+= colName[i]+ ": "+userCursor.getString(i)+ " ";
-				}*/
-				//Date  d = Date.valueOf(userCursor.getString(0));
-				//SimpleDateFormat dat = new Signature()
 				date.add(userCursor.getString(0));
 
 				fieldsUser.add(userCursor.getString(0));
@@ -68,13 +61,11 @@ public class ProfileActivity extends Activity {
 
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 		listView.setAdapter(adapter); 
-		
 
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View itemClicked, int position,
 					long id) {
-				//itemClicked.getF
 				TextView itemname = (TextView) itemClicked;
 				
 				 int strId= position;//itemname.getLineCount();//date.indexOf(strFind);
@@ -85,11 +76,9 @@ public class ProfileActivity extends Activity {
 				intent.putExtra("extrointro", introextroM.get(strId)); 
 				intent.putExtra("nero",stableM.get(strId) ); 
 				startActivity(intent);	
-				// finish();
+				finish();
 			}
-		});			
-
-
+		});		
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,13 +86,15 @@ public class ProfileActivity extends Activity {
 		getMenuInflater().inflate(R.menu.profile, menu);
 		return true;
 	}
-	public void deletefixRowAll(View view){
+	public void deletefixRowAll(){
 		DbOpenHelper dbOpenHelper = new DbOpenHelper(ProfileActivity.this);
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
-
-		db.delete(DbOpenHelper.TABLE_NAME, DbOpenHelper.LOGIN, new String[]{name});
+		db.delete(DbOpenHelper.TABLE_NAME, DbOpenHelper.LOGIN+ " =? " , new String[]{name});
 		db.close();
-		finish();
+		/*Intent intent = new Intent();
+		intent.setClass(ProfileActivity.this, ListActivity.class);
+		startActivity(intent);			*/
+		
 	}
 	public void onClickNewTest(View view){
 		Intent intent = new Intent();
@@ -112,33 +103,25 @@ public class ProfileActivity extends Activity {
 		startActivity(intent);	
 		finish();		
 	}
-
-	/*public void dialogAlert(ind Id){
-
+	
+	public void dialogAlert(View view){
 		context = ProfileActivity.this;
 		ad = new AlertDialog.Builder(context);
-		ad.setTitle(date.get(Id));  // заголовок
-		ad.setMessage(); // сообщение
-		ad.setPositiveButton(button1String, new OnClickListener() {
+		ad.setMessage(getResources().getString(R.string.deleteUserQuestion) + name + "?");
+		ad.setPositiveButton("Да", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int arg1) {
-				Toast.makeText(context, "Вы сделали правильный выбор",
+				deletefixRowAll();
+				finish();
+			}
+		});
+		ad.setNegativeButton("Нет", new OnClickListener() {			
+			@Override
+			public void onClick(DialogInterface dialog, int arg2) {
+				Toast.makeText(context, "Вы ничего не изменили",
 						Toast.LENGTH_LONG).show();
 			}
-		});
-		ad.setNegativeButton(button2String, new OnClickListener() {
-			public void onClick(DialogInterface dialog, int arg1) {
-				Toast.makeText(context, "Возможно вы правы", Toast.LENGTH_LONG)
-				.show();
-			}
-		});
-		ad.setCancelable(true);
-		ad.setOnCancelListener(new OnCancelListener() {
-			public void onCancel(DialogInterface dialog) {
-				Toast.makeText(context, "Вы ничего не выбрали",
-						Toast.LENGTH_LONG).show();
-			}
-		});
+		} );
+		ad.show();
 	}
-	}*/
-
+	
 }

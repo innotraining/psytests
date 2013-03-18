@@ -4,13 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
 import java.util.List;
+import java.util.Random;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -48,9 +47,10 @@ public class TestActivity extends Activity {
 		setContentView(R.layout.activity_test);
 		stringQuestion= readTxt1(); 		
 		Intent intent = getIntent(); 
-		TextView nameView = (TextView) findViewById(R.id.textView2); 
+		//TextView nameView = (TextView) findViewById(R.id.textView2); 
 		name = intent.getStringExtra("name");
-		nameView.setText(name+"!");
+		//nameView.setText(name+"!");
+		dialogAlertHello();
 		NextQuestion(); 		
 	}
 	AlertDialog.Builder ad;
@@ -69,7 +69,8 @@ public class TestActivity extends Activity {
 	private List<String> readTxt1(){
 		List<String> lines    = new ArrayList();
 		InputStream inputStream;
-		int chooseTest = (int) (Math.random()*0 + Math.random()*1);
+		Random rand = new Random();
+		int chooseTest = rand.nextInt(2);
 		if( chooseTest ==0 ) {
 			inputStream = getResources().openRawResource(R.raw.qw2);
 		}
@@ -87,33 +88,29 @@ public class TestActivity extends Activity {
 		}
 		return lines;
 	}		 	
-
 	public void NextQuestion(){		
-
-		testText = (TextView) findViewById(R.id.textView1);
-		testText.setText(stringQuestion.get(numCurrentQuestion));	
-
-		if(numCurrentQuestion <5) 	++numCurrentQuestion; //56
+		if(numCurrentQuestion <57){
+			testText = (TextView) findViewById(R.id.textView1);
+			testText.setText(stringQuestion.get(numCurrentQuestion));	
+			++numCurrentQuestion; //56
+		}
 		else { 
 			//deletefixRow();
 			saveDate();			 
 			changeToResultActivity();
 			finish(); 
 		}		
+
 	}
 
 	public void deletefixRow(){
 		DbOpenHelper dbOpenHelper = new DbOpenHelper(TestActivity.this);
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 		db.execSQL("DELETE *  FROM users WHERE fix = ? " , new String[]{"fix"});
-		//db.delete(DbOpenHelper.TABLE_NAME, DbOpenHelper.FIX, new String[]{"fix"});
 		db.close();
-
 	}
 	@SuppressWarnings({ "unused" })
-	@SuppressLint("SimpleDateFormat")
 	public void saveDate(){
-
 		DbOpenHelper dbOpenHelper = new DbOpenHelper(TestActivity.this);
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();	       
 		ContentValues cv = new ContentValues();	       
@@ -121,48 +118,50 @@ public class TestActivity extends Activity {
 		java.util.Date sdf;// = new SimpleDateFormat("yyyyMMdd  HH:mm");
 		Calendar Current_Calendar = Calendar.getInstance();
 		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
-		
+
 		sdf = Current_Calendar.getTime();
 		String myString = DateFormat.getDateInstance().format(sdf);
-		//sdf.format(format, args)
-		//sdf.sgetCalendar();
-		cv.put(DbOpenHelper.DATE, myString);//.format("yyyyMMdd  HH:mm"));//dateCurrent.toString());
+		cv.put(DbOpenHelper.DATE, myString);
 		cv.put(DbOpenHelper.FIX, "norm");
 		cv.put(DbOpenHelper.FALSEM, numFalseAnswer);
 		cv.put(DbOpenHelper.INEXTROM, numExtroIntrovers);
 		cv.put(DbOpenHelper.STABLEM, numNerotizm);
 		db.insert(DbOpenHelper.TABLE_NAME, null,cv);
 		db.close();
-
 	}
-
 	public void dialogAlert(){
-
 		context = TestActivity.this;
 		ad = new AlertDialog.Builder(context);
 		ad.setMessage("повторите «Ваши ответы признаны недостоверными. Для прохождения теста заново нажмите кнопку «Заново». Для выхода нажмите «В главное меню»попытку");
 		ad.setPositiveButton("Заново", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int arg1) {
-				
-				 Intent intent = new Intent();
-				 intent.setClass(TestActivity.this, TestActivity.class);
-				 intent.putExtra("name", name);
-				 startActivity(intent);
-				 finish(); 
+				Intent intent = new Intent();
+				intent.setClass(TestActivity.this, TestActivity.class);
+				intent.putExtra("name", name);
+				startActivity(intent);
+				finish(); 
 			}
 		});
-		ad.setNegativeButton("В главное меню", new OnClickListener() {
-			
+		ad.setNegativeButton("В главное меню", new OnClickListener() {			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				Intent intent = new Intent();
-				 intent.setClass(TestActivity.this, FirstActivity.class);
-				 startActivity(intent);
-				 finish(); 
+				intent.setClass(TestActivity.this, FirstActivity.class);
+				startActivity(intent);
+				finish(); 
 			}
 		} );
 		ad.show();
-		finish();
+	}
+	public void dialogAlertHello(){
+		context = TestActivity.this;
+		ad = new AlertDialog.Builder(context);
+		ad.setMessage(getResources().getString(R.string.startTestText));
+		ad.setPositiveButton("Начать", new OnClickListener() {
+			public void onClick(DialogInterface dialog, int arg1) {
+			}
+		});
+		ad.show();
 	}
 	public void clickOnYes(View view){
 		if( theNumbersFalseYes.contains(numCurrentQuestion))  ++numFalseAnswer; 
@@ -175,7 +174,6 @@ public class TestActivity extends Activity {
 	}
 	public void clickOnNo(View view){			
 		if( theNumbersFalseNo.contains(numCurrentQuestion) )  ++numFalseAnswer; 
-
 		if( numFalseAnswer >4 ){dialogAlert();}
 		else {
 			if( theNumbersExtroIntroversionNo.contains(numCurrentQuestion)) ++numExtroIntrovers; 
@@ -183,25 +181,19 @@ public class TestActivity extends Activity {
 		}		
 	}
 	public void changeToResultActivity(){
-		 Intent intent = new Intent();
-	        intent.setClass(TestActivity.this, ResultActivity.class);
-	          //Bundle b = new Bundle();
-	          //b.putString("defStrID", itemname); //defStrID - уникальная строка, отправим itemname в другое Activity
-	          intent.putExtra("false", numFalseAnswer);
-	          intent.putExtra("extrointro", numExtroIntrovers); 
-	          intent.putExtra("nero",numNerotizm ); 
-	          startActivity(intent);	
-	          //finish(); 
+		Intent intent = new Intent();
+		intent.setClass(TestActivity.this, ResultActivity.class);
+		intent.putExtra("false", numFalseAnswer);
+		intent.putExtra("extrointro", numExtroIntrovers); 
+		intent.putExtra("nero",numNerotizm ); 
+		startActivity(intent);	
+		//finish(); 
 	}
-	
-	public void onClickButtonExit(View view){
-		 Intent intent = new Intent();
-	        intent.setClass(TestActivity.this, FirstActivity.class);
-	          //Bundle b = new Bundle();
-	          //b.putString("defStrID", itemname); //defStrID - уникальная строка, отправим itemname в другое Activity
 
+	public void onClickButtonExit(View view){
+		Intent intent = new Intent();
+		intent.setClass(TestActivity.this, FirstActivity.class);
 		finish(); 
-		//System.exit(0);
 	}
 }
 

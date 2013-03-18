@@ -51,10 +51,9 @@ public class ListActivity extends Activity {
 				intent.setClass(ListActivity.this, ProfileActivity.class);
 				intent.putExtra("name", strText);
 				startActivity(intent);	
-				// finish();
+				finish();
 			}
 		});			
-		//lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);	
 	}	   
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,9 +64,10 @@ public class ListActivity extends Activity {
 		Intent intent = new Intent();
 		intent.putExtra("name", users.get(item)); //mylv.getCheckedItemPosition()));   
 		startActivity(intent);	
+		finish();
 	}
 	public void onClickDelete(View view){
-		//TODO
+		
 	}
 }
 

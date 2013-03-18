@@ -14,7 +14,6 @@ import android.view.Display;
 import android.view.View;
 import android.view.MotionEvent;
 import android.widget.Toast;
-//import android.graphics.Bitmap;
 //import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,7 +22,7 @@ public class ResultActivity extends Activity {
 	AlertDialog.Builder ad;
 	Context context;
 	float myX=0;
-	int myY=0; 
+	float myY=0; 
 	public void onCreate(Bundle savedInstanceState)
 	{	
 		Intent intent = getIntent(); 
@@ -76,14 +75,6 @@ public class ResultActivity extends Activity {
 			//Paint paintRect1 = new Paint();
 			Paint paint = new Paint(); 
 			Paint paintText = new Paint(); 			
-
-			// загружаем иконку из ресурсов в объект myBitmap
-			//Bitmap myBitmap = BitmapFactory.decodeResource(getResources(), R.raw.am);
-			// рисуем myBitmap на канве в координатах касания
-			//canvas.drawBitmap(myBitmap, touchX, touchY, null);
-			//canvas.drawCircle(100, 100, 5, paint);//(oval, startAngle, sweepAngle, useCenter, paint)
-
-
 			bigXR = width-tShift+30;
 			bigYR = height-tShift-20; 
 			bigYL =  tShift-5;
@@ -100,7 +91,7 @@ public class ResultActivity extends Activity {
 			//paintText.
 			paintText.setColor(Color.BLACK);
 			paintText.setTextSize(35.0f);
-			canvas.drawText("Ваш результат", width/2-120, tShift-30, paintText);
+			
 
 			Paint paintTextAxe = new Paint(); 
 			//paintTextAxe.setColor(color.);
@@ -131,14 +122,14 @@ public class ResultActivity extends Activity {
 			canvas.drawText(getResources().getStringArray(R.array.nameType)[4], medMainNX, medMainNY,  paintTextMain);
 
 			//canvas.drawText("нестабильный", 10, bigYL,  paintTextAxe );
-			float x = bigXL+myX*(bigXR-bigXL)/24; 
-			float y = bigYR+myY*(bigYR-bigYL)/24;
+			float x =  (bigXL+myX*(bigXR-bigXL)/24); 
+			float y =  (bigYR-myY*(bigYR-bigYL)/24);
+			
 			paint.setColor(Color.RED);
+			canvas.drawText("Ваш результат", width/2-120, tShift-30, paintText);
 			canvas.drawCircle(x, y, 10, paint);//(oval, startAngle, sweepAngle, useCenter, paint)
 			//canvas.
 		}
-
-
 		public boolean onTouchEvent(MotionEvent event)
 		{
 			if(event.getAction() == MotionEvent.ACTION_DOWN)
@@ -165,7 +156,7 @@ public class ResultActivity extends Activity {
 					dialogAlert(Phlegmatic);
 				}
 				if( touchX >medX && touchX < bigXR &&  touchY < bigYR && touchY > medY ) {
-					dialogAlert(Sanguine);
+					dialogAlert(Choleric);
 				}
 				if( touchX >medX && touchX < bigXR &&  touchY > bigYL && touchY < medY ) {
 					dialogAlert(Sanguine);
@@ -174,11 +165,8 @@ public class ResultActivity extends Activity {
 			}
 			return true;
 		}
-
 	}
-
 	public void dialogAlert(int i){
-
 		context = ResultActivity.this;
 		ad = new AlertDialog.Builder(context);
 
@@ -188,7 +176,6 @@ public class ResultActivity extends Activity {
 		ad.setTitle(ansName[i]);
 		ad.setPositiveButton("Ok", new OnClickListener() {
 			public void onClick(DialogInterface dialog, int arg1) {
-
 				Toast.makeText(context, "Вы можете выбрать любое слово",
 						Toast.LENGTH_LONG).show();
 			}
@@ -196,5 +183,4 @@ public class ResultActivity extends Activity {
 		ad.show();
 		//finish();
 	}
-
 }

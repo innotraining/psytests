@@ -16,8 +16,6 @@
     <string name="viewExtroIntro">viewExtroIntro</string>
     <string name="viewNero">viewNero</string>
     <string name="dch25">24</string>
-    <string name="X">X</string>
-    <string name="Y">Y</string>
     <string name="dch12">12</string>
     <string name="zero0">0</string>
     <string name="stable">стабильный</string>
@@ -29,11 +27,11 @@
     <string name="phlegmatic">флегматик</string>
     <string name="sanguine">сангвиник</string>
     <string name="title_activity_registration">RegistrationActivity</string>
-    <string name="enterName">Пожалуйста введите свое имя</string>
+    <string name="enterName">Пожалуйста, введите свое имя</string>
     <string name="addUser">добавить</string>
     <string name="title_activity_reception">ReceptionActivity</string>
-    <string name="newUser">новый пользователь</string>
-    <string name="chooseUser">выбрать пользователя</string>
+    <string name="newUser">Новый пользователь?</string>
+    <string name="chooseUser">Уже зарегистрирован?</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add_user">AddUserActivity</string>
@@ -42,10 +40,10 @@
     <string name="name">name</string>
     <string name="choose">выбрать</string>
     <string name="title_activity_delete">DeleteActivity</string>
-    <string name="deleteButton">удалить</string>
+    <string name="deleteButton">удалить пользователя?</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="ShowResult">посмотреть результаты</string>
-    <string name="NewTest">новый тест</string>
+    <string name="NewTest">начать новый тест?</string>
     <string name="date">"дата "</string>
     <string-array name="manualType">
         <item >   10-14 - среднее значение 
@@ -88,6 +86,10 @@
         <item>Флегматик</item>
         <item>Меланхолик</item>   
     </string-array>
-    
-      
+    <string name="startTestText">Вам предлагается ответить на 57 вопросов. 
+        Вопросы направлены на выявление вашего обычного способа поведения. 
+        Постарайтесь представить типичные ситуации и дайте первый «естественный» ответ, который придет вам в голову.
+         Отвечайте быстро и точно. Помните, что нет «хороших» или «плохих» ответов.
+          Если вы согласны с утверждением, выберите ответ «да», если не согласны – ответ «нет»</string>
+          <string name="deleteUserQuestion" >Вы действительно хотите удалить запись пользователя </string>
 </resources>
