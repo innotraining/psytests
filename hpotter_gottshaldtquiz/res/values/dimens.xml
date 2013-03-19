@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="test_image_height">413px</dimen>
+    <dimen name="testTextFieldsHorisontalPadding">20dip</dimen>
+    <dimen name="registered_users_list_bottom_margin">20dip</dimen>
+
+</resources>

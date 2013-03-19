@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Тест Фигуры Готтшальдта</string>
+    <string name="action_settings">Settings</string>
+    <string name="continueButtonLabel">Продолжить</string>
+    <string name="exitButtonLabel">Выход</string>
+    <string name="exitDialogMessage">Завершить тестирование?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отменить</string>
+    <string name="title_activity_main_activity2">MainActivity2</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_results">ResultsActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_new_user">NewUserActivity</string>
+    <string name="user_login_prompt">Введите логин:</string>
+    <string name="createUserButtonLabel">Начать тест</string>
+    <string name="is_new_user">Новый пользователь?</string>
+    <string name="is_registered_user">Уже зарегистрирован?</string>
+    <string name="user_exists_dialog">Пользователь с таким именем уже есть. Начать тест от этого пользователя?</string>
+    <string name="title_activity_user_select">UserSelectActivity</string>
+    <string name="negative_test_result_description">Все хорошо</string>
+    <string name="positive_test_result_description">Все очень плохо</string>
+    <string name="correct_answers_count">Правильных ответов:</string>
+    <string name="return_to_main_button_label">Назад</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="select_previous_result_button_label">Посмотреть предыдущие результаты?</string>
+    <string name="select_last_result_button_label">Посмотреть результаты последнего теста?</string>
+    <string name="title_activity_user_actions">UserActionsActivity</string>
+    <string name="start_quiz_button_label">Начать тест</string>
+    <string name="show_results_button_label">Показать историю результатов</string>
+    <string name="delete_user_button_label">Удалить пользователя</string>
+    <string name="user_delete_message">Точно удалить пользователя?</string>
+    <string name="delete_user_result_button_label">Удалить результаты</string>
+    <string name="user_result_delete_message">Точно удалить результаты?</string>
+    
+
+</resources>
