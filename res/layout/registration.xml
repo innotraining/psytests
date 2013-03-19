@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<TextView
+	 android:id="@+id/textView1"
+	 android:layout_width="wrap_content"
+	 android:layout_height="wrap_content"
+	 android:text="Yeap! It's the registration page">
+</TextView>
+<TextView
+	 android:id="@+id/textView2"
+	 android:layout_width="wrap_content"
+	 android:layout_height="wrap_content"
+	 android:text="Введи имя и фамилию">
+</TextView>
+<EditText
+    android:id="@+id/regName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName" >
+
+    <requestFocus />
+</EditText>
+<TextView
+	 android:id="@+id/textView3"
+	 android:layout_width="wrap_content"
+	 android:layout_height="wrap_content"
+	 android:text="Введи дату рождения">
+</TextView>
+<EditText
+    android:id="@+id/regDate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="date" />
+
+<Button
+        android:id="@+id/pushRegInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Начать" />
+
+</LinearLayout>
