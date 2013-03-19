@@ -1,5 +1,7 @@
 package com.example.kettellstest;
 
+import java.util.Date;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +26,10 @@ public class FinalizeTesting extends Activity {
 		
 		final TextView results = (TextView)findViewById(R.id.textView1);
 //		TODO calc IQ and add score to the results db
-		results.setText("your result: \n part I: (" + Integer.toString(part1_score) + "/46) \n partII: (" + Integer.toString(part2_score) + "/46) \n total: (" + Integer.toString(part1_score + part2_score) + "/96)");
+		results.setText(login + ", your result: \n part I: (" + Integer.toString(part1_score) + "/46) \n partII: (" + Integer.toString(part2_score) + "/46) \n total: (" + Integer.toString(part1_score + part2_score) + "/96)");
+		DatabaseHandler db = new DatabaseHandler(this);
+		db.addNode(login, new Attempt(part1_score + part2_score));
+		db.close();
 	}
 
 	@Override

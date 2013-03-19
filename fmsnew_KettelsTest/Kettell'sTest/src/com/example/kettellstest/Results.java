@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -35,6 +36,7 @@ public class Results extends Activity {
 			attempts = db.getAllUserAttempts(login);
 			// building attempts list
 			ListView listView = (ListView) findViewById(R.id.listView1);
+			Toast.makeText(this, Integer.toString(attempts.size()), Toast.LENGTH_LONG).show();
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(Results.this, android.R.layout.simple_list_item_1, attempts);
 			listView.setAdapter(adapter);
 		}catch (ParseException e) {

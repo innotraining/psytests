@@ -38,7 +38,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Creating Tables
     public void onCreate(SQLiteDatabase db) {
     	String CREATE_USER_ACCOUNTS_TABLE = "CREATE TABLE " + TABLE_USER_ACCOUNTS + "("
-                  			+  KEY_LOGIN + " TEXT PRIMARY KEY," + DATE + " TEXT," + SCORE + " INTEGER" + ")";
+                  			+  KEY_LOGIN + " TEXT," + DATE + " TEXT," + SCORE + " INTEGER" + ")";
     	String CREATE_LOGIN_AGE_TABLE = "CREATE TABLE " + TABLE_LOGIN_BIRTH_DATE + "("
     						+  KEY_LOGIN + " TEXT PRIMARY KEY," + BIRTH_DATE + " TEXT)";
         db.execSQL(CREATE_USER_ACCOUNTS_TABLE);	

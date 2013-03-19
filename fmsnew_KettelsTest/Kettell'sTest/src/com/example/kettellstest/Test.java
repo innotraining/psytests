@@ -24,6 +24,8 @@ import android.widget.Toast;
 public class Test extends Activity {
 
 	String login = "";
+	static long setTime = 15*1000;
+	static long tickTime = 100;
 	static Bundle final_savedInstanceState;
 	static int part1_score = 0; 
 	static int part2_score = 0;
@@ -31,6 +33,7 @@ public class Test extends Activity {
 	static int current_score = 0;
 	static int current_question = 1;
 	static int task_number = 0;
+	static long millisUntilFinishedToSave = setTime;
 	static CountDownTimer timer = null;
 	String resource_prefix = "";
 	Test entity = null;
@@ -47,17 +50,18 @@ public class Test extends Activity {
 	};
 	
 	private String getCurrentDescription() {
-		return "Description: task " + resource_prefix;
+		return "Description: task " + resource_prefix + "\n" + login;
 	}
 	
 	private void nextAction() {
+		millisUntilFinishedToSave = setTime;
 		current_question++;
-//		boolean toBeUpdated = true;
+		boolean toBeUpdated = true;
 		if (current_question > correct_answers[task_number - 1].length) {
 	 		current_question = 1;
 	 		task_number++;
 	 		if (task_number == 5) {
-//	 			toBeUpdated = false;
+	 			toBeUpdated = false;
 	 			Intent intent = new Intent(Test.this, ShortBreakBetweenParts.class);
 		 		intent.putExtra("login", login);
 				intent.putExtra("part1_score", part1_score);
@@ -65,8 +69,8 @@ public class Test extends Activity {
 				entity.finish();
 	 		} 
 	 		else 
-	 		if (task_number == 9) {
-//	 			toBeUpdated = false;
+	 		if (task_number >= 9) {
+	 			toBeUpdated = false;
 	 			Intent intent = new Intent(Test.this, FinalizeTesting.class);
 		 		intent.putExtra("login", login);
 				intent.putExtra("part1_score", part1_score);
@@ -75,13 +79,20 @@ public class Test extends Activity {
 				entity.finish();
 	 		}
 	 	} 
-		timer = null;
-//		if (toBeCreated) entity.onCreate(final_savedInstanceState);
-//		if (toBeUpdated) entity.update();
+		if (toBeUpdated) {
+			entity.update();
+		}
+		else {
+			if (timer != null) timer.cancel();
+			timer = null;
+		}
 	}
 	
 	private void update() {
-		if (task_number == 0) {
+		if (timer != null) timer.cancel();
+		timer = null;
+		
+		if (task_number == 0 || task_number == 5) {
 			Intent intent = Test.this.getIntent();
 			login = intent.getStringExtra("login");
 			part1_score = intent.getIntExtra("part1_score", Integer.MIN_VALUE);
@@ -115,7 +126,8 @@ public class Test extends Activity {
 				@Override
 				public boolean onTouch(View arg0, MotionEvent arg1) {
 					int action = arg1.getAction();
-					if (action == MotionEvent.AXIS_PRESSURE) {
+					//if (action == MotionEvent.AXIS_PRESSURE) {
+					if (action == MotionEvent.ACTION_DOWN) {
 						arg0.setBackgroundResource(answer_id_chosen);
 					}
 					if (action == MotionEvent.ACTION_UP) {
@@ -132,25 +144,24 @@ public class Test extends Activity {
 				 		if (task_number < 5) part1_score++;
 				 		else part2_score++;
 				 	}
-					if (timer != null) timer.cancel();
 				 	entity.nextAction();
 				}
 			});
 		}
-		if (timer == null) {
-			timer = new CountDownTimer(15000, 1000) {
-				public void onFinish() {
-				 	entity.nextAction();
-				 	synchronized (waiter) { waiter.notify(); }
-				}
-				@Override
-				public void onTick(long millisUntilFinished) {		
-					TextView questionNumberField = (TextView)findViewById(R.id.textView2);
-					questionNumberField.setText("question (" + Integer.toString(current_question) + "/" + Integer.toString(correct_answers[task_number - 1].length) + ")" + Integer.toString((int)millisUntilFinished/1000));
-				}
-			};
-			timer.start();
-		}
+	
+		timer = new CountDownTimer(millisUntilFinishedToSave, tickTime) {
+			public void onFinish() {
+			 	entity.nextAction();
+			}
+			@Override
+			public void onTick(long millisUntilFinished) {		
+				millisUntilFinishedToSave = millisUntilFinished;
+				TextView questionNumberField = (TextView)findViewById(R.id.textView2);
+				questionNumberField.setText("question (" + Integer.toString(current_question) + "/" + Integer.toString(correct_answers[task_number - 1].length) + ")" + Integer.toString((int)millisUntilFinished/1000));
+			}
+		};
+		timer.start();
+		
 	}
 	
 	@Override
@@ -159,17 +170,7 @@ public class Test extends Activity {
 		setContentView(R.layout.activity_test);
 		final_savedInstanceState = savedInstanceState;
 		entity = this;
-		while (true) {
-			update();
-			synchronized (waiter) {	
-				try {
-					while (timer != null) { waiter.wait(); }
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 	
-			}
-		}
+		update();
 	}
 	
 	@Override
@@ -181,7 +182,7 @@ public class Test extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 	    // Save the values you need from your textview into "outState"-object
-	    super.onSaveInstanceState(outState);
+		    super.onSaveInstanceState(outState);
 	}
 
 	public void onQuitButtonClick(View view) {
