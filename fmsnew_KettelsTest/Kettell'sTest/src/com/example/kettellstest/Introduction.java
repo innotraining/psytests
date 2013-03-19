@@ -64,19 +64,12 @@ public class Introduction extends Activity {
 		finish();
     }
 	
-	public void onDebugGoToClick(View view) {
-		//TODO add user form text field
-		Intent intent = new Intent(Introduction.this, Part1Subtest2.class);
-		intent.putExtra("login", login);
-		Introduction.this.startActivity(intent);
-		finish();
-    }
-	
-	
 	public void onStartClick(View view) {
 		//TODO add user form text field
-		Intent intent = new Intent(Introduction.this, Part1Subtest1.class);
+		Intent intent = new Intent(Introduction.this, Test.class);
 		intent.putExtra("login", login);
+		intent.putExtra("part1_score", 0);
+		intent.putExtra("part2_score", 0);
 		Introduction.this.startActivity(intent);
 		finish();
     }

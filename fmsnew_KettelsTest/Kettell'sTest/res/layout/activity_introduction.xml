@@ -9,13 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Introduction" >
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Debug: go to part 1, subtest 1"
-        android:onClick="onDebugGoToClick" />
 
     <TextView
         android:layout_width="match_parent"

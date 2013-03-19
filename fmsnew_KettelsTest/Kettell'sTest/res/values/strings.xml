@@ -35,6 +35,7 @@
     <string name="short_break">short break</string>
     <string name="skip">skip</string>
     <string name="yourResult">your result</string>
+    <string name="task_description">description: task</string>
     <string name="t_1_s_1_description">description: part 1 subtest 1</string>
     <string name="t_1_s_2_description">description: part 1 subtest 2</string>
     <string name="t_1_s_3_description">description: part 1 subtest 3</string>
@@ -45,5 +46,6 @@
     <string name="t_2_s_4_description">description: part 2 subtest 4</string>
     <string name="pickAnswer">pick answer</string>
     <string name="changeAccount">change account</string>
+    <string name="title_activity_test">Test</string>
 
 </resources>

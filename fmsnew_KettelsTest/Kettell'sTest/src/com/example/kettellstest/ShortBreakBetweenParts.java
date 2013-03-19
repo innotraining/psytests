@@ -12,22 +12,25 @@ public class ShortBreakBetweenParts extends Activity {
 
 	String login = "";
 	static int part1_score = 0;
-	
+	static ShortBreakBetweenParts entity;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_short_break_between_parts);
+		entity = this;
 		Intent intent = ShortBreakBetweenParts.this.getIntent();
 		login = intent.getStringExtra("login");
 		part1_score = intent.getIntExtra("part1_score", Integer.MIN_VALUE);
 		final TextView short_break = (TextView)findViewById(R.id.textView1);
 		new CountDownTimer(15000, 1000) {
 			public void onFinish() {
-				Intent intent = new Intent(ShortBreakBetweenParts.this, Part2Subtest1.class);
+				Intent intent = new Intent(ShortBreakBetweenParts.this, Test.class);
 				intent.putExtra("login", login);
 				intent.putExtra("part1_score", part1_score);
+				intent.putExtra("part2_score", 0);
+				intent.putExtra("task_number", 5);
 				ShortBreakBetweenParts.this.startActivity(intent);
-				finish();
+				entity.finish();
 			}
 			@Override
 			public void onTick(long millisUntilFinished) {	
@@ -44,7 +47,7 @@ public class ShortBreakBetweenParts extends Activity {
 	}
 	
 	public void onSkipClick(View view) {
-		Intent intent = new Intent(ShortBreakBetweenParts.this, Part2Subtest1.class);
+		Intent intent = new Intent(ShortBreakBetweenParts.this, Test.class);
 		intent.putExtra("login", login);
 		ShortBreakBetweenParts.this.startActivity(intent);
 		finish();
