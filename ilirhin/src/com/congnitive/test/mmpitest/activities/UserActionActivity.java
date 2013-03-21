@@ -5,7 +5,6 @@ import java.util.UUID;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +25,6 @@ public class UserActionActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_action);
-		String str = getIntent().getStringExtra(Utility.USER_ID_TAG);
 		userId = UUID.fromString(getIntent()
 				.getStringExtra(Utility.USER_ID_TAG));
 		user = Utility.getDataBase().getUserById(this, userId);
@@ -52,11 +50,11 @@ public class UserActionActivity extends Activity {
 			public void onClick(DialogInterface dialog, int arg1) {
 			}
 		});
-		ad.setCancelable(true);
-		ad.setOnCancelListener(new OnCancelListener() {
-			public void onCancel(DialogInterface dialog) {
-			}
-		});
+		// ad.setCancelable(true);
+		// ad.setOnCancelListener(new OnCancelListener() {
+		// public void onCancel(DialogInterface dialog) {
+		// }
+		// });
 	}
 
 	public void onUserActionGoTestClick(View v) {

@@ -31,13 +31,6 @@ public class ChooseExistingUserActivity extends Activity {
 		spinner.setPromptId(R.string.available_users);
 	}
 
-	public void OnChooseExistingUserButtonExitClick(View v) {
-		Intent intent = new Intent(ChooseExistingUserActivity.this,
-				ExitTestActivity.class);
-		startActivity(intent);
-		finish();
-	}
-
 	public void OnChooseExistingUserButtonReturnClick(View v) {
 		Intent intent = new Intent(ChooseExistingUserActivity.this,
 				RegistrationActivity.class);

@@ -7,32 +7,32 @@
     <Button
         android:id="@+id/UserActionGoTest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="32sp"
+        android:gravity="center"
         android:onClick="onUserActionGoTestClick"
         android:text="@string/go_test" />
 
     <Button
         android:id="@+id/UserActionDeleteUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70sp"
         android:layout_alignRight="@+id/UserActionGoTest"
         android:layout_below="@+id/UserActionGoTest"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="62dp"
+        android:gravity="center"
+        android:layout_marginTop="62sp"
         android:onClick="onUserActionDeleteUserClick"
         android:text="@string/delete_user" />
 
     <Button
         android:id="@+id/UserActionReturn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:layout_below="@+id/UserActionDeleteUser"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="93dp"
+        android:layout_marginTop="93sp"
         android:onClick="onUserActionReturnClick"
         android:text="@string/return_to_chosing_users" />
 

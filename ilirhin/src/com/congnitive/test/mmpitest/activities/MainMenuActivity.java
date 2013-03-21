@@ -22,13 +22,6 @@ public class MainMenuActivity extends Activity {
 				.getStringExtra(Utility.USER_ID_TAG));
 	}
 
-	public void onMainMenuExitButtonClick(View v) {
-		Intent intent = new Intent(MainMenuActivity.this,
-				ExitTestActivity.class);
-		startActivity(intent);
-		finish();
-	}
-
 	public void onMainMenuViewResultsButtonClick(View v) {
 		Intent intent = new Intent(MainMenuActivity.this,
 				ViewResultActivity.class);
@@ -49,7 +42,8 @@ public class MainMenuActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			Intent intent = new Intent(getApplicationContext(),
-					RegistrationActivity.class);
+					UserActionActivity.class);
+			intent.putExtra(Utility.USER_ID_TAG, userId.toString());
 			startActivity(intent);
 			finish();
 		}

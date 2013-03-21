@@ -23,48 +23,48 @@
         </activity>
         <activity
             android:name="com.congnitive.test.mmpitest.activities.ChooseExistingUserActivity"
-            android:label="activity_choose_existing_user.xml" 
+            android:label="@string/mmpi_quiz" 
             >
         </activity>
         <activity
             android:name="com.congnitive.test.mmpitest.activities.ExitTestActivity"
-            android:label="activity_exit_test.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
             android:name="com.congnitive.test.mmpitest.activities.MainMenuActivity"
-            android:label="activity_main_menu.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
 			android:name="com.congnitive.test.mmpitest.activities.NewUserActivity"
-            android:label="activity_new_user.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
     		android:name="com.congnitive.test.mmpitest.activities.ResultVisualisationActivity"
-            android:label="activity_result_visualisation.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
 			android:name="com.congnitive.test.mmpitest.activities.StartTestActivity"
-            android:label="activity_start_test.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
        		android:name="com.congnitive.test.mmpitest.activities.TestQuestionActivity"
-            android:label="activity_test_question.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
    			android:name="com.congnitive.test.mmpitest.activities.UserActionActivity"
-            android:label="activity_user_action.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
             android:name="com.congnitive.test.mmpitest.activities.ViewResultActivity"
-            android:label="activity_view_result">
+            android:label="@string/mmpi_quiz">
         </activity>
         <activity
             android:name="com.congnitive.test.mmpitest.activities.AgainOrToMenuActivity"
-            android:label="activity_again_or_start.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
         <activity
             android:name="com.congnitive.test.mmpitest.activities.ViewResultOfTheQuiz"
-            android:label="activity_again_or_start.xml" >
+            android:label="@string/mmpi_quiz" >
         </activity>
     </application>
 

@@ -11,7 +11,8 @@ import com.congnitive.test.mmpitest.domainObjects.QuizResult;
 import com.congnitive.test.mmpitest.domainObjects.User;
 
 public interface DataBase {
-	public UUID saveUser(Context context, User usr);
+	public UUID saveUser(Context context, User usr)
+			throws IllegalArgumentException;
 
 	public User getUserById(Context context, UUID id);
 
@@ -27,7 +28,7 @@ public interface DataBase {
 	public Map<Date, List<QuizResult>> getAllTestsOfUser(Context context,
 			UUID userId);
 
-	public QuizResult getTestResult(Context context, UUID userId, UUID testId);
+	public QuizResult getTestResultById(Context context, UUID testId);
 
 	public Date getTestDate(Context context, UUID userId, UUID testId);
 

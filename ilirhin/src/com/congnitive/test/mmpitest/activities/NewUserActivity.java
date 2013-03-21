@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.congnitive.test.mmpitest.R;
 import com.congnitive.test.mmpitest.domainObjects.User;
@@ -45,13 +46,19 @@ public class NewUserActivity extends Activity {
 		Intent intent = new Intent(NewUserActivity.this, MainMenuActivity.class);
 		if (!userNameView.getText().toString().equals("")
 				&& (maleBut.isChecked() || femaleBut.isChecked())) {
-			UUID userId = Utility.getDataBase().saveUser(
-					this,
-					new User(userNameView.getText().toString(), maleBut
-							.isChecked()));
-			intent.putExtra(Utility.USER_ID_TAG, userId.toString());
-			startActivity(intent);
-			finish();
+			try {
+				UUID userId = Utility.getDataBase().saveUser(
+						this,
+						new User(userNameView.getText().toString(), maleBut
+								.isChecked()));
+				intent.putExtra(Utility.USER_ID_TAG, userId.toString());
+				startActivity(intent);
+				finish();
+			} catch (IllegalArgumentException e) {
+				Toast.makeText(this, R.string.user_exist, Toast.LENGTH_SHORT)
+						.show();
+			}
+
 		}
 	}
 

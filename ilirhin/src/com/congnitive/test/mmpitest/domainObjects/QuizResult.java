@@ -17,12 +17,15 @@ public class QuizResult implements Serializable {
 		private String skillName;
 		private String describtion;
 		private int skilLevel;
+		private String shortName;
 
-		public QuizEnty(String skillName, String describtion, int skilLevel) {
+		public QuizEnty(String skillName, String describtion, String shortName,
+				int skilLevel) {
 			super();
 			this.skillName = skillName;
 			this.describtion = describtion;
 			this.skilLevel = skilLevel;
+			this.shortName = shortName;
 		}
 
 		public String getSkillName() {
@@ -47,6 +50,14 @@ public class QuizResult implements Serializable {
 
 		public void setSkilLevel(int skilLevel) {
 			this.skilLevel = skilLevel;
+		}
+
+		public String getShortName() {
+			return shortName;
+		}
+
+		public void setShortName(String shortName) {
+			this.shortName = shortName;
 		}
 	}
 

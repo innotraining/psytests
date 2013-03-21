@@ -6,8 +6,8 @@
 
     <Button
         android:id="@+id/TestQuestionYesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140sp"
+        android:layout_height="40sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:onClick="onTestQuestionButtonClick"
@@ -15,8 +15,8 @@
 
     <Button
         android:id="@+id/TestQuestionDontKnowButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140sp"
+        android:layout_height="40sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="onTestQuestionButtonClick"
@@ -24,8 +24,8 @@
 
     <Button
         android:id="@+id/TestQuestionNoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="140sp"
+        android:layout_height="40sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="onTestQuestionButtonClick"
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="51dp"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="48sp"
+        android:gravity="center"
         android:text="@string/question_text"
         android:textSize="@dimen/font20" />
 

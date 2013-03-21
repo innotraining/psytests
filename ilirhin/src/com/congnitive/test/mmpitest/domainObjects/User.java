@@ -3,6 +3,7 @@ package com.congnitive.test.mmpitest.domainObjects;
 import java.io.Serializable;
 
 public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private boolean gender;
 

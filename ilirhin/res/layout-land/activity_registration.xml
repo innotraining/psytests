@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/RegistationExitTestButton"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="28sp"
         android:onClick="onNewUserButtonClick"
         android:text="@string/new_user" />
 
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/RegistartionNewUserButton"
         android:layout_below="@+id/RegistartionNewUserButton"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="26sp"
         android:onClick="onExistingUserButtonClick"
         android:text="@string/existing_user" />
 

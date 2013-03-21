@@ -7,9 +7,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
@@ -26,9 +29,10 @@ import com.congnitive.test.mmpitest.domainObjects.User;
 public class SQLiteDatabaseImpl implements DataBase {
 	private class QuizDataBase extends SQLiteOpenHelper {
 		private static final String DATABASE_NAME = "quizDatabase.db";
-		private static final int DATABASE_VERSION = 2;
+		private static final int DATABASE_VERSION = 9;
 		public static final String TABLE_USER_NAME = "userTable";
 		public static final String USER_ID = "userId";
+		public static final String USER_NAME = "userName";
 		public static final String USER_DESC = "userDescribtion";
 
 		public static final String TABLE_QUIZ_NAME = "quizTable";
@@ -38,14 +42,14 @@ public class SQLiteDatabaseImpl implements DataBase {
 		public static final String QUIZ_DATE = "quizDate";
 
 		private static final String SQL_CREATE_USER_ENTRIES = "CREATE TABLE "
-				+ TABLE_USER_NAME + " (" + USER_ID + " VARCHAR(8000) , "
-				+ USER_DESC + " VARCHAR(8000))";
+				+ TABLE_USER_NAME + " (" + USER_ID + " TEXT PRIMARY KEY , "
+				+ USER_NAME + " TEXT, " + USER_DESC + " TEXT)";
 		private static final String SQL_DELETE_USER_ENTRIES = "DROP TABLE IF EXISTS "
 				+ TABLE_USER_NAME;
 		private static final String SQL_CREATE_QUIZ_ENTRIES = "CREATE TABLE "
-				+ TABLE_QUIZ_NAME + " (" + QUIZ_ID + " VARCHAR(8000) , "
-				+ QUIZ_USER_ID + " VARCHAR(8000) , " + QUIZ_DATE
-				+ " VARCHAR(8000)," + QUIZ_DESC + " VARCHAR(8000))";
+				+ TABLE_QUIZ_NAME + " (" + QUIZ_ID + " TEXT PRIMARY KEY , "
+				+ QUIZ_USER_ID + " TEXT , " + QUIZ_DATE + " TEXT," + QUIZ_DESC
+				+ " TEXT)";
 		private static final String SQL_DELETE_QUIZ_ENTRIES = "DROP TABLE IF EXISTS "
 				+ TABLE_QUIZ_NAME;
 
@@ -105,24 +109,37 @@ public class SQLiteDatabaseImpl implements DataBase {
 	}
 
 	@Override
-	public UUID saveUser(Context context, User usr) {
+	public UUID saveUser(Context context, User usr)
+			throws IllegalArgumentException {
 		QuizDataBase sqh = new QuizDataBase(context);
-		SQLiteDatabase sqdb = sqh.getWritableDatabase();
-		UUID uuid = UUID.randomUUID();
-		String insertQuery = "INSERT INTO " + QuizDataBase.TABLE_USER_NAME
-				+ " (" + QuizDataBase.USER_ID + "," + QuizDataBase.USER_DESC
-				+ ") VALUES (" + "'" + uuid + "'" + ", '"
-				+ serialaizeObject(usr) + "')";
-		sqdb.execSQL(insertQuery);
-		sqdb.close();
-		sqh.close();
-		return uuid;
+		SQLiteDatabase sqdb;
+		sqdb = sqh.getReadableDatabase();
+		String query = "SELECT " + QuizDataBase.USER_ID + " FROM "
+				+ QuizDataBase.TABLE_USER_NAME + " WHERE "
+				+ QuizDataBase.USER_NAME + " = " + "'" + usr.getName() + "'";
+		Cursor cursor = sqdb.rawQuery(query, null);
+		if (cursor.getCount() == 0) {
+			sqdb = sqh.getWritableDatabase();
+			UUID uuid = UUID.randomUUID();
+			String insertQuery = "INSERT INTO " + QuizDataBase.TABLE_USER_NAME
+					+ " (" + QuizDataBase.USER_ID + " , "
+					+ QuizDataBase.USER_NAME + " , " + QuizDataBase.USER_DESC
+					+ ") VALUES (" + "'" + uuid + "'" + " , " + "'"
+					+ usr.getName() + "'" + ", '" + serialaizeObject(usr)
+					+ "')";
+			sqdb.execSQL(insertQuery);
+			sqdb.close();
+			sqh.close();
+			return uuid;
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
 	public User getUserById(Context context, UUID id) {
 		QuizDataBase sqh = new QuizDataBase(context);
-		SQLiteDatabase sqdb = sqh.getWritableDatabase();
+		SQLiteDatabase sqdb = sqh.getReadableDatabase();
 		String query = "SELECT " + QuizDataBase.USER_DESC + " FROM "
 				+ QuizDataBase.TABLE_USER_NAME + " WHERE "
 				+ QuizDataBase.USER_ID + " = " + "'" + id + "'";
@@ -142,7 +159,7 @@ public class SQLiteDatabaseImpl implements DataBase {
 	public UUID getIdByUser(Context context, User usr) {
 
 		QuizDataBase sqh = new QuizDataBase(context);
-		SQLiteDatabase sqdb = sqh.getWritableDatabase();
+		SQLiteDatabase sqdb = sqh.getReadableDatabase();
 		String query = "SELECT " + QuizDataBase.USER_ID + " FROM "
 				+ QuizDataBase.TABLE_USER_NAME + " WHERE "
 				+ QuizDataBase.USER_DESC + " = " + "'" + serialaizeObject(usr)
@@ -162,7 +179,7 @@ public class SQLiteDatabaseImpl implements DataBase {
 	@Override
 	public void removeUser(Context context, UUID userId) {
 		QuizDataBase sqh = new QuizDataBase(context);
-		SQLiteDatabase sqdb = sqh.getWritableDatabase();
+		SQLiteDatabase sqdb = sqh.getReadableDatabase();
 		sqdb.delete(QuizDataBase.TABLE_USER_NAME, QuizDataBase.USER_ID + "="
 				+ "'" + userId + "'", null);
 		sqdb.delete(QuizDataBase.TABLE_QUIZ_NAME, QuizDataBase.QUIZ_USER_ID
@@ -174,7 +191,7 @@ public class SQLiteDatabaseImpl implements DataBase {
 	@Override
 	public User[] getAllUsers(Context context) {
 		QuizDataBase sqh = new QuizDataBase(context);
-		SQLiteDatabase sqdb = sqh.getWritableDatabase();
+		SQLiteDatabase sqdb = sqh.getReadableDatabase();
 		String query = "SELECT " + QuizDataBase.USER_DESC + " FROM "
 				+ QuizDataBase.TABLE_USER_NAME;
 		Cursor cursor = sqdb.rawQuery(query, null);
@@ -192,6 +209,12 @@ public class SQLiteDatabaseImpl implements DataBase {
 	@Override
 	public UUID addTestToUser(Context context, UUID userId,
 			QuizResult testResults, Date date) {
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd",
+				Locale.US);
+		try {
+			date = dateFormatter.parse(dateFormatter.format(date));
+		} catch (ParseException e) {
+		}
 		QuizDataBase sqh = new QuizDataBase(context);
 		SQLiteDatabase sqdb = sqh.getWritableDatabase();
 		UUID quizId = UUID.randomUUID();
@@ -211,7 +234,7 @@ public class SQLiteDatabaseImpl implements DataBase {
 	public Map<Date, List<QuizResult>> getAllTestsOfUser(Context context,
 			UUID userId) {
 		QuizDataBase sqh = new QuizDataBase(context);
-		SQLiteDatabase sqdb = sqh.getWritableDatabase();
+		SQLiteDatabase sqdb = sqh.getReadableDatabase();
 		String query = "SELECT * FROM " + QuizDataBase.TABLE_QUIZ_NAME
 				+ " WHERE " + QuizDataBase.QUIZ_USER_ID + " = '" + userId + "'";
 		Cursor cursor = sqdb.rawQuery(query, null);
@@ -231,13 +254,29 @@ public class SQLiteDatabaseImpl implements DataBase {
 		cursor.close();
 		sqdb.close();
 		sqh.close();
-		return result;
+		if (result.isEmpty())
+			return null;
+		else
+			return result;
 	}
 
 	@Override
-	public QuizResult getTestResult(Context context, UUID userId, UUID testId) {
-		// TODO Auto-generated method stub
-		return null;
+	public QuizResult getTestResultById(Context context, UUID testId) {
+		QuizDataBase sqh = new QuizDataBase(context);
+		SQLiteDatabase sqdb = sqh.getReadableDatabase();
+		String query = "SELECT " + QuizDataBase.QUIZ_DESC + " FROM "
+				+ QuizDataBase.TABLE_QUIZ_NAME + " WHERE "
+				+ QuizDataBase.QUIZ_ID + " = " + "'" + testId + "'";
+		Cursor cursor = sqdb.rawQuery(query, null);
+		QuizResult quizResult = null;
+		while (cursor.moveToNext()) {
+			quizResult = (QuizResult) deserializeObject(cursor.getString(cursor
+					.getColumnIndex(QuizDataBase.USER_DESC)));
+		}
+		cursor.close();
+		sqdb.close();
+		sqh.close();
+		return quizResult;
 	}
 
 	@Override

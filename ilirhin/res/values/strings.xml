@@ -35,6 +35,7 @@
     <string name="again_or_exit_text">Для прохождения теста заново нажмите кнопку «Заново». Для выхода нажмите «В главное меню».</string>
         
     <string name="reliability">Шкала достоверности</string>
+    <string name="lie_scale">Шкала лжи</string>
     <string name="correction">Шкала коррекции</string>
     <string name="overcontrol">Шкала сверхконтроля</string>
     <string name="pessimistic">Шкала пессимистичности</string>
@@ -47,7 +48,11 @@
     <string name="optimistic">Шкала оптимистичности</string>
     <string name="introversion">Шкала интроверсии</string>
     <string name="impusivity">Шкала импульсивности</string>
-       
+    
+    <string name="mmpi_quiz">MMPI Тест</string>
+    <string name="quiz_num">Тест № </string>
+    <string name="there_is_no_quizes">Ещё нет пройденных тестов </string>
+    <string name="user_exist">Пользователь с таким именем уже существует</string>
     
     <string name="big_text">
         Вам будет представлена целая серия разных утверждений. Оценивая каждое из них, не тратьте много времени на раздумья. Наиболее естественная – первая непосредственная реакция. Внимательно вчитывайтесь в текст, дочитывая до конца каждое утверждение и оценивая его все целиком как верное или неверное по отношению к Вам.\n

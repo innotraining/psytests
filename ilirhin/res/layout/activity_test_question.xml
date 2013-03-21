@@ -6,8 +6,8 @@
 
     <Button
         android:id="@+id/TestQuestionYesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="50sp"
         android:layout_alignBaseline="@+id/TestQuestionDontKnowButton"
         android:layout_alignBottom="@+id/TestQuestionDontKnowButton"
         android:layout_alignParentLeft="true"
@@ -16,8 +16,8 @@
 
     <Button
         android:id="@+id/TestQuestionDontKnowButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="50sp"
         android:layout_alignBaseline="@+id/TestQuestionNoButton"
         android:layout_alignBottom="@+id/TestQuestionNoButton"
         android:onClick="onTestQuestionButtonClick"
@@ -26,12 +26,12 @@
 
     <Button
         android:id="@+id/TestQuestionNoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="50sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:onClick="onTestQuestionButtonClick"
-        android:layout_marginBottom="86dp"
+        android:layout_marginBottom="86sp"
         android:text="@string/no" />
 
     <TextView
@@ -40,8 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="92dp"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="92sp"
+        android:gravity="center"
         android:text="@string/question_text" />
 
 </RelativeLayout>

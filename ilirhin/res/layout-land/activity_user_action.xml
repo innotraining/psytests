@@ -7,7 +7,7 @@
      <Button
          android:id="@+id/UserActionReturn"
          android:layout_width="match_parent"
-         android:layout_height="wrap_content"
+         android:layout_height="50sp"
          android:layout_alignParentBottom="true"
          android:layout_alignParentLeft="true"
          android:onClick="onUserActionReturnClick"
@@ -16,20 +16,20 @@
      <Button
          android:id="@+id/UserActionDeleteUser"
          android:layout_width="match_parent"
-         android:layout_height="wrap_content"
+         android:layout_height="80sp"
          android:layout_alignParentLeft="true"
          android:layout_centerVertical="true"
-         android:gravity="center_horizontal"
+         android:gravity="center"
          android:onClick="onUserActionDeleteUserClick"
          android:text="@string/delete_user" />
 
      <Button
          android:id="@+id/UserActionGoTest"
          android:layout_width="match_parent"
-         android:layout_height="wrap_content"
+         android:layout_height="50sp"
          android:layout_alignParentLeft="true"
          android:layout_alignParentTop="true"
-         android:gravity="center_horizontal"
+         android:gravity="center"
          android:onClick="onUserActionGoTestClick"
          android:text="@string/go_test" />
 
