@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/detailCharacter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/detailCharacter"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="333dp"
+        android:layout_above="@+id/backButton"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/detailCharacter" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/characterInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="characterInfo" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/back" />
+
+</RelativeLayout>

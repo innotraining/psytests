@@ -1,6 +1,15 @@
 package com.example.rusalovtest;
 
 
+import org.achartengine.ChartFactory;
+import org.achartengine.GraphicalView;
+import org.achartengine.chart.PointStyle;
+import org.achartengine.model.SeriesSelection;
+import org.achartengine.model.TimeSeries;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
+
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.LegendAlign;
 import com.jjoe64.graphview.GraphViewSeries;
@@ -15,14 +24,17 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Screen_6 extends Activity {
+	final String LOG_TAG = "myLogs";
 	
 	private String userName;
 	private int[] scores;
@@ -123,65 +135,81 @@ public class Screen_6 extends Activity {
 	
 	public void makeChart(){
 		
+		TimeSeries series = new TimeSeries("your results");
+		for(int i = 0; i < scores.length; i++){
+			series.add(i+1, scores[i]);
+		}
 		
-		GraphViewSeries exampleSeries = new GraphViewSeries("Your score", new GraphViewSeriesStyle(Color.rgb(200, 50, 00), 3), new GraphViewData[] {  
-			      new GraphViewData(1, scores[0])  
-			      , new GraphViewData(2, scores[1])  
-			      , new GraphViewData(3, scores[2])  
-			      , new GraphViewData(4, scores[3])  
-			      , new GraphViewData(5, scores[4])  
-			      , new GraphViewData(6, scores[5])
-			      , new GraphViewData(7, scores[6])  
-			      , new GraphViewData(8, scores[7])  
-			      , new GraphViewData(9, scores[8])  
-			});  
+		TimeSeries lowBarrierSeries = new TimeSeries("low barrier");
+		lowBarrierSeries.add(0, 4);
+		lowBarrierSeries.add(10, 4);
 		
-		GraphViewSeries highSeries = new GraphViewSeries("High rate", new GraphViewSeriesStyle(Color.rgb(90, 250, 00), 3), new GraphViewData[] {  
-		      new GraphViewData(1, 9)  
-		      , new GraphViewData(2, 9)  
-		      , new GraphViewData(3, 9)  
-		      , new GraphViewData(4, 9)  
-		      , new GraphViewData(5, 9)  
-		      , new GraphViewData(6, 9)
-		      , new GraphViewData(7, 9)  
-		      , new GraphViewData(8, 9)  
-		      , new GraphViewData(9, 9)  
-		});  
-		GraphViewSeries lowSeries = new GraphViewSeries("Low rate", new GraphViewSeriesStyle(Color.rgb(00, 50, 250), 3), new GraphViewData[] {  
-		      new GraphViewData(1, 4)  
-		      , new GraphViewData(2, 4)  
-		      , new GraphViewData(3, 4)  
-		      , new GraphViewData(4, 4)  
-		      , new GraphViewData(5, 4)  
-		      , new GraphViewData(6, 4)
-		      , new GraphViewData(7, 4)  
-		      , new GraphViewData(8, 4)  
-		      , new GraphViewData(9, 4)  
-		}); 
+		TimeSeries highBarrierSeries = new TimeSeries("high barrier");
+		highBarrierSeries.add(0, 9);
+		highBarrierSeries.add(10, 9);
 		
-		GraphViewSeries point_1 = new GraphViewSeries(new GraphViewData[] {  
-		      new GraphViewData(1, 12)    
-		}); 
+		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+		dataset.addSeries(series);
+		dataset.addSeries(lowBarrierSeries);
+		dataset.addSeries(highBarrierSeries);
 		
-		GraphViewSeries point_2 = new GraphViewSeries(new GraphViewData[] {  
-			      new GraphViewData(1, 0)    
-		}); 
-			
-			  
-		GraphView graphView = new LineGraphView( this, "GraphTest");
-		graphView.addSeries(exampleSeries); // data 
-		graphView.addSeries(highSeries);
-		graphView.addSeries(lowSeries);
-		graphView.addSeries(point_1);
-		graphView.addSeries(point_2);
-		graphView.setHorizontalLabels(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "k"});  
-		graphView.setVerticalLabels(new String[] {"12", "11", "10", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0"});  
-		graphView.setShowLegend(true);  
-		graphView.setLegendAlign(LegendAlign.BOTTOM);  
-		graphView.setLegendWidth(200);
+		XYSeriesRenderer renderer = new XYSeriesRenderer();
+		renderer.setColor(Color.WHITE);
+		renderer.setPointStyle(PointStyle.SQUARE);
+		renderer.setLineWidth(3f);
+		renderer.setFillPoints(true);
+		
+		XYSeriesRenderer rendererLow = new XYSeriesRenderer();
+		rendererLow.setColor(Color.YELLOW);
+		rendererLow.setFillPoints(true);
+		
+		XYSeriesRenderer rendererHigh = new XYSeriesRenderer();
+		rendererHigh.setColor(Color.RED);
+		rendererHigh.setFillPoints(true);
+		
+		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
+		mRenderer.addSeriesRenderer(renderer);
+		mRenderer.addSeriesRenderer(rendererLow);
+		mRenderer.addSeriesRenderer(rendererHigh);
+		
+		mRenderer.setYAxisMin(0);
+		mRenderer.setYAxisMax(12);
+		mRenderer.setXAxisMin(0);
+		mRenderer.setXAxisMax(10);
+		mRenderer.setBackgroundColor(Color.BLACK);
+		mRenderer.setApplyBackgroundColor(true);
+		mRenderer.setPanEnabled(false, false);
+		mRenderer.setZoomEnabled(false, false);
+		mRenderer.setPointSize(15f);
+		mRenderer.setXLabels(10);
+		mRenderer.setYLabels(12);
+		mRenderer.addYTextLabel(0, "0");
+		mRenderer.addYTextLabel(12, "12");
+		mRenderer.setShowGridX(true);
+		mRenderer.setShowGridY(true);
+		
+		
+		mRenderer.setClickEnabled(true);
+		mRenderer.setSelectableBuffer(10);
+		
+		final GraphicalView lineChart = ChartFactory.getLineChartView(this, dataset, mRenderer);
+		
+		lineChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	SeriesSelection seriesSelection = lineChart.getCurrentSeriesAndPoint();
+            	if (seriesSelection != null) {
+            		int num = seriesSelection.getSeriesIndex();
+            		if(num == 0){
+            			int xValue = (int) seriesSelection.getXValue();
+            			viewDetailsCharacter(xValue);
+            		}
+                }
+            }
+          });
 		
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);  
-		layout.addView(graphView);  
+		layout.addView(lineChart); 
 
 	}
 	
@@ -197,5 +225,11 @@ public class Screen_6 extends Activity {
     
 	public Boolean isMedium(int cur){	
 		return (cur <= 8) && (cur >= 5);
+	}
+	
+	public void viewDetailsCharacter(int xValue){
+		Intent intent = new Intent(Screen_6.this, Screen_7.class);
+		intent.putExtra("xValue", xValue);
+		startActivity(intent);
 	}
 }
