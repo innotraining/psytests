@@ -6,7 +6,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -14,17 +13,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class Screen_4 extends Activity {
 	
 	
-	private Button toMenuButton;
 	private String userName;
 	private DbOpenHelper dbOpenHelper;
 	private Resources res;
@@ -69,15 +65,7 @@ public class Screen_4 extends Activity {
 					
 					AlertDialog.Builder builder = new AlertDialog.Builder(Screen_4.this);
 					String chooseTest = res.getString(R.string.chooseTest);
-					String back = res.getString(R.string.back);
 					builder.setTitle(chooseTest);
-					
-					builder.setNegativeButton(back, new DialogInterface.OnClickListener() {
-						   @Override
-						   public void onClick(DialogInterface dialog, int which) {
-							   dialog.cancel();
-						   }
-					});
 					
 					LayoutInflater li = Screen_4.this.getLayoutInflater();
 					View view = li.inflate(R.layout.dialog_list_test, null);
@@ -113,25 +101,6 @@ public class Screen_4 extends Activity {
 			
 		});
 		
-		
-		
-		
-		
-	
-	    
-		     
-		
-		toMenuButton = (Button) findViewById(R.id.toMenuButton);
-		toMenuButton.setOnClickListener(new OnClickListener(){
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(Screen_4.this, Screen_0.class);
-		        startActivity(intent);
-		        finish();
-			}
-			
-    	});
 	}
 	
 	void process(Cursor cursor){
@@ -171,7 +140,6 @@ public class Screen_4 extends Activity {
 		intent.putExtra("character", character);
 		intent.putExtra("scores", scores);
 		startActivity(intent);
-		finish();
 	}
 	
 	public Boolean isHigh(int cur){	

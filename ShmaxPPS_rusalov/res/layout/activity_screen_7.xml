@@ -14,7 +14,7 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="333dp"
-        android:layout_above="@+id/backButton"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/detailCharacter" >
 
@@ -30,13 +30,5 @@
                 android:text="characterInfo" />
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/back" />
 
 </RelativeLayout>

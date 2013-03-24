@@ -15,7 +15,6 @@ import android.widget.Button;
 public class Screen_0_3 extends Activity {
 	private Button toTestAndResultButton;
 	private Button deleteUserButton;
-	private Button toMenuButton;
 	private String userName;
 	private DbOpenHelper dbOpenHelper;
 	
@@ -27,7 +26,6 @@ public class Screen_0_3 extends Activity {
 		userName = getIntent().getStringExtra("userName");
 		toTestAndResultButton = (Button) findViewById(R.id.toTestAndResult);
 		deleteUserButton = (Button) findViewById(R.id.deleteUser);
-		toMenuButton = (Button) findViewById(R.id.toMenuButton);
 		String deleteUserAndAllHisData = res.getString(R.string.deleteUser) + " " + userName + " " + res.getString(R.string.andAllHisData);
 		deleteUserButton.setText(deleteUserAndAllHisData);
 		toTestAndResultButton.setOnClickListener(new OnClickListener() {
@@ -38,7 +36,6 @@ public class Screen_0_3 extends Activity {
 				Intent intent = new Intent(Screen_0_3.this, Screen_1.class);
 				intent.putExtra("userName", userName);
 				startActivity(intent);
-				finish();
 			}
 		});
 		
@@ -72,15 +69,5 @@ public class Screen_0_3 extends Activity {
 			}
 		});
 		
-		toMenuButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View view) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(Screen_0_3.this, Screen_0.class);
-				startActivity(intent);
-				finish();
-			}
-		});
 	}
 }

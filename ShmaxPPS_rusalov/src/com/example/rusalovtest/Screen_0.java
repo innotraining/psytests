@@ -69,7 +69,6 @@ public class Screen_0 extends Activity {
 							       Intent intent = new Intent(Screen_0.this, Screen_1.class);
 							       intent.putExtra("userName", userName);
 							       startActivity(intent);
-							       finish();
 						       }
 						       db.close();
 						   }
@@ -94,7 +93,6 @@ public class Screen_0 extends Activity {
 					case R.id.registeredButton:
 						Intent myIntent = new Intent(Screen_0.this, Screen_0_2.class);
 						startActivity(myIntent);
-						finish();
 						break;
 				}
 			}

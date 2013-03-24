@@ -10,13 +10,6 @@ import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.LegendAlign;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
-
 
 
 import android.app.Activity;
@@ -24,23 +17,16 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Screen_6 extends Activity {
 	final String LOG_TAG = "myLogs";
 	
 	private String userName;
 	private int[] scores;
-	private Resources res;
-	private Button backButton;
-	
+	private Resources res;	
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,15 +36,6 @@ public class Screen_6 extends Activity {
 		makeChart();
 		makeTable();
 		
-		backButton = (Button) findViewById(R.id.backButton);
-		backButton.setOnClickListener(new OnClickListener(){
-			
-			@Override
-			public void onClick(View v) {
-		        finish();
-			}
-			
-    	});
 	}
 	
 	public void makeTable(){

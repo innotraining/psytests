@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -31,16 +30,7 @@ public class Screen_0_2 extends Activity {
 		// TODO Auto-generated method stub
 		AlertDialog.Builder builder = new AlertDialog.Builder(Screen_0_2.this);
 		String chooseUser = res.getString(R.string.chooseUser);
-		String returnMenu = res.getString(R.string.returnMenu);
 		builder.setTitle(chooseUser);
-		builder.setPositiveButton(returnMenu, new DialogInterface.OnClickListener() {
-			   @Override
-			   public void onClick(DialogInterface dialog, int which) {
-				   Intent intent = new Intent(Screen_0_2.this, Screen_0.class);
-				   startActivity(intent);
-				   finish();
-			   }
-		});
 		LayoutInflater li = Screen_0_2.this.getLayoutInflater();
 		View view = li.inflate(R.layout.dialog_list, null);
 		final ListView listView = (ListView) view.findViewById(R.id.listUsers);

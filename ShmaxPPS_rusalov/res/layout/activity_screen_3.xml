@@ -1,55 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/counter"
-            android:layout_width="wrap_content"
-            android:layout_height="108dp"
-            android:layout_gravity="right"
-            android:text="counter"
-            android:textSize="30sp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/mainMenu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/mainMenu" />
-
-    <Button
-        android:id="@+id/no"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/mainMenu"
-        android:layout_alignParentLeft="true"
-        android:text="@string/no" />
-
-    <Button
-        android:id="@+id/yes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/no"
-        android:layout_alignBottom="@+id/no"
-        android:layout_toRightOf="@+id/no"
-        android:text="@string/yes" />
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_gravity="right"
+        android:text="counter"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/textQuestion"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_above="@+id/no"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout1"
+        android:layout_height="308dp"
         android:text="textQuestion"
         android:textSize="25sp" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/no"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/no" />
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/yes" />
+    </LinearLayout>
+
+</LinearLayout>

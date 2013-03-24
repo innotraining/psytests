@@ -15,16 +15,8 @@
         android:id="@+id/watchResultsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/toMenuButton"
-        android:layout_alignParentLeft="true"
-        android:text="@string/watchResults" />
-
-    <Button
-        android:id="@+id/toMenuButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/toMenuButton" />
+        android:text="@string/watchResults" />
 
 </RelativeLayout>

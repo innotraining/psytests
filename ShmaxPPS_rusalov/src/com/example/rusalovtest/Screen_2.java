@@ -9,7 +9,6 @@ import android.widget.Button;
 
 public class Screen_2 extends Activity {
 	private Button startButton;
-	private Button backButton;
 	private String userName;
 	 
 	@Override
@@ -21,7 +20,6 @@ public class Screen_2 extends Activity {
     }
 
 	public void addListenerOnButton() {
-		backButton = (Button) findViewById(R.id.backButton);
 		startButton = (Button) findViewById(R.id.start);
 		
 		startButton.setOnClickListener(new OnClickListener(){
@@ -34,7 +32,6 @@ public class Screen_2 extends Activity {
 				        Intent intent = new Intent(Screen_2.this, Screen_3.class);
 				        intent.putExtra("userName", userName);
 				        startActivity(intent);
-				        finish();
 				        break;
 				    default:
 				        break;
@@ -42,18 +39,6 @@ public class Screen_2 extends Activity {
 			}
 			
     	});
-		
-		backButton.setOnClickListener(new OnClickListener(){
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(Screen_2.this, Screen_1.class);
-				intent.putExtra("userName", userName);
-		        startActivity(intent);
-		        finish();
-			}
-			
-    	});	
 		
 	}
 }

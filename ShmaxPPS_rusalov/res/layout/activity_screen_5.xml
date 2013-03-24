@@ -18,19 +18,11 @@
         android:layout_alignParentLeft="true"
         android:text="@string/toMoreInfo" />
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/toMoreInfoButton"
-        android:layout_alignParentLeft="true"
-        android:text="@string/back" />
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="333dp"
-        android:layout_above="@+id/backButton"
+        android:layout_above="@+id/toMoreInfoButton"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/resultsTitle" >
 

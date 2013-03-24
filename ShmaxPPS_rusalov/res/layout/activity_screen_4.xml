@@ -4,19 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/toMenuButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="@string/toMenuButton" />
-
     <ListView
         android:id="@+id/listResults"
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:layout_above="@+id/toMenuButton"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/chooseTest"
         android:layout_weight="0.92" >

@@ -25,7 +25,6 @@ public class Screen_3 extends Activity {
 	private int numberOfQuestion = 0;
 	private Button yesButton;
 	private Button noButton;
-	private Button mainMenuButton;
 	private TextView currentQuestion;
 	private TextView currentCount;
 	private ArrayList<Integer> answers;
@@ -78,7 +77,6 @@ public class Screen_3 extends Activity {
 	}
 	  
 	public void addListenerOnButton(){
-		mainMenuButton = (Button) findViewById(R.id.mainMenu);
 		yesButton = (Button) findViewById(R.id.yes);
 	    noButton = (Button) findViewById(R.id.no);
 	    currentQuestion = (TextView) findViewById(R.id.textQuestion);
@@ -192,36 +190,6 @@ public class Screen_3 extends Activity {
 				}
 				
 	    	});
-	    	
-	    	mainMenuButton.setOnClickListener(new OnClickListener(){
-				
-				@Override
-				public void onClick(View v) {
-					AlertDialog.Builder builder = new AlertDialog.Builder(Screen_3.this);
-					String areYouSureToLeaveTest = res.getString(R.string.areYouSureToLeaveTest);
-					builder.setTitle(areYouSureToLeaveTest);
-					String yes = res.getString(R.string.yes);
-					builder.setPositiveButton(yes, new DialogInterface.OnClickListener() {
-							   @Override
-							   public void onClick(DialogInterface dialog, int which) {
-								   Intent intent = new Intent(Screen_3.this, Screen_0.class);
-							       startActivity(intent);
-							       finish();
-							   }
-					});   
-					String no = res.getString(R.string.no);
-					builder.setNegativeButton(no, new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							
-							dialog.cancel();
-						}
-					});
-					builder.show();
-				}
-				
-	    	});
-	    	
-	      	
 	    	
 	    }
 		
