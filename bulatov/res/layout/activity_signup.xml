@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RadioButton
+        android:id="@+id/NewUserRadioButtonFemale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/NewUserRadioButtonMale"
+        android:layout_alignBottom="@+id/NewUserRadioButtonMale"
+        android:layout_toRightOf="@+id/NewUserRadioButtonMale"
+        android:onClick="onNewUserRadioButtonClick"
+        android:text="@string/female" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/your_name" />
+
+    <Button
+        android:id="@+id/NewUserButtonExit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/NewUserUserName"
+        android:onClick="OnSignUpExitClick"
+        android:text="@string/exit_to_menu" />
+
+    <Button
+        android:id="@+id/SignUpButtonContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/NewUserButtonExit"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal"
+        android:onClick="onButtonContinueClick"
+        android:text="@string/signup_ok" />
+
+    <EditText
+        android:id="@+id/NewUserUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:ems="10"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/NewUserUserName"
+        android:layout_marginLeft="16dp"
+        android:text="@string/your_gender"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <RadioButton
+        android:id="@+id/NewUserRadioButtonMale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:onClick="onNewUserRadioButtonClick"
+        android:text="@string/male" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/NewUserRadioButtonMale"
+        android:layout_below="@+id/NewUserRadioButtonFemale"
+        android:text="@string/your_bday" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_below="@+id/textView3"
+        android:onClick="setBDayDate"
+        android:text="@string/select_bday" />
+
+</RelativeLayout>
