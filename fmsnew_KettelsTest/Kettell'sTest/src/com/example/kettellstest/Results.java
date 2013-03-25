@@ -18,7 +18,7 @@ import android.os.Build;
 
 public class Results extends Activity {
 
-	String login;
+	static String login = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +34,10 @@ public class Results extends Activity {
 		List<String> attempts;
 		try {
 			attempts = db.getAllUserAttempts(login);
+			attempts.remove(0);
 			// building attempts list
 			ListView listView = (ListView) findViewById(R.id.listView1);
-			Toast.makeText(this, Integer.toString(attempts.size()), Toast.LENGTH_LONG).show();
+			//Toast.makeText(this, Integer.toString(attempts.size()), Toast.LENGTH_LONG).show();
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(Results.this, android.R.layout.simple_list_item_1, attempts);
 			listView.setAdapter(adapter);
 		}catch (ParseException e) {
@@ -84,11 +85,6 @@ public class Results extends Activity {
 		intent.putExtra("login", login);
 		Results.this.startActivity(intent);
 		finish();
-    }
-	
-	public void onQuitButtonClick(View view) {
-    	finish();
-    	System.exit(0);
     }
 	
 }

@@ -19,7 +19,7 @@
     <string name="startTest">start test</string>
     <string name="title_activity_results">Results</string>
     <string name="title_activity_introduction">Introduction</string>
-    <string name="testDescription">description</string>
+    <string name="testDescription">This quiz includes two similar parts. Every part is separated on four graphical subtests. In each subtest tasks are ordered by increasing in difficulty. There is only one correct answer in every single task and you have only 15 seconds to pick the answer. You will also have 15 seconds break between two parts of the quiz. Hint: if you are not sure in the correct answer, choose the answer that seems like the most probabilistic. </string>
     <string name="mainMenu">main menu</string>
     <string name="start">start</string>
     <string name="title_activity_part1_subtest1">Part1Subtest1</string>
@@ -47,5 +47,9 @@
     <string name="pickAnswer">pick answer</string>
     <string name="changeAccount">change account</string>
     <string name="title_activity_test">Test</string>
+    <string name="back">back</string>
+    <string name="enter">enter</string>
+    <string name="empty"></string>
+    <string name="chooseBirthDate">set birth date</string>
 
 </resources>

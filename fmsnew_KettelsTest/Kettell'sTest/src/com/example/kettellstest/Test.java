@@ -7,10 +7,14 @@ import java.util.Timer;
 import android.R.drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,21 +27,19 @@ import android.widget.Toast;
 
 public class Test extends Activity {
 
-	String login = "";
-	static long setTime = 15*1000;
+	static String login = "";
+	static public long setTime = 15*1000;
 	static long tickTime = 100;
 	static Bundle final_savedInstanceState;
-	static int part1_score = 0; 
-	static int part2_score = 0;
+	static public int part1_score = 0; 
+	static public int part2_score = 0;
 	private final int buttonsCount = 5;
-	static int current_score = 0;
-	static int current_question = 1;
-	static int task_number = 0;
-	static long millisUntilFinishedToSave = setTime;
+	static public int current_question = 1;
+	static public int task_number = 1;
+	static public long millisUntilFinishedToSave = setTime;
 	static CountDownTimer timer = null;
 	String resource_prefix = "";
 	Test entity = null;
-	static Object waiter = new Object();
 	int[][] correct_answers = {
 			{4, 2, 1, 5, 3, 5, 2, 3, 2, 1, 4, 3},
 			{2, 3, 4, 3, 3, 1, 4, 3, 5, 3, 3, 5, 3, 2},
@@ -49,8 +51,19 @@ public class Test extends Activity {
 			{3, 4, 2, 3, 1, 1, 2, 2}
 	};
 	
+	String [] taskDescription = {
+			"Choose the most proper picture below to the next group of pictures.",
+			"Choose one extra picture.",
+			"Choose the missing part of the next picture from pictures below.",
+			"Find out a relative location of the point at the next picture and choose the picture below, on which it is possible to put a point with the similar relative location.",
+			"Choose the most proper picture below to the next group of pictures.",
+			"Choose one extra picture.",
+			"Choose the missing part of the next picture from pictures below.",
+			"Find out a relative location of the point at the next picture and choose the picture below, on which it is possible to put a point with the similar relative location."
+	};
+	
 	private String getCurrentDescription() {
-		return "Description: task " + resource_prefix + "\n" + login;
+		return taskDescription[task_number - 1];
 	}
 	
 	private void nextAction() {
@@ -69,7 +82,7 @@ public class Test extends Activity {
 				entity.finish();
 	 		} 
 	 		else 
-	 		if (task_number >= 9) {
+	 		if (task_number == 9) {
 	 			toBeUpdated = false;
 	 			Intent intent = new Intent(Test.this, FinalizeTesting.class);
 		 		intent.putExtra("login", login);
@@ -88,16 +101,24 @@ public class Test extends Activity {
 		}
 	}
 	
+	@SuppressLint("NewApi")
 	private void update() {
 		if (timer != null) timer.cancel();
 		timer = null;
-		
-		if (task_number == 0 || task_number == 5) {
+		if (task_number >= 9) {
+			timer = null;
+			task_number = 1;
+			part1_score = 0;
+			part2_score = 0;
+			current_question = 1;
+			millisUntilFinishedToSave = setTime;
+		}
+		if (task_number == 1 || task_number == 5) {
 			Intent intent = Test.this.getIntent();
 			login = intent.getStringExtra("login");
 			part1_score = intent.getIntExtra("part1_score", Integer.MIN_VALUE);
 			part2_score = intent.getIntExtra("part2_score", Integer.MIN_VALUE);
-			task_number = intent.getIntExtra("task_number", 1);
+			//task_number = intent.getIntExtra("task_number", 1);
 		}
 		resource_prefix = "t_" + Integer.toString((int)(task_number-1)/4 + 1) + "_s_" + Integer.toString((task_number - 1)%4 + 1) + "_";
 		
@@ -105,11 +126,17 @@ public class Test extends Activity {
 		taskDescription.setText(getCurrentDescription());
 		
 		TextView questionNumberField = (TextView)findViewById(R.id.textView2);
-		questionNumberField.setText("question (" + Integer.toString(current_question) + "/" + Integer.toString(correct_answers[task_number - 1].length) + ")");
+		questionNumberField.setText("question " + Integer.toString(current_question) + " of " + Integer.toString(correct_answers[task_number - 1].length));
 		
-		
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		int dWidth = size.x;
+		int dHeight = size.y;
 //		init template image
 		ImageView imageView1 = (ImageView)findViewById(R.id.imageView1);
+//		imageView1.getLayoutParams().width = (int) (dWidth*0.98);
+		imageView1.getLayoutParams().height = (int) (dHeight*0.2);
 		String res_image_name = resource_prefix + "q_" + Integer.toString(current_question);
 		int image_id = this.getResources().getIdentifier(res_image_name, "drawable", this.getPackageName());
 		imageView1.setImageResource(image_id);
@@ -118,6 +145,8 @@ public class Test extends Activity {
 			String button_name = "button" + Integer.toString(i);
 			int button_id = this.getResources().getIdentifier(button_name, "id", this.getPackageName());
 			Button button = (Button)findViewById(button_id);
+			button.getLayoutParams().width = (int) (min(dHeight, dWidth)/(buttonsCount+1));
+			button.getLayoutParams().height = (int) (min(dHeight, dWidth)/(buttonsCount+1));
 			String resource_name = resource_prefix + "q_" + Integer.toString(current_question) + "_a_" + Integer.toString(i);
 			final int answer_id = this.getResources().getIdentifier(resource_name, "drawable", this.getPackageName());
 			button.setBackgroundResource(answer_id);
@@ -156,20 +185,26 @@ public class Test extends Activity {
 			@Override
 			public void onTick(long millisUntilFinished) {		
 				millisUntilFinishedToSave = millisUntilFinished;
-				TextView questionNumberField = (TextView)findViewById(R.id.textView2);
-				questionNumberField.setText("question (" + Integer.toString(current_question) + "/" + Integer.toString(correct_answers[task_number - 1].length) + ")" + Integer.toString((int)millisUntilFinished/1000));
+				//TextView questionNumberField = (TextView)findViewById(R.id.textView2);
+				//questionNumberField.setText("question (" + Integer.toString(current_question) + "/" + Integer.toString(correct_answers[task_number - 1].length) + ")" + Integer.toString((int)millisUntilFinished/1000));
 			}
 		};
 		timer.start();
 		
 	}
 	
+	private int min(int x, int y) {
+		// TODO Auto-generated method stub
+		return x < y ? x : y;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test);
 		final_savedInstanceState = savedInstanceState;
 		entity = this;
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		update();
 	}
 	
@@ -185,9 +220,18 @@ public class Test extends Activity {
 		    super.onSaveInstanceState(outState);
 	}
 
-	public void onQuitButtonClick(View view) {
-    	finish();
-    	System.exit(0);
+	public void onMainMenuClick(View view) {
+		Intent intent = new Intent(Test.this, MainMenu.class);
+		intent.putExtra("login", login);
+		Test.this.startActivity(intent);
+		part1_score = 0; 
+		part2_score = 0;
+		current_question = 1;
+		millisUntilFinishedToSave = setTime;
+		if (timer != null) timer.cancel();
+		timer = null;
+		task_number = 1;
+		finish();
     }
 	
 }

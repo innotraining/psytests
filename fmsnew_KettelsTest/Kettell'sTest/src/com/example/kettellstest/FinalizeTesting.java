@@ -1,5 +1,8 @@
 package com.example.kettellstest;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.os.Bundle;
@@ -11,7 +14,7 @@ import android.widget.TextView;
 
 public class FinalizeTesting extends Activity {
 
-	String login = "";
+	static String login = "";
 	static int part1_score = 0;
 	static int part2_score = 0;
 	@Override
@@ -26,9 +29,23 @@ public class FinalizeTesting extends Activity {
 		
 		final TextView results = (TextView)findViewById(R.id.textView1);
 //		TODO calc IQ and add score to the results db
-		results.setText(login + ", your result: \n part I: (" + Integer.toString(part1_score) + "/46) \n partII: (" + Integer.toString(part2_score) + "/46) \n total: (" + Integer.toString(part1_score + part2_score) + "/96)");
+//		results.setText(login + ", your result: \n part I: (" + Integer.toString(part1_score) + "/46) \n partII: (" + Integer.toString(part2_score) + "/46) \n total: (" + Integer.toString(part1_score + part2_score) + "/92)");
 		DatabaseHandler db = new DatabaseHandler(this);
-		db.addNode(login, new Attempt(part1_score + part2_score));
+		Date userBirthDate = null;
+		try {
+			userBirthDate = db.getBirthDate(login);
+			if (userBirthDate == null) userBirthDate = new Date();
+			Date currentDate = new Date();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			long ageInDays = (currentDate.getTime() - userBirthDate.getTime())/(1000 * 60 * 60 * 24);
+			double ageInYears = ((double)ageInDays)/365.24;
+			int iq = IQTables.getIQ(ageInYears, part1_score + part2_score);
+			results.setText(login + ", your result\nbirthdate " + dateFormat.format(userBirthDate).toString() + "\ncurrentdate " + dateFormat.format(currentDate).toString() + "\nage(years * 10):" + Integer.toString((int)(ageInYears*10)) + "\n part I: (" + Integer.toString(part1_score) + "/46) \n partII: (" + Integer.toString(part2_score) + "/46) \n total: (" + Integer.toString(part1_score + part2_score) + "/92)" + "\nIQ: " + iq);
+			db.addNode(login, new Attempt(iq, currentDate));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		db.close();
 	}
 

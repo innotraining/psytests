@@ -17,7 +17,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "UserAccountsManager";
  
@@ -37,12 +37,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     
     // Creating Tables
     public void onCreate(SQLiteDatabase db) {
+    	String CREATE_LOGIN_AGE_TABLE = "CREATE TABLE " + TABLE_LOGIN_BIRTH_DATE + "("
+				+  KEY_LOGIN + " TEXT PRIMARY KEY," + BIRTH_DATE + " TEXT" + ")";
     	String CREATE_USER_ACCOUNTS_TABLE = "CREATE TABLE " + TABLE_USER_ACCOUNTS + "("
                   			+  KEY_LOGIN + " TEXT," + DATE + " TEXT," + SCORE + " INTEGER" + ")";
-    	String CREATE_LOGIN_AGE_TABLE = "CREATE TABLE " + TABLE_LOGIN_BIRTH_DATE + "("
-    						+  KEY_LOGIN + " TEXT PRIMARY KEY," + BIRTH_DATE + " TEXT)";
-        db.execSQL(CREATE_USER_ACCOUNTS_TABLE);	
-        db.execSQL(CREATE_LOGIN_AGE_TABLE);	
+        db.execSQL(CREATE_LOGIN_AGE_TABLE);
+    	db.execSQL(CREATE_USER_ACCOUNTS_TABLE);		
     }
  
     // Upgrading database
@@ -55,16 +55,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     
     // Adding new LOGIN_BIRTH_DATE node
-    public void addLoginBirthDate(String login, Date birth_date) {
+    public void addLoginBirthDate(String login, String birth_date) {
     	SQLiteDatabase db = this.getWritableDatabase();
    	 
         ContentValues values = new ContentValues();
         values.put(KEY_LOGIN, login);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        values.put(DATE, dateFormat.format(birth_date).toString());
+        values.put(BIRTH_DATE, birth_date);
 
         // Inserting Row
-        db.insert(TABLE_LOGIN_BIRTH_DATE, null, values);
+        if (db.insert(TABLE_LOGIN_BIRTH_DATE, null, values) == -1) System.exit(DATABASE_VERSION);
         db.close(); // Closing database connection
     }
     // Getting login birth_date
@@ -131,9 +130,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         
         List<String> attempts = new ArrayList<String>();
         if (cursor != null && cursor.moveToFirst()) {
-            do {
+        	do {
             	// Adding attempts to list
-            	attempts.add(cursor.getString(0) + " score: " + cursor.getString(1));
+            	attempts.add(cursor.getString(0) + " IQ: " + cursor.getString(1));
             } while (cursor.moveToNext());
         }
         

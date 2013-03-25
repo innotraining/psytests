@@ -14,7 +14,7 @@ public class ShortBreakBetweenParts extends Activity {
 	static long setTime = 15*1000;
 	static long tickTime = 1000;
 	static long millisUntilFinishedToSave = setTime;
-	String login = "";
+	static String login = "";
 	static int part1_score = 0;
 	static ShortBreakBetweenParts entity;
 	@Override
@@ -39,12 +39,13 @@ public class ShortBreakBetweenParts extends Activity {
 					intent.putExtra("part2_score", 0);
 					intent.putExtra("task_number", 5);
 					ShortBreakBetweenParts.this.startActivity(intent);
+					millisUntilFinishedToSave = setTime;
 					entity.finish();
 				}
 				@Override
 				public void onTick(long millisUntilFinished) {
 					millisUntilFinishedToSave = millisUntilFinished;
-					short_break.setText(login + ", short break: " + Integer.toString((int)millisUntilFinished/1000) + " seconds left");
+					short_break.setText("short break: " + Integer.toString((int)millisUntilFinished/1000) + " seconds left");
 				}
 			}.start(); 
 		
@@ -65,12 +66,22 @@ public class ShortBreakBetweenParts extends Activity {
 		intent.putExtra("task_number", 5);
 		ShortBreakBetweenParts.this.startActivity(intent);
 		timer.cancel();
+		millisUntilFinishedToSave = setTime;
 		finish();
     }
 
-	public void onQuitButtonClick(View view) {
-    	finish();
-    	System.exit(0);
+	public void onMainMenuClick(View view) {
+		Intent intent = new Intent(ShortBreakBetweenParts.this, MainMenu.class);
+		intent.putExtra("login", login);
+		ShortBreakBetweenParts.this.startActivity(intent);
+		timer.cancel();
+		millisUntilFinishedToSave = setTime;
+		Test.part1_score = 0;
+		Test.part2_score = 0;
+		Test.task_number = 1;
+		Test.current_question = 1;
+		Test.millisUntilFinishedToSave = Test.setTime;
+		finish();
     }
 	
 }

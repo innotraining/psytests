@@ -14,7 +14,7 @@ import android.os.Build;
 
 public class MainMenu extends Activity {
 
-	String login;
+	static String login = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class MainMenu extends Activity {
 		TextView loginField = (TextView)findViewById(R.id.textView1);
 		Intent intent = MainMenu.this.getIntent();
 		login = intent.getStringExtra("login");
-		loginField.setText(login);
+		loginField.setText("Hello, " + login);
 	}
 
 	/**

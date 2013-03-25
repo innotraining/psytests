@@ -16,6 +16,10 @@ public class Attempt {
 		// get current date
 		this.date = new Date();
 	}
+	Attempt(int score, Date date) {
+		this.score = score;
+		this.date = date;
+	}
 	Attempt(int score, String sDate) throws ParseException {
 		this.score = score;
 		this.date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.ENGLISH).parse(sDate);
@@ -27,6 +31,9 @@ public class Attempt {
 	public String getStringDate() {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		return dateFormat.format(date);
+	}
+	public Date getDate() {
+		return date;
 	}
 
 }

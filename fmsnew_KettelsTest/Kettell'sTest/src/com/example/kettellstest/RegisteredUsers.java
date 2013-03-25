@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class RegisteredUsers extends Activity {
 
-	String login = "";
+	static String login = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +68,9 @@ public class RegisteredUsers extends Activity {
 		finish();
     }
 	
-	public void onQuitButtonClick(View view) {
-    	finish();
-    	System.exit(0);
+	public void onBackButtonClick(View view) {
+		Intent intent = new Intent(RegisteredUsers.this, MainActivity.class);
+		RegisteredUsers.this.startActivity(intent);	
+		finish();
     }
-		
 }

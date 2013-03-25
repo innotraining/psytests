@@ -3,15 +3,21 @@ package com.example.kettellstest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.DatePickerDialog.OnDateSetListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
@@ -26,7 +32,38 @@ public class NewUser extends Activity {
 	AlertDialog.Builder ad;
 	AlertDialog.Builder ad_birth;
 	Context context;
-	
+	final Calendar c = Calendar.getInstance();
+	private int mYear = c.get(Calendar.YEAR);
+	private int mMonth = c.get(Calendar.MONTH);
+	private int mDay = c.get(Calendar.DAY_OF_MONTH);
+	private TextView mDateDisplay;
+	private Button mPickDate;
+	private OnDateSetListener mDateSetListener =
+	        new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, 
+                int monthOfYear, int dayOfMonth) {
+            mYear = year;
+            mMonth = monthOfYear;
+            mDay = dayOfMonth;
+            updateDisplay();
+        }
+    };
+    
+    private String strDay(int day) {
+    	if (day < 10) return "0"+Integer.toString(day);
+    	else return Integer.toString(day);
+    }
+    
+    private String strMonth(int month) {
+    	month++;
+    	if (month < 10) return "0"+Integer.toString(month);
+    	else return Integer.toString(month);
+    }
+    
+    private void updateDisplay() {
+    	mDateDisplay.setText(strDay(mDay) + "/" + strMonth(mMonth) + "/" + mYear);
+    }
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,19 +83,25 @@ public class NewUser extends Activity {
 				}
 			}
 		);
-		ad_birth = new AlertDialog.Builder(context);
-		ad_birth.setTitle("error");  
-		ad_birth.setMessage("date format is wrong"); 
-		ad_birth.setCancelable(true);
-		ad_birth.setOnCancelListener(
-			new OnCancelListener() {
-				public void onCancel(DialogInterface dialog) {
-					Toast.makeText(context, "date format should be \"yyyy/MM/dd\"",	Toast.LENGTH_LONG).show();
-				}
-			}
-		);
-	}
+		
+		mDateDisplay = (TextView) findViewById(R.id.textView2);
+	    mPickDate = (Button) findViewById(R.id.button3);
 
+	    mPickDate.setOnClickListener(new View.OnClickListener() {
+	        public void onClick(View v) {
+	        	new DatePickerDialog(NewUser.this, mDateSetListener, mYear, mMonth, mDay).show();
+	        }
+	    });
+	    updateDisplay();
+	}
+	
+	public void onDateSet(DatePicker view, int year, 
+            int monthOfYear, int dayOfMonth) {
+        mYear = year;
+        mMonth = monthOfYear;
+        mDay = dayOfMonth;
+    }
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
@@ -93,22 +136,14 @@ public class NewUser extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void onRegisterClick(View view) {
+	public void onRegisterClick(View view) throws ParseException {
 		//TODO add user form text field
 		EditText loginField = (EditText)findViewById(R.id.inputLogin);
-		EditText dateField = (EditText)findViewById(R.id.editText1);
 		
 		String login = loginField.getText().toString();
-		String date = dateField.getText().toString();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date birth_date;
-		try {
-			birth_date = dateFormat.parse(date);
-		} catch (ParseException e) {
-			ad_birth.show();	
-			return;
-		}
+		String birth_date;
         
+		birth_date = Integer.toString(mYear) + "/" + strMonth(mMonth) + "/" + strDay(mDay);
 		DatabaseHandler db = new DatabaseHandler(this);
 		if (db.userExists(login)) {
 			ad.show();
@@ -125,9 +160,10 @@ public class NewUser extends Activity {
 		db.close();
     }
 	
-	public void onQuitButtonClick(View view) {
-    	finish();
-    	System.exit(0);
+	public void onBackButtonClick(View view) {
+		Intent intent = new Intent(NewUser.this, MainActivity.class);
+		NewUser.this.startActivity(intent);	
+		finish();
     }
 	
 }
