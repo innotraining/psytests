@@ -45,6 +45,7 @@
     <string name="logoff">Разлогиниться</string>
     
     <string name="quiz_dynamic_title">Тест %1$d из %2$d</string>
+    <string name="quiz_last_test_title">Результаты последнего теста</string>
     
     <string name="delete_result_label">Удалить результат</string>
     

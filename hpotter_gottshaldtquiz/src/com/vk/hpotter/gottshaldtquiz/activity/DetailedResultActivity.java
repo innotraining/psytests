@@ -29,6 +29,9 @@ public class DetailedResultActivity extends Activity {
 		double I = getIntent().getExtras().getDouble("EXTRA_I");
 		resultId = getIntent().getExtras().getInt("EXTRA_id");
 		dateString = getIntent().getExtras().getString("EXTRA_dateString"); 
+		if(dateString == null) {
+			dateString = getResources().getString(R.string.quiz_last_test_title); 
+		}
 		
 		setTitle(dateString);
 		
