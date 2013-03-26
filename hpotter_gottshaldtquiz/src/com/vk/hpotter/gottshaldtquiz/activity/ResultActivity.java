@@ -3,6 +3,7 @@ package com.vk.hpotter.gottshaldtquiz.activity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.SortedMap;
 import com.vk.hpotter.gottshaldtquiz.R;
 import com.vk.hpotter.gottshaldtquiz.storage.QuizUsers;
@@ -10,10 +11,8 @@ import com.vk.hpotter.gottshaldtquiz.util.SimpleListDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
@@ -29,7 +28,7 @@ public class ResultActivity extends Activity {
 		setContentView(R.layout.activity_result);
 
 		users = new QuizUsers(ResultActivity.this);
-		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH); //TODO: probably Locale.ENGLISH isn't good
 
 		I = getIntent().getExtras().getDouble("EXTRA_I");
 		users.saveUserResult(I);

@@ -13,7 +13,6 @@ import com.vk.hpotter.gottshaldtquiz.util.SimpleListDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
@@ -33,7 +32,7 @@ public class UserActionsActivity extends Activity {
 		setContentView(R.layout.activity_user_actions);
 
 		users = new QuizUsers(UserActionsActivity.this);
-		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+		formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH); //TODO: probably Locale.ENGLISH isn't good
 
 		setTitle(users.getUsers().get(
 				Integer.valueOf((int) users.getCurrentUserId())));

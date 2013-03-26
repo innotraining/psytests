@@ -7,10 +7,8 @@ import com.vk.hpotter.gottshaldtquiz.util.SimpleConfirmDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 public class DetailedResultActivity extends Activity {
@@ -30,7 +28,7 @@ public class DetailedResultActivity extends Activity {
 		resultId = getIntent().getExtras().getInt("EXTRA_id");
 		dateString = getIntent().getExtras().getString("EXTRA_dateString"); 
 		if(dateString == null) {
-			dateString = getResources().getString(R.string.quiz_last_test_title); 
+			dateString = getResources().getString(R.string.quiz_last_test_title);
 		}
 		
 		setTitle(dateString);
@@ -61,8 +59,7 @@ public class DetailedResultActivity extends Activity {
 			}, new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
-					
+					// Do nothing
 				}
 			});
 			userDeleteDialog.show();
