@@ -2,6 +2,9 @@
 <resources>
 
     <string name="app_name">Тест Фигуры Готтшальдта</string>
+    <string name="greeting_text">
+        Добро пожаловать!\n\nВам будут предъявлены сложные фигуры (изображения), в каждой из которых имеется один из простых эталонов. Вы должны найти в каждом случае, какой из этих элементов содержится в рисунке и указать его.
+        </string>
     <string name="action_settings">Settings</string>
     <string name="continueButtonLabel">Продолжить</string>
     <string name="exitButtonLabel">Выход</string>
@@ -17,24 +20,37 @@
     <string name="title_activity_new_user">NewUserActivity</string>
     <string name="user_login_prompt">Введите логин:</string>
     <string name="createUserButtonLabel">Начать тест</string>
-    <string name="is_new_user">Новый пользователь?</string>
-    <string name="is_registered_user">Уже зарегистрирован?</string>
+    
+    <string name="register_button_label">Регистрация</string>
+    <string name="login_button_label">Вход</string>
+    
     <string name="user_exists_dialog">Пользователь с таким именем уже есть. Начать тест от этого пользователя?</string>
     <string name="title_activity_user_select">UserSelectActivity</string>
-    <string name="negative_test_result_description">Все хорошо</string>
-    <string name="positive_test_result_description">Все очень плохо</string>
+    <string name="not_dependent_result_description"><b>Поленезависимость</b>\nНезависимое от поля поведение проявляется в преимущественной ориентации человека на собственную цель и в игнорировании давления наличной ситуации. Для таких людей характерна ориентация на внутренние ориентиры упорядочивания внешних впечатлений в условиях, когда ему навязываются неадекватные формы отражения внешнего мира. В сфере восприятия П.—п. проявляются в эффективности выделения полезного сигнала (фигуры) из перцептивного фона (выделение сигнала на фоне помех). Она выше для независимых от поля людей. Для них характерно восприятие мира как более структурированного: окружение воспринимается ими скорее как комбинация отдельных элементов, чем единое целое, то есть их восприятие является более аналитическим. В более широком контексте, включающем наряду с восприятием мышление и социальное функционирование личности, этот стиль характеризует тенденцию субъекта при решении задач полагаться преимущественно на себя и свои знания либо на доминирующие в данный момент условия среды. Имеются многочисленные данные, свидетельствующие о том, что поленезависимость является профессионально важным качеством для многих видов управленческой и операторской деятельности.</string>
+    <string name="dependent_result_description"><b>Полезависимость</b>\nЗависимым от поля является такой стиль поведения, при котором субъект импульсивно откликается на стимулы, обладающие для него побудительной силой («валентностью»), вне влияния заранее поставленной цели. Для полезависимых характерно целостное, синтетическое восприятие мира, при котором оценка некоторых частных параметров отдельных элементов среды в значительной степени подвержена влиянию окружающего перцептивного поля. Полезависимые люди активны в межличностных контактах. В ситуации стресса склонны обращаться за помощью к другим людям. Полезависимые индивиды предпочитают сферы деятельности, которые требуют частых социальных контактов (администратор, учитель, продавец и.т.п.)</string>
     <string name="correct_answers_count">Правильных ответов:</string>
     <string name="return_to_main_button_label">Назад</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="select_previous_result_button_label">Посмотреть предыдущие результаты?</string>
     <string name="select_last_result_button_label">Посмотреть результаты последнего теста?</string>
     <string name="title_activity_user_actions">UserActionsActivity</string>
-    <string name="start_quiz_button_label">Начать тест</string>
-    <string name="show_results_button_label">Показать историю результатов</string>
+    <string name="start_quiz_button_label">Новый тест</string>
+    <string name="show_results_button_label">Результаты</string>
     <string name="delete_user_button_label">Удалить пользователя</string>
     <string name="user_delete_message">Точно удалить пользователя?</string>
     <string name="delete_user_result_button_label">Удалить результаты</string>
     <string name="user_result_delete_message">Точно удалить результаты?</string>
+    
+    
+    <string name="logoff">Разлогиниться</string>
+    
+    <string name="quiz_dynamic_title">Тест %1$d из %2$d</string>
+    
+    <string name="delete_result_label">Удалить результат</string>
+    
+    <string name="no_quiz_results_toast">Нет результатов</string>
+    
+    <string name="quiz_usage_help_toast">Коснитесь одного из изображений, чтобы выбрать ответ; коснитесь повторно, чтобы подтвердить</string>
     
 
 </resources>
