@@ -10,28 +10,30 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/answersCount"
+        android:id="@+id/greeting_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" />
+        android:text="@string/greeting_text" />
 
     <Button
-        android:id="@+id/newUserButton"
+        android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/answersCount"
+        android:layout_below="@+id/greeting_text"
         android:layout_centerHorizontal="true"
-        android:text="@string/is_new_user" 
-        android:onClick="newUserButtonClickHandler"/>
+        android:layout_marginTop="50dp"
+        android:onClick="registerButtonClickHandler"
+        android:text="@string/register_button_label" />
 
     <Button
-        android:id="@+id/registeredUserButton"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/registerButton"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/answersCount"
-        android:text="@string/is_registered_user" 
-        android:onClick="registeredUserButtonClickHandler"/>
+        android:onClick="loginButtonClickHandler"
+        android:text="@string/login_button_label" />
 
 </RelativeLayout>

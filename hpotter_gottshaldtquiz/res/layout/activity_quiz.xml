@@ -1,115 +1,102 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true" >
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".QuizActivity" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".QuizActivity" >
+        android:layout_centerHorizontal="true"
+        android:gravity="top|center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="5" >
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
+        <!-- TODO: fix android:contentDescription to satisfy accessibility requirements  -->
+        <ImageButton
+            android:id="@+id/figuresImage1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:gravity="top|center_horizontal"
-            android:orientation="vertical" >
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null" 
+            android:onClick="buttonClickHandler"
+            android:scaleType="fitXY"
+            android:src="@drawable/figure1" />
 
-            <ImageView
-                android:id="@+id/figuresImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="true"
-                android:src="@drawable/figures" />
-
-            <ImageView
-                android:id="@+id/testImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:adjustViewBounds="true"
-                android:src="@drawable/test1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" >
-
-                <EditText
-                    android:id="@+id/field1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ems="3"
-                    android:maxEms="1"
-                    android:maxLength="1"
-                    android:minEms="1"
-                    android:paddingLeft="@dimen/testTextFieldsHorisontalPadding"
-                    android:paddingRight="@dimen/testTextFieldsHorisontalPadding" />
-
-                <EditText
-                    android:id="@+id/field2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ems="3"
-                    android:maxEms="1"
-                    android:maxLength="1"
-                    android:minEms="1"
-                    android:paddingLeft="@dimen/testTextFieldsHorisontalPadding"
-                    android:paddingRight="@dimen/testTextFieldsHorisontalPadding" />
-
-                <EditText
-                    android:id="@+id/field3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:ems="3"
-                    android:maxEms="1"
-                    android:maxLength="1"
-                    android:minEms="1"
-                    android:paddingLeft="@dimen/testTextFieldsHorisontalPadding"
-                    android:paddingRight="@dimen/testTextFieldsHorisontalPadding" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
+        <!-- TODO: fix android:contentDescription to satisfy accessibility requirements  -->
+        <ImageButton
+            android:id="@+id/figuresImage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearLayout1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:onClick="buttonClickHandler"
+            android:scaleType="fitXY"
+            android:src="@drawable/figure2" />
 
-            <Button
-                android:id="@+id/continueButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="buttonClickHandler"
-                android:text="@string/continueButtonLabel" />
+        <!-- TODO: fix android:contentDescription to satisfy accessibility requirements  -->
+        <ImageButton
+            android:id="@+id/figuresImage3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:onClick="buttonClickHandler"
+            android:scaleType="fitXY"
+            android:src="@drawable/figure3" />
 
-            <Button
-                android:id="@+id/exitButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:onClick="buttonClickHandler"
-                android:text="@string/exitButtonLabel" />
-        </LinearLayout>
-    </RelativeLayout>
+        <!-- TODO: fix android:contentDescription to satisfy accessibility requirements  -->
+        <ImageButton
+            android:id="@+id/figuresImage4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:onClick="buttonClickHandler"
+            android:scaleType="fitXY"
+            android:src="@drawable/figure4" />
 
-</ScrollView>
+        <!-- TODO: fix android:contentDescription to satisfy accessibility requirements  -->
+        <ImageButton
+            android:id="@+id/figuresImage5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:onClick="buttonClickHandler"
+            android:scaleType="fitXY"
+            android:src="@drawable/figure5" />
+    </LinearLayout>
+
+    <!-- TODO: fix android:contentDescription to satisfy accessibility requirements  -->
+    <ImageView
+        android:id="@+id/quizImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null" />
+
+</RelativeLayout>

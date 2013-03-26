@@ -8,30 +8,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".UserActionsActivity" >
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="TextView"
+        android:visibility="invisible" />
+
     <Button
         android:id="@+id/showResultsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/show_results_button_label"
-        android:onClick="showResultsButtonClickHandler" />
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:onClick="showResultsButtonClickHandler"
+        android:text="@string/show_results_button_label" />
 
     <Button
         android:id="@+id/startQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/showResultsButton"
+        android:layout_above="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:text="@string/start_quiz_button_label"
-        android:onClick="startQuizButtonClickHandler" />
-
-    <Button
-        android:id="@+id/deleteUserButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/showResultsButton"
-        android:layout_centerHorizontal="true"
-        android:text="@string/delete_user_button_label"
-        android:onClick="deleteUserButtonClickHandler" />
+        android:onClick="startQuizButtonClickHandler"
+        android:text="@string/start_quiz_button_label" />
 
 </RelativeLayout>
