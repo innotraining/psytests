@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="Start_button_newuser">Новый пользователь?</string>
+    <string name="Start_button_registered">Уже зарегистрированы?</string>
+    <string name="Register_button_confirm">Зарегистрироваться</string>
+    <string name="Select_user_button_return">Вернуться к регистрации?</string>
+    <string name="Select_user_button_confirm">Подтвердить</string>
+    <string name="Main_menu_go_quiz">Начать тестирование</string>
+    <string name="Main_menu_go_stat">Просмотреть статистику</string>
+    <string name="app_name">Beck\'s Depression Quiz</string>
+    <string name="action_settings">Settings</string>
+    <string name="begin_button">Begin Test</string>
+    <string name="end_button">End Test</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_leave">LeaveActivity</string>
+    <string name="title_activity_select_user">SelectUserActivity</string>
+    <string name="title_activity_user_management">UserManagementActivity</string>
+    <string name="title_activity_delete_user">DeleteUserActivity</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_statistics">Statistics</string>
+    <string name="Leave_farewell_text">До свидания!</string>
+    <string name="Universal_return">Назад</string>
+    <string name="User_management_button_go_main">Перейти к тестированию\n и статистике</string>
+    <string name="User_management_button_go_delete">Удалить пользователя</string>
+    <string name="Delete_user_button_yes">Да</string>
+    <string name="Delete_user_button_no">Нет</string>
+    <string name="Delete_user_textview_1">Вы действительно хотите удалить пользователя?</string>
+    <string name="title_activity_view_detailed_result">ViewDetailedResult</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="Detailed_Result_textview_1">Ваши сохраненные результаты</string>
+    <string name="Statistics_button_return">Вернуться в главное меню</string>
+    <string name="Detailed_button_back">Вернуться к списку результатов</string><string name="Detailed_button_menu">Вернуться в главное меню</string><string name="Text_not_depressed_title">Отсутствие депрессивных симптомов</string>
+    <string name="Text_not_depressed_description">У вас не наблюдается проявлений депрессии.</string>
+    <string name="Text_lightly_depressed_title">Легкая депрессия.</string>
+    <string name="Text_lightly_depressed_description">Данное состояние наблюдается довольно часто, в основном, субдепрессия предшествует депрессии. Депрессивное состояние маскируется соматическими проявлениями: человека беспокоят головные боли, невралгии, проблемы с желудочно-кишечным трактом.\nСубдепресивное состояние значительно снижает работоспособность. Одна из проблем такого состояния – это плохой сон по ночам и чрезмерная сонливость в дневное время, также могут страдать когнитивные функции – внимание и память.\nЕсли у вас наблюдаются данные симптомы – обратитесь за консультацией к специалисту.</string>
+    
+    
+    <string name="Text_moderately_depressed_title">Умеренная депрессия.</string>
+    <string name="Text_moderately_depressed_description">Признаками депрессивного состояния являются: сниженный фон настроения, с легким переходом к слезам. Пессимистичный настрой в отношении будущего, негативная оценка собственных успехов в настоящем и прошлом.\nВозможны снижения концентрации внимания, нарушения памяти.\nХарактерно снижение работоспособности, нарушения сна: сонливость в течение дня и бессонница ночью. Могут проявляться нарушения пищевого поведения: переедание или отсутствие аппетита.\nЕсли у вас есть такие симптомы, обратитесь за консультацией к психологу или психотерапевту.</string>
+    <string name="Text_heavily_depressed_title">Выраженная депрессия.</string>
+    <string name="Text_heavily_depressed_description">Признаками депрессивного состояния являются: сниженный фон настроения, с легким переходом к слезам. Пессимистичный настрой в отношении будущего, негативная оценка собственных успехов в настоящем и прошлом.\nВозможны снижения концентрации внимания, нарушения памяти.\nХарактерно снижение работоспособности, нарушения сна: сонливость в течение дня и бессонница ночью. Могут проявляться нарушения пищевого поведения: переедание или отсутствие аппетита.\nХарактерны моторная заторможенность, потеря интересов к окружающему миру, прежним целям и увлечениям.\nЕсли у вас есть подобные симптомы – обратитесь за помощью к специалисту.</string>
+    <string name="Text_extremely_depressed_title">Тяжелая депрессия.</string>
+    <string name="Text_extremely_depressed_description">У вас выявлено тяжелое депрессивное состояние. Обратитесь за помощью к специалисту.</string>
+    <string name="Yes_Button">Да</string>
+    <string name="No_Button">Нет</string>
+    <string name="Confirm_Deleting_User">Вы действительно хотите удалить пользователя?</string>
+    <string name="Button_Cancel_Quiz">Выйти из теста</string>
+    <string name="Button_Change_User">Сменить пользователя</string>
+
+</resources>

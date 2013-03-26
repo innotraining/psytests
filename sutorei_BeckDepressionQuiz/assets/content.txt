@@ -1,0 +1,106 @@
+﻿{"numberOfStats":1,"numberOfQuestions":21}
+{"question":"1.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не чувствую себя расстроенным, печальным.","statID":0,"statValue":0}
+{"answer":"Я расстроен.","statID":0,"statValue":1}
+{"answer":"Я все время расстроен и не могу от этого отключиться.","statID":0,"statValue":2}
+{"answer":"Я настолько расстроен и несчастлив, что не могу это выдержать.","statID":0,"statValue":3}
+{"question":"2.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не тревожусь о своем будущем.","statID":0,"statValue":0}
+{"answer":"Я чувствую, что озадачен будушим.","statID":0,"statValue":1}
+{"answer":"Я чувствую, что меня ничего не ждет в будущем.","statID":0,"statValue":2}
+{"answer":"Мое будущее безнадежно, и ничто не может измениться к лучшему.","statID":0,"statValue":3}
+{"question":"3.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не чувствую себя неудачником.","statID":0,"statValue":0}
+{"answer":"Я чувствую, что терпел больше неудач, чем другие люди.","statID":0,"statValue":1}
+{"answer":"Когда я оглядываюсь на свою жизнь, я вижу в ней много неудач.","statID":0,"statValue":2}
+{"answer":"Я чувствую, что как личность я - полный неудачник.","statID":0,"statValue":3}
+{"question":"4.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я получаю столько же удовлетворения от жизни, как раньше.","statID":0,"statValue":0}
+{"answer":"Я не получаю столько же удовлетворения от жизни, как раньше.","statID":0,"statValue":1}
+{"answer":"Я больше не получаю удовлетворения ни от чего.","statID":0,"statValue":2}
+{"answer":"Я полностью не удовлетворен жизнью. и мне все надоело.","statID":0,"statValue":3}
+{"question":"5.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не чувствую себя в чем-нибудь виноватым.","statID":0,"statValue":0}
+{"answer":"Достаточно часто я чувствую себя виноватым.","statID":0,"statValue":1}
+{"answer":"Большую часть времени я чувствую себя виноватым.","statID":0,"statValue":2}
+{"answer":"Я постоянно испытываю чувство вины.","statID":0,"statValue":3}
+{"question":"6.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не чувствую, что могу быть наказанным за что-либо.","statID":0,"statValue":0}
+{"answer":"Я чувствую, что могу быть наказан.","statID":0,"statValue":1}
+{"answer":"Я ожидаю, что могу быть наказан.","statID":0,"statValue":2}
+{"answer":"Я чувствую себя уже наказанным.","statID":0,"statValue":3}
+{"question":"7.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не разочаровался в себе.","statID":0,"statValue":0}
+{"answer":"Я разочаровался в себе.","statID":0,"statValue":1}
+{"answer":"Я себе противен.","statID":0,"statValue":2}
+{"answer":"Я себя ненавижу.","statID":0,"statValue":3}
+{"question":"8.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я знаю, что я не хуже других.","statID":0,"statValue":0}
+{"answer":"Я критикую себя за ошибки и слабости.","statID":0,"statValue":1}
+{"answer":"Я все время обвиняю себя за свои поступки.","statID":0,"statValue":2}
+{"answer":"Я виню себя во всем плохом, что происходит.","statID":0,"statValue":3}
+{"question":"9.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я никогда не думал покончить с собой.","statID":0,"statValue":0}
+{"answer":"Ко мне приходят мысли покончить с собой, но я не буду их осуществлять.","statID":0,"statValue":1}
+{"answer":"Я хотел бы покончить с собой.","statID":0,"statValue":2}
+{"answer":"Я бы убил себя, если бы представился случай.","statID":0,"statValue":3}
+{"question":"10.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я плачу не больше, чем обычно.","statID":0,"statValue":0}
+{"answer":"Сейчас я плачу чаще, чем раньше.","statID":0,"statValue":1}
+{"answer":"Теперь я все время плачу.","statID":0,"statValue":2}
+{"answer":"Раньше я мог плакать, а сейчас не могу, даже если мне хочется.","statID":0,"statValue":3}
+{"question":"11.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Сейчас я раздражителен не более, чем обычно.","statID":0,"statValue":0}
+{"answer":"Я более легко раздражаюсь, чем раньше.","statID":0,"statValue":1}
+{"answer":"Теперь я постоянно чувствую, что раздражен.","statID":0,"statValue":2}
+{"answer":"Я стал равнодушен к вещам, которые меня раньше раздражали.","statID":0,"statValue":3}
+{"question":"12.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не утратил интереса к другим людям.","statID":0,"statValue":0}
+{"answer":"Я меньше интересуюсь другими людьми, чем раньше.","statID":0,"statValue":1}
+{"answer":"Я почти потерял интерес к другим людям.","statID":0,"statValue":2}
+{"answer":"Я полностью утратил интерес к другим людям.","statID":0,"statValue":3}
+{"question":"13.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я откладываю принятие решения иногда, как и раньше.","statID":0,"statValue":0}
+{"answer":"Я чаще, чем раньше, откладываю принятие решения.","statID":0,"statValue":1}
+{"answer":"Мне труднее принимать решения, чем раньше.","statID":0,"statValue":2}
+{"answer":"Я больше не могу принимать решения.","statID":0,"statValue":3}
+{"question":"14.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я не чувствую, что выгляжу хуже, чем обычно.","statID":0,"statValue":0}
+{"answer":"Меня тревожит, что я выгляжу старым и непривлекательным.","statID":0,"statValue":1}
+{"answer":"Я знаю, что в моей внешности произошли существенные изменения, делающие меня непривлекательным.","statID":0,"statValue":2}
+{"answer":"Я знаю, что выгляжу безобразно.","statID":0,"statValue":3}
+{"question":"15.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я могу работать так же хорошо, как и раньше.","statID":0,"statValue":0}
+{"answer":"Мне необходимо сделать дополнительное усилие, чтобы начать делать что-нибудь.","statID":0,"statValue":1}
+{"answer":"Я с трудом заставляю себя делать что-либо.","statID":0,"statValue":2}
+{"answer":"Я совсем не могу выполнять никакую работу.","statID":0,"statValue":3}
+{"question":"16.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я сплю так же хорошо, как и раньше.","statID":0,"statValue":0}
+{"answer":"Сейчас я сплю хуже, чем раньше.","statID":0,"statValue":1}
+{"answer":"Я просыпаюсь на 1-2 часа раньше, и мне трудно заснуть опять.","statID":0,"statValue":2}
+{"answer":"Я просыпаюсь на несколько часов раньше обычного и больше не могу заснуть.","statID":0,"statValue":3}
+{"question":"17.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я устаю не больше, чем обычно.","statID":0,"statValue":0}
+{"answer":"Теперь я устаю быстрее, чем раньше.","statID":0,"statValue":1}
+{"answer":"Я устаю почти от всего, что я делаю.","statID":0,"statValue":2}
+{"answer":"Я не могу ничего делать из-за усталости.","statID":0,"statValue":3}
+{"question":"18.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Мой аппетит не хуже, чем обычно.","statID":0,"statValue":0}
+{"answer":"Мой аппетит стал хуже, чем раньше.","statID":0,"statValue":1}
+{"answer":"Мой аппетит теперь значительно хуже.","statID":0,"statValue":2}
+{"answer":"У меня вообще нет аппетита.","statID":0,"statValue":3}
+{"question":"19.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"В последнее время я не похудел или потеря веса была незначительной.","statID":0,"statValue":0}
+{"answer":"За последнее время я потерял более 2 кг.","statID":0,"statValue":1}
+{"answer":"Я потерял более 5 кг.","statID":0,"statValue":2}
+{"answer":"Я потерял более 7 кr.","statID":0,"statValue":3}
+{"question":"20.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"Я беспокоюсь о своем здоровье не больше, чем обычно.","statID":0,"statValue":0}
+{"answer":"Меня тревожат проблемы моего физического здоровья, такие, как боли, расстройство желудка, запоры и т.д.","statID":0,"statValue":1}
+{"answer":"Я очень обеспокоен своим физическим состоянием, и мне трудно думать о чем-либо другом.","statID":0,"statValue":2}
+{"answer":"Я настолько обеспокоен своим физическим состоянием, что больше ни о чем не могу думать.","statID":0,"statValue":3}
+{"question":"21.","type":"EXCLUSIVE_CHOICE","numberOfAnswers":4}
+{"answer":"В последнее время я не замечал изменения своего интереса к сексу.","statID":0,"statValue":0}
+{"answer":"Меня меньше занимают проблемы секса, чем раньше.","statID":0,"statValue":1}
+{"answer":"Сейчас я значительно меньше интересуюсь сексуальными проблемами, чем раньше.","statID":0,"statValue":2}
+{"answer":"Я полностью утратил сексуальный интерес.","statID":0,"statValue":3}
