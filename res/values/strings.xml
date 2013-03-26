@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Test</string>
+    <string name="app_name">Корректурная проба</string>
     <string name="action_settings">Settings</string>
-    <string name="test">Опросник Шмишека</string>
+    <string name="test">Корректурная проба</string>
     <string name="todo">TODO</string>
-	<string-array name="names">
-		<item>Иван Петров</item>
-		<item>Марья Иванова</item>
-		<item>Петр Смирнов</item>
-		<item>Антон Антонов</item>
-		<item>Даша Березина</item>
-		<item>Борис Ельцин</item>
-		<item>Костя Костин</item>
-		<item>Игорь Игорев</item>
-		<item>Анна Аникина</item>
-		<item>Денис Денисов</item>
-		<item>Андрей Андреев</item>
-		<item>Ольга Назарова</item>
-		<item>Сергей Сергеев</item>
-	</string-array>
 </resources>

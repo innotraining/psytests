@@ -24,11 +24,8 @@ public class ActivityDelete extends Activity implements OnClickListener {
 	String date;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Log.d(LOG_TAG, "what?");
 		super.onCreate(savedInstanceState);
-		Log.d(LOG_TAG, "what??");
 		setContentView(R.layout.delete);
-		Log.d(LOG_TAG, "what???");
 		sureDelete = (TextView)findViewById(R.id.sureDelete);
         Intent intent = getIntent();
         userID = intent.getIntExtra("userID", -1);
@@ -39,7 +36,6 @@ public class ActivityDelete extends Activity implements OnClickListener {
    	 	String[] selectionArgs = new String[] { ""+userID };
    	 	c = db.query("listOfUsers", null, selection, selectionArgs, null, null, null);
    	 	if (c.moveToFirst()) Log.d(LOG_TAG, "okay");
-   	 	else Log.d(LOG_TAG, "not okay");
         int nameColIndex = c.getColumnIndex("name");
         int dateColIndex = c.getColumnIndex("date");
         sureDelete.setText("Вы действительно хотите удалить учётную запись "+
@@ -63,12 +59,12 @@ public class ActivityDelete extends Activity implements OnClickListener {
 			 dbHelper = new DBHelper(this);
 		     SQLiteDatabase db = dbHelper.getWritableDatabase();
 		     String condition[] = new String[] { ""+userID }; 
-			 int delCount = db.delete("listOfUsers", "id = ?",  condition);
-			 Log.d(LOG_TAG, "deleted rows count = " + delCount);
+			 db.delete("listOfUsers", "id = ?",  condition);
 			 String conditions[] = new String[] { name, date };
-			 delCount = db.delete("ResultsOfUsers", "name = ? AND birthDate = ?", conditions);
-			 Log.d(LOG_TAG, "deleted rows2 count = " + delCount);
-			 Cursor c = db.query("listOfUsers", null, null, null, null, null, null);
+			 db.delete("ResultsOfUsers", "name = ? " +
+			 		"AND birthDate = ?", conditions);
+			 Cursor c = db.query("listOfUsers", null, null, null, 
+					 null, null, null);
 			 Intent intent;
 			 
 			 if (c.getCount() > 0) {
@@ -92,28 +88,11 @@ public class ActivityDelete extends Activity implements OnClickListener {
 
 	class DBHelper extends SQLiteOpenHelper {
 		public DBHelper(Context context) {
-		      // конструктор суперкласса
 		      super(context, "myDB", null, 1);
 		    }
-		public void onCreate(SQLiteDatabase db) {/*
-		      Log.d(LOG_TAG, "--- onCreate database ---");
-		      // создаем таблицу с полями
-		      db.execSQL("create table listOfUsers ("
-			          + "id integer primary key autoincrement," 
-			          + "name text,"
-			          + "date text" + ");");
-			      db.execSQL("create table ResultsOfUsers ("
-				          + "id integer primary key autoincrement," 
-				          + "name text,"
-				          + "birthDate text,"
-				          + "testDate text,"
-				          + "right integer," + "wrong integer" + ");");*/
-		}
-
+		public void onCreate(SQLiteDatabase db) {}
 		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-		}
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
+		{}
 	}
-
 }

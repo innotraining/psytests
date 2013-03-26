@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical" >
 
     <Button
         android:id="@+id/goToTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Перейти к тестированию и просмотру результатов?" />
+        android:text="Перейти к тестированию\nи просмотру результатов" />
 
     <Button
         android:id="@+id/deleteUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Удалить пользователя «Name» и все его результаты тестирования?" />
+        android:text="Удалить пользователя «Name» и все его результаты тестирования" />
     
 </LinearLayout>

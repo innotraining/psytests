@@ -1,7 +1,6 @@
 package com.example.szondi;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import com.example.szondi.ActivityLog.DBHelper;
 
@@ -24,6 +23,8 @@ public class ActivityResults extends Activity implements OnItemClickListener {
 	ListView listOfTests;
 	DBHelper dbHelper;
 	int userID;
+	String name;
+	String date;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,38 +32,25 @@ public class ActivityResults extends Activity implements OnItemClickListener {
 		
 		Intent intent = getIntent();
 		userID = intent.getIntExtra("userID", -1);
-		Log.d(LOG_TAG, "vooooo-> "+userID);
-		
+		name = intent.getStringExtra("name");
+		date = intent.getStringExtra("date");
 		ArrayList<String> userResultsToShow = new ArrayList<String>();
 		dbHelper = new DBHelper(this);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		Cursor c;
-   	 	String selection = "id = ?";
-   	 	String[] selectionArgs = new String[] { ""+userID };
-        c = db.query("listOfUsers", null, selection, selectionArgs, null, null, null);
-        if (c.moveToFirst()) Log.d(LOG_TAG, "okay");
-        else Log.d(LOG_TAG, "not okay");
-        int nameColIndex = c.getColumnIndex("name");
-        int dateColIndex = c.getColumnIndex("date");
-        
+		Cursor c;   
         String selection2 = "name = ? AND birthDate = ?";
-        String[] selectionArgs2 = new String[] { c.getString(nameColIndex), c.getString(dateColIndex) };
-        c = db.query("ResultsOfUsers", null, selection2, selectionArgs2, null, null, null);
+        String[] selectionArgs2 = new String[] { name, date };
+        c = db.query("ResultsOfUsers", null, selection2, 
+        		selectionArgs2, null, null, null);
         if (c.moveToFirst()) {
-        	
 	        int dateColIndex2 = c.getColumnIndex("testDate");
-
 	        do {
-	       /*   Log.d(LOG_TAG,
-	              "ID = " + c.getInt(idColIndex) + 
-	              ", name = " + c.getString(nameColIndex) + 
-	              ", date = " + c.getString(dateColIndex));*/
 	          String date = c.getString(dateColIndex2);
 	          userResultsToShow.add(0,  "Тест от " + date);
 	        } while (c.moveToNext());
 	      } else {}
 	      c.close();
-	      
+	      dbHelper.close();
 	      listOfTests = (ListView) findViewById(R.id.listOfTests);
 	      ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
 			android.R.layout.simple_list_item_1, userResultsToShow);
@@ -71,35 +59,57 @@ public class ActivityResults extends Activity implements OnItemClickListener {
 	}
 	
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, 
+			long arg3) {
 		Intent intentTest = new Intent(this, ActivityFinalResult.class);
-	//	intentTest.putExtra("right", n);
+		dbHelper = new DBHelper(this);
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		Cursor c;
+		String selection2 = "name = ? AND birthDate = ?";
+        String[] selectionArgs2 = new String[] { name, date };
+        c = db.query("ResultsOfUsers", null, selection2, 
+        		selectionArgs2, null, null, null);
+        int counter = c.getCount()-1;
+		if (c.moveToFirst()) {
+	        int idr1 = c.getColumnIndex("right1");
+	        int idr2 = c.getColumnIndex("right2");
+	        int idr3 = c.getColumnIndex("right3");
+	        int idr4 = c.getColumnIndex("right4");
+	        int idr5 = c.getColumnIndex("right5");
+	        int idw1 = c.getColumnIndex("wrong1");
+	        int idw2 = c.getColumnIndex("wrong2");
+	        int idw3 = c.getColumnIndex("wrong3");
+	        int idw4 = c.getColumnIndex("wrong4");
+	        int idw5 = c.getColumnIndex("wrong5");
+	        do {
+	        	if ((int)arg3 == counter) {
+	        		intentTest.putExtra("right1", c.getInt(idr1));
+	        		intentTest.putExtra("right2", c.getInt(idr2));
+	        		intentTest.putExtra("right3", c.getInt(idr3));
+	        		intentTest.putExtra("right4", c.getInt(idr4));
+	        		intentTest.putExtra("right5", c.getInt(idr5));
+	        		intentTest.putExtra("wrong1", c.getInt(idw1));
+	        		intentTest.putExtra("wrong2", c.getInt(idw2));
+	        		intentTest.putExtra("wrong3", c.getInt(idw3));
+	        		intentTest.putExtra("wrong4", c.getInt(idw4));
+	        		intentTest.putExtra("wrong5", c.getInt(idw5));
+	        		break;
+	        	}
+	        	counter--;
+	        } while (c.moveToNext());
+	   	} 
+	    c.close();
+	    dbHelper.close();
 	    startActivity(intentTest);
 	}
 	
 	class DBHelper extends SQLiteOpenHelper {
 		public DBHelper(Context context) {
-		      // конструктор суперкласса
 		      super(context, "myDB", null, 1);
 		    }
-		public void onCreate(SQLiteDatabase db) {
-		  //    Log.d(LOG_TAG, "--- onCreate database ---");
-		      // создаем таблицу с полями
-				db.execSQL("create table listOfUsers ("
-			          + "id integer primary key autoincrement," 
-			          + "name text,"
-			          + "date text" + ");");
-			      db.execSQL("create table ResultsOfUsers ("
-				          + "id integer primary key autoincrement," 
-				          + "name text,"
-				          + "birthDate text,"
-				          + "testDate text,"
-				          + "right integer," + "wrong integer" + ");");
-		}
-
+		public void onCreate(SQLiteDatabase db) {}
 		@Override
-		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-		}
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
+		{}
 	}
 }

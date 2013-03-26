@@ -25,14 +25,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class ActivityTest extends Activity implements OnClickListener {
+public class ActivityTestForOld extends Activity implements OnClickListener {
 	private static final int MILLIS_PER_SECOND = 1000;
 	private static final int SECONDS_TO_COUNTDOWN = 30;
 	private TextView     countdownDisplay;
 	private CountDownTimer timer;
 	DBHelper dbHelper;
 	final String LOG_TAG = "myLogs";
-	TextView moves;
+	TextView moves2;
 	Resources res;
 	int n = 0;
 	int m = 0;
@@ -42,22 +42,22 @@ public class ActivityTest extends Activity implements OnClickListener {
 	int userID;
 	TableLayout tl;
 	int[] pictures = { 
-			R.drawable.circle,
-			R.drawable.flag,
-			R.drawable.rectangle, 
-			R.drawable.semicircle, 
-			R.drawable.square, 
-			R.drawable.star, 
-			R.drawable.triangle 
+			R.drawable.x,
+			R.drawable.h,
+			R.drawable.c, 
+			R.drawable.a, 
+			R.drawable.b, 
+			R.drawable.u, 
+			R.drawable.k 
 	};
 	int[] pictures_check = {
-			R.drawable.circle_check,
-			R.drawable.flag_check,
-			R.drawable.rectangle_check,
-			R.drawable.semicircle_check,
-			R.drawable.square_check,
-			R.drawable.star_check,
-			R.drawable.triangle_check
+			R.drawable.x_check,
+			R.drawable.h_check,
+			R.drawable.c_check,
+			R.drawable.a_check,
+			R.drawable.b_check,
+			R.drawable.u_check,
+			R.drawable.k_check
 	};
 	int[] resultsForTimeR;
 	int[] resultsForTimeW;
@@ -66,9 +66,9 @@ public class ActivityTest extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.test);
+		setContentView(R.layout.testforold);
 		res = getResources();
-		tl = (TableLayout)findViewById(R.id.TableLayout1);
+		tl = (TableLayout)findViewById(R.id.TableLayout2);
 		buttons = new ImageButton[5000];
 		rows = new TableRow[500];
 		resultsForTimeR = new int[5];
@@ -122,9 +122,9 @@ public class ActivityTest extends Activity implements OnClickListener {
 		Intent intent = getIntent();
 		userID = intent.getIntExtra("userID", -1);
 		dbHelper = new DBHelper(this);
-		moves = (TextView)findViewById(R.id.moves);
+		moves2 = (TextView)findViewById(R.id.moves2);
 		countdownDisplay = 
-				(TextView) findViewById(R.id.time_display_box);
+				(TextView) findViewById(R.id.time_display_box2);
 		new CountDownTimer(300000, 1000) {
 			int i = 0;
 		     public void onTick(long millisUntilFinished) {
@@ -152,11 +152,7 @@ public class ActivityTest extends Activity implements OnClickListener {
 		         int dateColIndex = c.getColumnIndex("date");
 		         
 		    	 ContentValues cv = new ContentValues();
-		    	 if (c.moveToFirst()) {
-		    		 Log.d(LOG_TAG, "yes! "+c.getString(nameColIndex));
-		    	 } else {
-		    		 Log.d(LOG_TAG, "nope! "+c.getString(nameColIndex));
-		    	 }
+		    	 if (c.moveToFirst()) Log.d(LOG_TAG, "okay!");
 		    	 cv.put("name", c.getString(nameColIndex));
 		    	 cv.put("birthDate", c.getString(dateColIndex));
 		    	 Calendar calendar = Calendar.getInstance();
@@ -202,7 +198,7 @@ public class ActivityTest extends Activity implements OnClickListener {
 				surplus = Math.abs(countOfrightBefore[v.getId()] - n);
 			}
 			m++;
-			moves.setText(""+n+" правильных и "+m+" неправильных");
+			moves2.setText(""+n+" правильных и "+m+" неправильных");
 			buttons[v.getId()].setBackgroundResource(
 					pictures_check[(Integer)(buttons[v.getId()].getTag())]);
 			break;
@@ -213,7 +209,7 @@ public class ActivityTest extends Activity implements OnClickListener {
 				surplus = Math.abs(countOfrightBefore[v.getId()] - n);
 			}
 			n++;
-			moves.setText(""+n+" правильных и "+m+" неправильных");
+			moves2.setText(""+n+" правильных и "+m+" неправильных");
 			buttons[v.getId()].setBackgroundResource(
 					pictures_check[(Integer)(buttons[v.getId()].getTag())]);
 			break;
