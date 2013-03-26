@@ -7,6 +7,9 @@ import com.vk.hpotter.gottshaldtquiz.util.SimpleConfirmDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,6 +19,7 @@ public class DetailedResultActivity extends Activity {
 	private GottshaldtQuiz quiz;
 	private QuizUsers users;
 	private int resultId;
+	private String dateString;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,32 +27,45 @@ public class DetailedResultActivity extends Activity {
 		setContentView(R.layout.activity_detailed_result);
 
 		double I = getIntent().getExtras().getDouble("EXTRA_I");
-		resultId = getIntent().getExtras().getInt("EXTRA_id"); 
+		resultId = getIntent().getExtras().getInt("EXTRA_id");
+		dateString = getIntent().getExtras().getString("EXTRA_dateString"); 
+		
+		setTitle(dateString);
 		
 		quiz = new GottshaldtQuiz();
 		users = new QuizUsers(DetailedResultActivity.this);
 		
-//		TextView answersCount = (TextView) findViewById(R.id.answersCount);
-//		answersCount.setText(String.valueOf(I));
 		TextView detailedResultDescription = (TextView) findViewById(R.id.detailedResultDescription);
 		detailedResultDescription.setText(quiz.getDescription(I));
 	}
 	
-	public void deleteUserResultButtonClickHandler(View view) {
-		SimpleConfirmDialog userDeleteDialog = new SimpleConfirmDialog(DetailedResultActivity.this, R.string.user_result_delete_message, new Runnable() {
-			@Override
-			public void run() {
-				users.deleteUserResult(resultId);
-				finish();
-			}
-		}, new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		userDeleteDialog.show();
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.detailed_result, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_delete_quiz_result:
+			SimpleConfirmDialog userDeleteDialog = new SimpleConfirmDialog(DetailedResultActivity.this, R.string.user_result_delete_message, new Runnable() {
+				@Override
+				public void run() {
+					users.deleteUserResult(resultId);
+					finish();
+				}
+			}, new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			userDeleteDialog.show();
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 }

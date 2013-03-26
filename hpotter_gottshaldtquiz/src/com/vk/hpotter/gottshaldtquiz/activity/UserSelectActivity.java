@@ -22,6 +22,8 @@ public class UserSelectActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_select);
+		
+		setResult(RESULT_CANCELED);
 
 		users = new QuizUsers(UserSelectActivity.this);
 		registeredUsers = users.getUsers();
@@ -39,9 +41,8 @@ public class UserSelectActivity extends Activity {
 					long arg3) {
 				int id = users.getUserId(registeredUsersValues[arg2]);
 				users.logIn(id);
-				Intent userActionsActivity = new Intent(
-						UserSelectActivity.this, UserActionsActivity.class);
-				startActivity(userActionsActivity);
+				
+				UserSelectActivity.this.setResult(RESULT_OK);
 				UserSelectActivity.this.finish();
 			}
 		});

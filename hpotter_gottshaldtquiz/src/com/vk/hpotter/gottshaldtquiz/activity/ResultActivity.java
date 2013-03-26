@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.SortedMap;
 import com.vk.hpotter.gottshaldtquiz.R;
 import com.vk.hpotter.gottshaldtquiz.storage.QuizUsers;
+import com.vk.hpotter.gottshaldtquiz.util.SimpleListDialog;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -32,13 +33,17 @@ public class ResultActivity extends Activity {
 
 		I = getIntent().getExtras().getDouble("EXTRA_I");
 		users.saveUserResult(I);
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.result, menu);
-		return true;
+		Intent userActionsActivity = new Intent(ResultActivity.this,
+				UserActionsActivity.class);
+		startActivity(userActionsActivity);
+
+		Intent resultsActivity = new Intent(ResultActivity.this,
+				DetailedResultActivity.class);
+		resultsActivity.putExtra("EXTRA_I", I);
+		startActivity(resultsActivity);
+
+		finish();
 	}
 
 	public void showLastResultButtonClickHandler(View view) {
@@ -63,9 +68,7 @@ public class ResultActivity extends Activity {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, resultsDateStrings);
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(
-				ResultActivity.this);
-		builder.setSingleChoiceItems(adapter, 0,
+		new SimpleListDialog(ResultActivity.this, adapter,
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -75,13 +78,12 @@ public class ResultActivity extends Activity {
 								DetailedResultActivity.class);
 
 						Date date = resultsDates.get(which);
-						resultsActivity.putExtra("EXTRA_I",
-								results.get(date));
-						resultsActivity.putExtra("EXTRA_id", users.getUserResultIdByDate(date));
+						resultsActivity.putExtra("EXTRA_I", results.get(date));
+						resultsActivity.putExtra("EXTRA_id",
+								users.getUserResultIdByDate(date));
 						startActivity(resultsActivity);
 						dialog.cancel();
 					}
 				}).show();
 	}
-
 }

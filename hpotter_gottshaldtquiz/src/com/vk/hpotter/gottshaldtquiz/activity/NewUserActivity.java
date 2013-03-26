@@ -25,40 +25,34 @@ public class NewUserActivity extends Activity {
 	public void createUserButtonClickHandler(View view) {
 		final TextView login = (TextView) findViewById(R.id.userLogin);
 
-		long id = -1;
 		try {
-			id = users.addUser(login.getText().toString());
+			users.logIn(users.addUser(login.getText().toString()));
 		} catch (IllegalArgumentException e) {
 			SimpleConfirmDialog dialog = new SimpleConfirmDialog(
 					NewUserActivity.this, R.string.user_exists_dialog,
 					new Runnable() {
 						@Override
 						public void run() {
-							long id = users.getUserId(login.getText()
-									.toString());
-							users.logOff();
-							users.logIn(id);
-							Intent quizActivity = new Intent(
-									NewUserActivity.this, QuizActivity.class);
-							startActivity(quizActivity);
+							users.logIn(users.getUserId(login.getText()
+									.toString()));
+							NewUserActivity.this.setResult(RESULT_OK);
 							NewUserActivity.this.finish();
 						}
 					}, new Runnable() {
 						@Override
 						public void run() {
+							NewUserActivity.this.setResult(RESULT_CANCELED);
+							NewUserActivity.this.finish();
 						}
 					});
 			dialog.show();
 		}
 
-		if (id > 0) {
-			users.logOff();
-			users.logIn(id);
-			Intent quizActivity = new Intent(NewUserActivity.this,
-					QuizActivity.class);
-			startActivity(quizActivity);
-			NewUserActivity.this.finish();
+		if (users.isLogged()) {
+			setResult(RESULT_OK);
+			finish();
 		}
+
 	}
 
 }
