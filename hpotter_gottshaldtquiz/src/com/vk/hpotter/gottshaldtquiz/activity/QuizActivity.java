@@ -1,8 +1,5 @@
 package com.vk.hpotter.gottshaldtquiz.activity;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.vk.hpotter.gottshaldtquiz.GottshaldtQuiz;
 import com.vk.hpotter.gottshaldtquiz.R;
 import com.vk.hpotter.gottshaldtquiz.storage.QuizUsers;
@@ -12,6 +9,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,7 +18,7 @@ import android.widget.Toast;
 public class QuizActivity extends Activity {
 	private static final long NANOSECONDS_IN_MINUTE = 60000000000L;
 
-	private static final Map<Integer, Integer> buttons = new HashMap<Integer, Integer>() {
+	private static final SparseIntArray buttons = new SparseIntArray() {
 		{
 			put(R.id.figuresImage1, 1);
 			put(R.id.figuresImage2, 2);
@@ -52,7 +50,7 @@ public class QuizActivity extends Activity {
 
 		setContentView(R.layout.activity_quiz);
 		normaliseButtons();
-
+		
 		titleString = getResources().getString(R.string.quiz_dynamic_title);
 
 		quizImage = (ImageView) findViewById(R.id.quizImage);
@@ -81,7 +79,8 @@ public class QuizActivity extends Activity {
 	}
 
 	private void normaliseButtons() {
-		for (int buttonId : buttons.keySet()) {
+		for (int i = 0; i < buttons.size(); ++i) {
+			int buttonId = buttons.keyAt(i);
 			ImageButton button = (ImageButton) findViewById(buttonId);
 			button.setBackgroundResource(R.color.white);
 		}
