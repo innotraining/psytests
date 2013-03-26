@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -144,11 +143,11 @@ public class QuizUsers {
 
 		Cursor cursor = db.query(UsersDbOpenHelper.ResultsTable.TABLE_NAME,
 				new String[] { UsersDbOpenHelper.ResultsTable.ID },
-				UsersDbOpenHelper.ResultsTable.DATE + " = '" + date.getTime() + "'",
-				null, null, null, null);
+				UsersDbOpenHelper.ResultsTable.DATE + " = '" + date.getTime()
+						+ "'", null, null, null, null);
 
 		cursor.moveToFirst();
-		
+
 		int result = cursor.getInt(0);
 
 		cursor.close();
@@ -176,6 +175,8 @@ public class QuizUsers {
 	}
 
 	public void deleteUser(long id) {
+		logOff();
+		
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 
 		db.delete(UsersDbOpenHelper.UsersTable.TABLE_NAME,
@@ -185,21 +186,19 @@ public class QuizUsers {
 
 		db.close();
 	}
-	
+
 	public void deleteUserResult(long id) {
 		SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
 
-		
-		
 		Cursor cursor = db.query(UsersDbOpenHelper.ResultsTable.TABLE_NAME,
-				new String[] { UsersDbOpenHelper.ResultsTable.ID, UsersDbOpenHelper.ResultsTable.USERID },
-//				UsersDbOpenHelper.ResultsTable.ID + " = " + id + "",
-				null,
-				null, null, null, null);
+				new String[] { UsersDbOpenHelper.ResultsTable.ID,
+						UsersDbOpenHelper.ResultsTable.USERID },
+				// UsersDbOpenHelper.ResultsTable.ID + " = " + id + "",
+				null, null, null, null, null);
 
 		cursor.moveToFirst();
 		System.err.println(cursor.getCount());
-		
+
 		db.delete(UsersDbOpenHelper.ResultsTable.TABLE_NAME,
 				UsersDbOpenHelper.ResultsTable.ID + " = " + id, null);
 
@@ -220,5 +219,9 @@ public class QuizUsers {
 
 	public long getCurrentUserId() {
 		return settings.getLong(CURRENT_USER_PREFERENCES_FIELD_NAME, 0);
+	}
+
+	public boolean isLogged() {
+		return settings.getLong(CURRENT_USER_PREFERENCES_FIELD_NAME, 0) != 0;
 	}
 }

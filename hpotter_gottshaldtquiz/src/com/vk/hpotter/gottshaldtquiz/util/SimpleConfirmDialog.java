@@ -1,7 +1,6 @@
 package com.vk.hpotter.gottshaldtquiz.util;
 
 import com.vk.hpotter.gottshaldtquiz.R;
-import com.vk.hpotter.gottshaldtquiz.R.string;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,7 +11,7 @@ public class SimpleConfirmDialog {
 //	private Context context;
 	private AlertDialog.Builder builder;
 	
-	public SimpleConfirmDialog(final Activity activity, int messageId, final Runnable yes, final Runnable no) {
+	public SimpleConfirmDialog(Activity activity, int messageId, final Runnable yes, final Runnable no) {
 		builder = new AlertDialog.Builder(activity);
 		builder.setMessage(messageId)
 				.setPositiveButton(R.string.yes,
@@ -30,7 +29,7 @@ public class SimpleConfirmDialog {
 						});
 	}
 	
-	public SimpleConfirmDialog(final Activity activity, CharSequence message, final Runnable yes, final Runnable no) {
+	public SimpleConfirmDialog(Activity activity, CharSequence message, final Runnable yes, final Runnable no) {
 		builder = new AlertDialog.Builder(activity);
 		builder.setMessage(message)
 				.setPositiveButton(R.string.yes,

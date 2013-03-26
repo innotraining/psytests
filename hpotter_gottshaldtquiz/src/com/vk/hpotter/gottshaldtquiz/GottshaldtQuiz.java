@@ -5,57 +5,78 @@ import java.util.Queue;
 
 public class GottshaldtQuiz {
 	private Queue<Integer> questions;
-	private Queue<String> answers;
+	private Queue<Integer> answers;
 
 	@SuppressWarnings("serial")
 	public GottshaldtQuiz() {
 		questions = new LinkedList<Integer>() {
 			{
-				add(R.drawable.test1);
-				add(R.drawable.test2);
-				add(R.drawable.test3);
-				add(R.drawable.test4);
-				add(R.drawable.test5);
-				add(R.drawable.test6);
-				add(R.drawable.test7);
-				add(R.drawable.test8);
-				add(R.drawable.test9);
-				add(R.drawable.test10);
+				add(R.drawable.quiz1);
+				add(R.drawable.quiz2);
+				add(R.drawable.quiz3);
+				add(R.drawable.quiz4);
+				add(R.drawable.quiz5);
+				add(R.drawable.quiz6);
+				add(R.drawable.quiz7);
+				add(R.drawable.quiz8);
+				add(R.drawable.quiz9);
+				add(R.drawable.quiz10);
+				add(R.drawable.quiz11);
+				add(R.drawable.quiz12);
+				add(R.drawable.quiz13);
+				add(R.drawable.quiz14);
+				add(R.drawable.quiz15);
+				add(R.drawable.quiz16);
+				add(R.drawable.quiz17);
+				add(R.drawable.quiz18);
+				add(R.drawable.quiz19);
+				add(R.drawable.quiz20);
+				add(R.drawable.quiz21);
+				add(R.drawable.quiz22);
+				add(R.drawable.quiz23);
+				add(R.drawable.quiz24);
+				add(R.drawable.quiz25);
+				add(R.drawable.quiz26);
+				add(R.drawable.quiz27);
+				add(R.drawable.quiz28);
+				add(R.drawable.quiz29);
+				add(R.drawable.quiz30);
+
 			}
 		};
 
-		answers = new LinkedList<String>() {
+		answers = new LinkedList<Integer>() {
 			{
-				add("А");
-				add("Б");
-				add("В");
-				add("Г");
-				add("В");
-				add("В");
-				add("А");
-				add("В");
-				add("Д");
-				add("Д");
-				add("Б");
-				add("А");
-				add("А");
-				add("В");
-				add("Б");
-				add("Д");
-				add("А");
-				add("Д");
-				add("Б");
-				add("В");
-				add("Г");
-				add("Б");
-				add("Г");
-				add("А");
-				add("Д");
-				add("Б");
-				add("А");
-				add("Д");
-				add("В");
-				add("Б");
+				add(1);
+				add(2);
+				add(3);
+				add(4);
+				add(3);
+				add(3);
+				add(1);
+				add(3);
+				add(5);
+				add(5);
+				add(2);
+				add(1);
+				add(1);
+				add(3);
+				add(2);
+				add(5);
+				add(1);
+				add(5);
+				add(2);
+				add(3);
+				add(4);
+				add(2);
+				add(4);
+				add(1);
+				add(5);
+				add(2);
+				add(1);
+				add(5);
+				add(3);
+				add(2);
 			}
 		};
 	}
@@ -68,15 +89,19 @@ public class GottshaldtQuiz {
 		return questions.isEmpty();
 	}
 
-	public boolean checkNextAnswer(String answer) {
-		return answer.equalsIgnoreCase(answers.poll());
+	public boolean checkNextAnswer(Integer answer) {
+		return answer == answers.poll();
 	}
 
+	public int remaining() {
+		return questions.size();
+	}
+	
 	public int getDescription(double I) {
 		if (I < 2.5) {
-			return R.string.negative_test_result_description;
+			return R.string.dependent_result_description;
 		} else {
-			return R.string.positive_test_result_description;
+			return R.string.not_dependent_result_description;
 		}
 	}
 }
