@@ -24,29 +24,33 @@
         </activity>
         <activity
             android:name="com.vk.hpotter.gottshaldtquiz.activity.QuizActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:configChanges="orientation|screenSize"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            >
         </activity>
         <activity
             android:name="com.vk.hpotter.gottshaldtquiz.activity.DetailedResultActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-        	android:name="com.vk.hpotter.gottshaldtquiz.activity.NewUserActivity"
-            android:label="@string/title_activity_new_user" >
+            android:name="com.vk.hpotter.gottshaldtquiz.activity.NewUserActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.vk.hpotter.gottshaldtquiz.activity.UserSelectActivityt"
-            android:label="@string/title_activity_user_select" >
+            android:name="com.vk.hpotter.gottshaldtquiz.activity.UserSelectActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity
-			android:name="com.vk.hpotter.gottshaldtquiz.activity.ResultActivity"
-            android:label="@string/title_activity_result" >
-            </activity>
+            android:name="com.vk.hpotter.gottshaldtquiz.activity.ResultActivity"
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name="com.vk.hpotter.gottshaldtquiz.activity.UserActionsActivity"
-            android:label="@string/title_activity_user_actions" >
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.vk.hpotter.gottshaldtquiz.activity.SettingsActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 
