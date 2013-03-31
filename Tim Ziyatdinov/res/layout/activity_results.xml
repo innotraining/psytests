@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MyScheme1"
+    android:background="#ffffff"
     android:orientation="vertical">
     
     <ScrollView
@@ -26,8 +26,11 @@
                 android:id="@+id/rTextView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="TextView" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TextView"
+              />
 
             <EditText
                 android:id="@+id/rEditText1"
@@ -35,11 +38,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
                 android:enabled="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:inputType="number" >
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" >
 
                 <!-- <requestFocus /> -->
             </EditText>
@@ -53,8 +57,9 @@
                 android:id="@+id/rTextView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView2222"
                 android:textSize="20sp"
-                android:text="TextView2222" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText2"
@@ -62,11 +67,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
                 android:enabled="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -78,20 +84,21 @@
                 android:id="@+id/rTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextVi"
                 android:textSize="20sp"
-                android:text="TextVi" />
+                android:visibility="gone" />
 
           	<EditText
-                android:id="@+id/rEditText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
-                android:enabled="false"
-                android:inputType="number" >
-
+          	    android:id="@+id/rEditText3"
+          	    android:layout_width="wrap_content"
+          	    android:layout_height="wrap_content"
+          	    android:layout_weight="1"
+          	    android:ems="10"
+          	    android:enabled="false"
+          	    android:focusable="false"
+          	    android:inputType="number"
+          	    android:textSize="20sp"
+          	    android:visibility="gone" >
              
             </EditText>
         </LinearLayout>
@@ -104,8 +111,9 @@
                 android:id="@+id/rTextView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextVi32323232323ew"
                 android:textSize="20sp"
-                android:text="TextVi32323232323ew" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText4"
@@ -113,10 +121,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
                 android:enabled="false"
-                android:inputType="number" />
+                android:focusable="false"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
         </LinearLayout>
         
          <LinearLayout
@@ -127,8 +137,9 @@
                 android:id="@+id/rTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText5"
@@ -136,10 +147,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
                 android:enabled="false"
-                android:inputType="number" />
+                android:focusable="false"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
         </LinearLayout>
         
          <LinearLayout
@@ -150,8 +163,9 @@
                 android:id="@+id/rTextView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText6"
@@ -159,10 +173,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
                 android:enabled="false"
-                android:inputType="number" />
+                android:focusable="false"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
         </LinearLayout>
         
         
@@ -174,8 +190,9 @@
                 android:id="@+id/rTextView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText7"
@@ -183,15 +200,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
                 android:enabled="false"
-                android:inputType="number" />
+                android:focusable="false"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
         </LinearLayout>
         
          <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:visibility="gone" >
 
             <TextView
                 android:id="@+id/rTextView8"
@@ -220,8 +240,9 @@
                 android:id="@+id/rTextView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText9"
@@ -229,10 +250,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
                 android:enabled="false"
-                android:inputType="number" />
+                android:focusable="false"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
         </LinearLayout>
         
         <LinearLayout
@@ -243,8 +266,9 @@
                 android:id="@+id/rTextView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textSize="20sp"
-                android:text="TextView" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/rEditText10"
@@ -252,10 +276,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:textSize="20sp"
-                android:focusable="false"
                 android:enabled="false"
-                android:inputType="number" />
+                android:focusable="false"
+                android:inputType="number"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -272,7 +298,7 @@
                 android:layout_gravity="bottom"
                 android:onClick="homeScreen"
                 android:text="@string/button_home_results"
-                android:textSize="20sp" />
+             />
 
         </LinearLayout>
 
