@@ -16,6 +16,8 @@ import android.graphics.Paint.Align;
 
 public class BarGraph {
 	
+	private int valuesTextSize = 14, labelsTextSize = 15;
+	
 	public GraphicalView getMainView(Context context, ArrayList<Integer> results) {
 		// --data--
 		int[] y = {13, 24};
@@ -24,6 +26,9 @@ public class BarGraph {
 		double[] lowerBound = {17, 3.4};
 		double[] upperBound = {25, 10};
 		
+		valuesTextSize *= context.getResources().getDisplayMetrics().density;
+		labelsTextSize *= context.getResources().getDisplayMetrics().density;
+				
 		// series - first column
 		
 		CategorySeries series = new CategorySeries("Ваш результат");
@@ -54,7 +59,7 @@ public class BarGraph {
 		//renderer.setColor(Color.GREEN);
 		renderer.setColor(Color.argb(245, 0, 255, 0));
 		renderer.setChartValuesTextAlign(Align.RIGHT);
-		renderer.setChartValuesTextSize(14);
+		renderer.setChartValuesTextSize(valuesTextSize);
 				
 		// renderer min
 		XYSeriesRenderer rendererMin = new XYSeriesRenderer();
@@ -63,7 +68,7 @@ public class BarGraph {
 		//rendererMin.setColor(Color.BLUE);
 		rendererMin.setColor(Color.argb(120, 210, 255, 0));
 		rendererMin.setChartValuesTextAlign(Align.RIGHT);
-		rendererMin.setChartValuesTextSize(14);
+		rendererMin.setChartValuesTextSize(valuesTextSize);
 		
 		// renderer max
 		XYSeriesRenderer rendererMax = new XYSeriesRenderer();
@@ -72,7 +77,7 @@ public class BarGraph {
 		///rendererMin.setColor(Color.RED);
 		rendererMax.setColor(Color.argb(190, 190, 140, 0)); 
 		rendererMax.setChartValuesTextAlign(Align.RIGHT);
-		rendererMax.setChartValuesTextSize(14);
+		rendererMax.setChartValuesTextSize(valuesTextSize);
 
 		// multiple renderer
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
@@ -88,6 +93,7 @@ public class BarGraph {
 		// Main Renderer Settings
 		
 		mRenderer.setChartTitle("Диаграмма результатов");
+		mRenderer.setChartTitleTextSize(labelsTextSize);
 		//mRenderer.setXTitle("Параметры");
 		//mRenderer.setYTitle("Величина");
 		mRenderer.setBarSpacing(0.2);
@@ -109,7 +115,7 @@ public class BarGraph {
 		mRenderer.setYAxisMax(37); //max 34
 		mRenderer.setXAxisMin(0.4);
 		mRenderer.setXAxisMax(2.6);
-		mRenderer.setLabelsTextSize(15);
+		mRenderer.setLabelsTextSize(labelsTextSize);
 		mRenderer.setFitLegend(true);
 		mRenderer.setPanEnabled(false, false);
 		//mRenderer.setShowLegend(true);
@@ -142,6 +148,10 @@ public class BarGraph {
 			series.add("Bar " + (i+1), y[i]);
 		}
 		
+		float k = context.getResources().getDisplayMetrics().density;
+		valuesTextSize *= k;
+		labelsTextSize *= k;
+		
 		// multiple series
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		dataset.addSeries(series.toXYSeries());
@@ -152,12 +162,13 @@ public class BarGraph {
 		renderer.setChartValuesSpacing((float) 0.5); //?
 		renderer.setColor(Color.GREEN);
 		renderer.setChartValuesTextAlign(Align.RIGHT);
-		renderer.setChartValuesTextSize(14);
+		renderer.setChartValuesTextSize(valuesTextSize);
 		
 		// multiple renderer
 		XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 		mRenderer.addSeriesRenderer(renderer);
 		mRenderer.setChartTitle("Подробные результаты");
+		mRenderer.setChartTitleTextSize(labelsTextSize);
 		//mRenderer.setXTitle("X values");
 		//mRenderer.setYTitle("Y values");
 		mRenderer.setBarSpacing(0.2);
@@ -165,7 +176,7 @@ public class BarGraph {
 		mRenderer.setXLabels(0);
 		mRenderer.setXLabelsAngle(-82);
 		mRenderer.setXLabelsAlign(Align.RIGHT);
-		mRenderer.setMargins(new int[] {10, 10, 115, 10});
+		mRenderer.setMargins(new int[] {(int) (13*k), (int) (13*k), (int) (170*k), (int) (13*k)});
 		mRenderer.addXTextLabel(1, "Физ. агрессия");
 		mRenderer.addXTextLabel(2, "Косв. агрессия");
 		mRenderer.addXTextLabel(3, "Раздражение");
@@ -196,9 +207,10 @@ public class BarGraph {
 		mRenderer.setYAxisMax(15); //max 13
 		mRenderer.setXAxisMin(0.4);
 		mRenderer.setXAxisMax(8.6);
-		mRenderer.setLabelsTextSize(15);
+		mRenderer.setLabelsTextSize(labelsTextSize);
 		mRenderer.setFitLegend(true);
 		mRenderer.setPanEnabled(false, false);
+		mRenderer.setShowLegend(false);
 		//mRenderer.setShowLegend(true);
 		mRenderer.setScale((float) 0.6);
 		

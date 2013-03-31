@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -21,8 +20,8 @@ public class ResultsActivity extends Activity {
 
 	private ArrayList<Integer> answers;
 	private ArrayList<Integer> results;
-	private Resources res;
-	private String[] features;
+	//private Resources res;
+	//private String[] features;
 	private static final int numRecordsPerDay = 3;
 	
 	@Override
@@ -32,7 +31,7 @@ public class ResultsActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		initFields();
+		//initFields();
 		
 		Intent intent = getIntent();
 		String caller = intent.getStringExtra("caller");
@@ -49,6 +48,10 @@ public class ResultsActivity extends Activity {
 			if (canLoadResults()) {
 				deleteOlderRecords();
 				fillResults();
+			} else {
+				TextView f;
+				f = (TextView) findViewById(R.id.rTextView1);
+				f.setText("Список результатов пуст");
 			}
 		} else {
 			// вызваны из списка результатов (ResultsListActivity)
@@ -218,7 +221,7 @@ public class ResultsActivity extends Activity {
 		}
 	}
 	
-	private void initFields() {
+	/*private void initFields() {
 		res = getResources();
 		features = res.getStringArray(R.array.features_array);
 		
@@ -253,7 +256,7 @@ public class ResultsActivity extends Activity {
 		
 		f = (TextView) findViewById(R.id.rTextView10);
 		f.setText(features[9]);
-	}
+	}*/
 	
 	private boolean canLoadResults() {
 				

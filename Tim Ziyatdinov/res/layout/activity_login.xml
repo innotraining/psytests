@@ -80,7 +80,9 @@
 	              android:gravity="center"
 	              android:text="@string/textview_first"
 	              android:textColor="@color/YellowGreen"
-	              android:textSize="@dimen/activity_horizontal_margin" />
+	              android:textSize="19sp"
+	          />
+	          <!-- @dimen/activity_horizontal_margin" -->
 	          
 	          <Button
 	              android:id="@+id/btnRegisterUser"
