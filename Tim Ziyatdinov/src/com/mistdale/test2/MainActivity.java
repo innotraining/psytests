@@ -83,13 +83,13 @@ public class MainActivity extends Activity {
     }
     
     public void changeMode(View view) {
-    	individual_app = !individual_app;
-    	if (!individual_app) {
-        	button_results.setVisibility(View.GONE);
-        	button_about.setVisibility(View.GONE);
-        } else {
-        	button_results.setVisibility(View.VISIBLE);
-        	button_about.setVisibility(View.VISIBLE);
-        }
+    	//individual_app = !individual_app;
+    	//if (!individual_app) {
+        	//button_results.setVisibility(View.GONE);
+        	//button_about.setVisibility(View.GONE);
+        //} else {
+        	//button_results.setVisibility(View.VISIBLE);
+        	//button_about.setVisibility(View.VISIBLE);
+        //}
     }
 }

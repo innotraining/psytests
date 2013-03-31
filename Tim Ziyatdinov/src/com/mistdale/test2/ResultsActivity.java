@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class ResultsActivity extends Activity {
@@ -145,7 +144,7 @@ public class ResultsActivity extends Activity {
 	}
 	
 	private void fillResults() {
-		EditText e;
+		/*EditText e;
 		
 		e = (EditText) findViewById(R.id.rEditText1);
 		e.setText(results.get(0).toString());
@@ -175,7 +174,12 @@ public class ResultsActivity extends Activity {
 		e.setText(results.get(8).toString());
 		
 		e = (EditText) findViewById(R.id.rEditText10);
-		e.setText(results.get(9).toString());
+		e.setText(results.get(9).toString());*/
+		
+		Intent intent = new Intent(this, ResultsVisualActivity.class);
+		intent.putExtra("results_array", results);
+		startActivity(intent);
+		finish();
 	}
 	
 	private void saveResults() {
