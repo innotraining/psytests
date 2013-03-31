@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mistdale.test2"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher2"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.mistdale.test2.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:parentActivityName="com.mistdale.test2.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.StartTestActivity"
+            android:label="@string/title_activity_start_test"
+            android:parentActivityName="com.mistdale.test2.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.TestingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_testing"
+            android:parentActivityName="com.mistdale.test2.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.ResultsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/title_activity_results"
+            android:parentActivityName="com.mistdale.test2.ResultsMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+        	</intent-filter>
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName="com.mistdale.test2.LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test2.LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.UsersActivity"
+            android:label="@string/title_activity_users"
+            android:parentActivityName="com.mistdale.test2.LoginActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test2.LoginActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.ResultsMenuActivity"
+            android:label="@string/title_activity_results_menu"
+            android:parentActivityName="com.mistdale.test.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.ResultsListActivity"
+            android:label="@string/title_activity_results_list"
+            android:parentActivityName="com.mistdale.test2.ResultsMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test2.ResultsMenuActivity" />
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.ResultsVisualActivity"
+            android:label="@string/title_activity_results_visual"
+            android:parentActivityName="com.mistdale.test2.ResultsMenuActivity" >
+  
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test2.ResultsMenuActivity" />
+        </activity>
+        <activity android:name="org.achartengine.GraphicalActivity" >
+        </activity>
+        <activity
+            android:name="com.mistdale.test2.ResultsVisualDetailedActivity"
+            android:label="@string/title_activity_results_visual_detailed"
+            android:parentActivityName="com.mistdale.test2.ResultsVisualActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mistdale.test2.ResultsVisualActivity" />
+        </activity>
+    </application>
+
+</manifest>

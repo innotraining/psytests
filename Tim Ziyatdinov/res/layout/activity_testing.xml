@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@color/MyScheme1"
+    tools:context=".TestingActivity" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:textSize="19sp"
+        android:text="@string/string_q" />
+
+    <Button
+        android:id="@+id/button_home"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/button_home"
+        android:onClick="homeScreen"
+         />
+
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/button_restart"
+        android:onClick="restartTest"
+        android:layout_marginBottom="14dp"
+        android:layout_marginRight="10dp"
+         />
+    
+    <!-- android:layout_alignBaseline="@+id/button_home"
+        android:layout_alignBottom="@+id/button_home"
+        android:layout_toRightOf="@+id/button_home" -->
+
+    <Button
+        android:id="@+id/button_yes"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_above="@+id/button_home"
+        android:layout_alignLeft="@+id/button_home"
+        android:layout_marginBottom="32dp"
+        android:onClick="yesAction"
+        android:text="@string/yes"
+        />
+
+    <Button
+        android:id="@+id/button_no"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+      	android:layout_above="@+id/button_restart"
+        android:layout_alignRight="@+id/button_restart"
+        android:layout_marginBottom="32dp"
+        android:onClick="noAction"
+        android:text="@string/no"
+        />
+    
+</RelativeLayout>
